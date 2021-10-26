@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otel", "Otel\Otel.csproj", "{5EEA8884-719A-43F2-91B1-4443ACC78890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtelWebApi", "OtelWebApi\OtelWebApi.csproj", "{D5CE1118-D09E-4F8F-B273-051C43105301}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EEA8884-719A-43F2-91B1-4443ACC78890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EEA8884-719A-43F2-91B1-4443ACC78890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EEA8884-719A-43F2-91B1-4443ACC78890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEA8884-719A-43F2-91B1-4443ACC78890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CE1118-D09E-4F8F-B273-051C43105301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CE1118-D09E-4F8F-B273-051C43105301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CE1118-D09E-4F8F-B273-051C43105301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CE1118-D09E-4F8F-B273-051C43105301}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61A68FB1-78DD-4030-9B09-1029CE974154}
+	EndGlobalSection
+EndGlobal
