@@ -1,18 +1,6 @@
 ﻿using Otel.View.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Otel.View.Windows;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Otel
 {
@@ -25,6 +13,13 @@ namespace Otel
         {
             InitializeComponent();
             Main.Navigate(new NewTicket());
+        }
+
+        private void ComeButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+            Application.Current.Windows[0].Close();
         }
     }
 }

@@ -6,11 +6,21 @@
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background"
                 Value="#DBE4EB" />
-        <Setter Property="Foreground"
-                Value="#001c3d" />
         <Setter Property="Margin"
                 Value="25" />
         <Setter Property="FontSize"
-                Value="13" />
+                Value="18" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="#dadce0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Foreground"
+                Value="#5f6368" />
+    </Style>
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground"
+                Value="#5f6368" />
     </Style>
 </ResourceDictionary>

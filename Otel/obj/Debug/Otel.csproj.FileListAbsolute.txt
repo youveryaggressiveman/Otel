@@ -18,3 +18,16 @@ C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\View\Pages\NewTic
 C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\App.baml
 C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\View\Pages\NewTicket.baml
 C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\Style\GlobalStyle.baml
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Memory.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Text.Json.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Buffers.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\повелитель\source\repos\Otel\Otel\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\Otel.exe.config
+C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\Otel.csproj.CopyComplete
+C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\View\Windows\AuthWindow.g.cs
+C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\View\Windows\AuthWindow.baml

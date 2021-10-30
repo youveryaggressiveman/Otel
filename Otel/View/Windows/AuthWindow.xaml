@@ -1,0 +1,119 @@
+﻿<Window x:Class="Otel.View.Windows.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Otel.View.Windows"
+        mc:Ignorable="d"
+        Title="Hotel City: Авторизация"
+        Height="700"
+        Width="600"
+        MinHeight="700"
+        MinWidth="600"
+        MaxHeight="700"
+        MaxWidth="600"
+        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="450" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Resources/Image/baseline_luggage_black_48dp.png"
+                   Margin="40 0 0 0" />
+            <Label Content="Hotel City"
+                   FontSize="50"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="40 0 0 0" />
+
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Content="  Авторизация"
+                   FontSize="40"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <Label Content="Введите номер телефона:"
+                   Grid.Row="1" 
+                   FontSize="15"
+                   HorizontalContentAlignment="Right"
+                   VerticalContentAlignment="Center"/>
+            <TextBox  Grid.Row="1" Grid.Column="1"
+                      VerticalContentAlignment="Center"
+                      FontSize="15"
+                      HorizontalContentAlignment="Right"
+                      Margin="20"/>
+            <Label Content="Введите пароль:"
+                   Grid.Row="2"
+                   FontSize="15"
+                   HorizontalContentAlignment="Right"
+                   VerticalContentAlignment="Center" />
+            <PasswordBox Grid.Column="1" Grid.Row="2"
+                         x:Name="PswBox"
+                         VerticalContentAlignment="Center"
+                         FontSize="15"
+                         HorizontalContentAlignment="Right"
+                         Margin="20" />
+            <TextBox  Grid.Row="2"
+                      Name="PswTextBox"
+                      Grid.Column="1"
+                      VerticalContentAlignment="Center"
+                      FontSize="15"
+                      Visibility="Hidden"
+                      HorizontalContentAlignment="Right"
+                      Margin="20" />
+            <CheckBox Content="Показать пароль" 
+                      Margin="0 0 40 0"
+                      Grid.Column="1"
+                      Grid.Row="3"
+                      FontSize="13"
+                      x:Name="ShowPswCheckBox"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Click="ShowPswCheckBox_Click"/>
+            <Label Grid.Row="3"
+                   HorizontalContentAlignment="Right"
+                   FontSize="13"
+                   Margin="0 0 10 0"
+                   VerticalContentAlignment="Center">
+                <Hyperlink>Забыли пароль</Hyperlink>
+            </Label>
+            <Label Content="   Хотите зарегистрироваться в системе" 
+                   Grid.Row="4"
+                   Grid.Column="1"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Center"
+                   FontSize="15"
+                   />
+            <Button Grid.Row="4" 
+                    Content=" Зарегистрироваться "
+                    Margin="20"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Content="Отмена"/>
+            <Button Grid.Column="1"
+                    Content="Войти"/>
+        </Grid>
+    </Grid>
+</Window>

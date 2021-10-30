@@ -8,16 +8,15 @@
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
         Title="Главное окно: резирвирование номеров"
         MinHeight="650"
-        MinWidth="1000"
+        MinWidth="1050"
         Height="650"
-        Width="1000"
+        Width="1050"
         Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         Background="White"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
-            <RowDefinition Height="450" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -43,13 +42,15 @@
                     Content=" Зарегистрироваться ">
 
             </Button>
-            <Button Grid.Column="4"
-                    Content="    Войти    ">
+            <Button x:Name="ComeButton" Grid.Column="4"
+                    Content="    Войти    "
+                    Click="ComeButton_Click">
 
             </Button>
         </Grid>
         <Frame Grid.Row="1"
                Grid.Column="0" 
                x:Name="Main"/>
+
     </Grid>
 </Window>
