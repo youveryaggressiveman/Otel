@@ -5,22 +5,145 @@
   <!-- Секция для кнопок -->
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background"
-                Value="#DBE4EB" />
+                Value="#396afc" />
         <Setter Property="Margin"
                 Value="25" />
         <Setter Property="FontSize"
                 Value="18" />
         <Setter Property="BorderThickness"
-                Value="1" />
+                Value="0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding Property=BorderBrush}"
+                        BorderThickness="{TemplateBinding Property=BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          Margin="10 0 10 0"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#2948ff"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!--Cекция для Label-->
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground"
+                Value="#5f6368" />
+        <Setter Property="FontSize"
+                Value="20" />
+    </Style>
+
+    <!--Cекция для DescriptionTextBlock-->
+    <Style x:Key="descriptionTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground"
+                Value="#5f6368" />
+        <Setter Property="FontSize"
+                Value="20" />
+    </Style>
+
+    <!--Секция для заголовка-->
+    <Style x:Key="headerLabel"
+           TargetType="{x:Type Label}">
+        <Setter Property="Foreground"
+                Value="#396afc" />
         <Setter Property="BorderBrush"
-                Value="#dadce0" />
+                Value="#396afc" />
+        <Setter Property="BorderThickness"
+                Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Property=BorderBrush}"
+                            BorderThickness="{TemplateBinding Property=BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          Margin="10 0 10 0"
+                                          VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Секция для TextBox-->
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="BorderBrush"
+                Value="#C0C0C0" />
+        <Style.Resources>
+            <Style TargetType="Border" >
+                <Setter Property="CornerRadius"
+                        Value="8" />
+            </Style>
+        </Style.Resources>
+    </Style>
+    
+    <!--Секция для numberOfRoomTextBox-->
+    <Style x:Key="numberOfRoomTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="Margin"
+                Value="20" />
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius"
+                        Value="8" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!--Секция для TicketButton-->
+     <Style x:Key="ticketButton" TargetType="{x:Type Button}">
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Setter Property="Margin"
+                Value="30" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="BorderThickness"
+                Value="0" />
         <Setter Property="Cursor"
                 Value="Hand" />
         <Setter Property="Foreground"
                 Value="#5f6368" />
-    </Style>
-    <Style TargetType="{x:Type Label}">
-        <Setter Property="Foreground"
-                Value="#5f6368" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding Property=BorderBrush}"
+                        BorderThickness="{TemplateBinding Property=BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          Margin="10 0 10 0"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#F0F0F0"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -6,14 +6,10 @@
       xmlns:ViewModel="clr-namespace:Otel.ViewModel"
       x:Class="Otel.View.Pages.NewTicket"
       mc:Ignorable="d"
-      d:DesignHeight="550"
+      d:DesignHeight="750"
       d:DesignWidth="1050"
       Title="NewTicket"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
-    <Page.DataContext>
-        <ViewModel:TicketViewModel />
-    </Page.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -32,26 +28,25 @@
                 <ColumnDefinition />
 
             </Grid.ColumnDefinitions>
-            <Label Content="Информация об отеле:"
+            <Label Content="Информация об отеле"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   FontSize="30"
+                   FontSize="42"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Center" />
             <Label Grid.Row="1"
                    Content=" Выберите страну: "
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15" />
+                   VerticalAlignment="Center" />
             <Label Content=" Выберите отель: "
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="15"
                    Grid.Row="2" />
             <ComboBox  Style="{StaticResource RoundComboBox}"
                        ItemContainerStyle="{StaticResource RoundComboBoxItem}"
                        ItemsSource="{Binding CountryOfOtelList}"
                        SelectedItem="{Binding SelectedCountry}"
+                       Width="250"
                        DisplayMemberPath="Name"
                        Grid.Row="1"
                        SelectedIndex="0"
@@ -62,13 +57,16 @@
                       x:Name="NameOtelBox"
                       Style="{StaticResource RoundComboBox}"
                       ItemsSource="{Binding NameOtelList}"
-                      SelectedIndex="0"
+                      Width="250"
+                      SelectedIndex="{Binding SelectedHotelIndex}"
                       DisplayMemberPath="Name"
+                      SelectedItem="{Binding SelectedName}"
                       ItemContainerStyle="{StaticResource RoundComboBoxItem}"
                       Grid.Column="1" />
-            <Image Grid.Row="2"
+            <Image Grid.Row="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
+                   Source="{Binding ImageByOtel}"
                    Margin="20" />
         </Grid>
         <Grid Grid.Column="2">
@@ -78,28 +76,30 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
                 <RowDefinition Height="150" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Grid.ColumnSpan="3"
-                   Content="Информация о билете:"
-                   FontSize="30"
+                   Content="Информация о билете"
+                   FontSize="42"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Center" />
             <Label Grid.Row="1"
+                   Margin="15"
                    Content="Тип номера:"
-                   FontSize="15"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <ComboBox Grid.Row="1"
                       Grid.Column="1"
                       Grid.ColumnSpan="2"
+                      Width="250"
                       x:Name="TypeRoomBox"
                       ItemsSource="{Binding TypeRommList}"
                       SelectedIndex="0"
@@ -110,9 +110,9 @@
                    Grid.Row="2"
                    Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15" />
+                   VerticalAlignment="Center"/>
             <DatePicker Grid.Row="3"
+                        SelectedDate="{Binding ArrivalDate}"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="8"
@@ -123,49 +123,64 @@
                    Grid.Row="2"
                    Grid.Column="2"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15" />
+                   VerticalAlignment="Center" />
             <DatePicker Grid.Row="3"
+                        SelectedDate="{Binding DeparatureDate}"
                         Grid.Column="2"
                         Width="200"
                         HorizontalContentAlignment="Center"
                         Margin="8"
                         VerticalContentAlignment="Center" />
             <Label Grid.Row="4"
-                   Content="Количество номеров:"
-                   FontSize="15"
+                   Content="Адрес:"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
-            <TextBox Grid.Row="4"
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Width="250"
+                   Grid.ColumnSpan="2"
+                   Margin="20"
+                   Content="{Binding AddressOfOtel}"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center">
+            </Label>
+            <Label Content="Описание: "
+                   Margin="15"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Grid.Row="6" />
+            <Label Content="Количество комнат:"
+                   Grid.Row="5" 
+                   Margin="15"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+            <TextBox Grid.Row="5"
+                     Style="{StaticResource numberOfRoomTextBox}"
                      Grid.Column="1"
                      Grid.ColumnSpan="2"
-                     Margin="20"
+                     Width="250"
                      HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius"
-                                Value="8" />
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-            <Label Content=" Описание: "
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15"
-                   Grid.Row="5" />
-            <Label Content="  "
-                   HorizontalContentAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="15"
-                   Grid.Row="5"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2" />
-            <Button Grid.Row="6"
+                     VerticalContentAlignment="Center" />
+            <ScrollViewer Grid.Row="6"
+                          Height="125"
+                          Width="300"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="2"
+                          VerticalScrollBarVisibility="Visible"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Description}"
+                               Style="{StaticResource descriptionTextBlock}"
+                               TextWrapping="Wrap"
+                               FontSize="15" />
+                </StackPanel>
+
+            </ScrollViewer>
+            <Button Grid.Row="7"
+                    Command="{Binding FormalizationCommand}"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Margin="8"
-                    Background="#DBE4EB"
                     Content="Оформить">
                 <Button.DataContext>
                     <ViewModel:TicketViewModel />
@@ -176,7 +191,7 @@
                 BorderThickness="1"
                 Grid.Column="1"
                 HorizontalAlignment="Left"
-                Height="550"
+                Height="750"
                 VerticalAlignment="Top"
                 Width="1"
                 Margin="50,0,0,0" />

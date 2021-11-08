@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Otel.ViewModel;
+using System.Windows.Controls;
 
 namespace Otel.View.Pages
 {
@@ -8,9 +9,11 @@ namespace Otel.View.Pages
     public partial class NewTicket : Page
     {
 
-        public NewTicket()
+        public NewTicket(TicketViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
+
     }
 }

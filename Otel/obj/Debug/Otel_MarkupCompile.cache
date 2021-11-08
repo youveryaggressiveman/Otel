@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\повелитель\source\repos\Otel\Otel\App.xaml
-5150098054
+7-1416197052
 
-158116673
+34704579511
 120-1242264647
-Style\GlobalStyle.xaml;Style\GlobalTemplate.xaml;View\Pages\NewTicket.xaml;View\Windows\AuthWindow.xaml;View\Windows\MainWindow.xaml;
+Style\GlobalStyle.xaml;Style\GlobalTemplate.xaml;View\Pages\NewTicket.xaml;View\Windows\AuthWindow.xaml;View\Windows\MainWindow.xaml;View\Windows\RegistrationWindow.xaml;View\Windows\TicketPayment.xaml;
 
 False
 

@@ -5,11 +5,11 @@
     <ControlTemplate x:Key="PasswordBox"
                      TargetType="{x:Type PasswordBox}">
         <Border x:Name="Border"
-                CornerRadius="5"
-                BorderThickness="0.6">
+                CornerRadius="8"
+                BorderThickness="1">
             <Border.BorderBrush>
                 <SolidColorBrush x:Name="BorderColor"
-                                 Color="#FFE6DDDD" />
+                                 Color="#C0C0C0" />
             </Border.BorderBrush>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">

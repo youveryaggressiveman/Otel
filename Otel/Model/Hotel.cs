@@ -10,7 +10,8 @@ namespace Otel.Model
     {
         public int ID { get; set; }
         public int NameOtelID { get; set; }
-        public int RoomID { get; set; }
         public int AddressOfOtelID { get; set; }
+        public int ImageID { get; set; }
+        public Nullable<int> DiscriptionID { get; set; }
     }
 }

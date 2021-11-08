@@ -1,7 +1,16 @@
-﻿using Otel.Controllers;
+﻿using Otel.Command;
+using Otel.Controllers;
+using Otel.Core;
 using Otel.Model;
+using Otel.View.Windows;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Otel.ViewModel
 {
@@ -15,6 +24,151 @@ namespace Otel.ViewModel
         private ObservableCollection<TypeRoom> typeRoomList;
         private ObservableCollection<NameOtel> nameOtelList;
         private CountryOfOtel selectedCountry;
+        private string firstName;
+        private int selectedHotelIndex = 0;
+        private string phone;
+        private ImageSource imageByOtel;
+        private NameOtel selectedName;
+        private string addressOfOtel;
+        private string description; 
+        private System.DateTime arrivalDate = DateTime.Now;
+        private System.DateTime departureDate = DateTime.Now;
+        private Visibility visibility = Visibility.Collapsed;
+        private Visibility visibilityLabel = Visibility.Collapsed;
+        private Visibility visibilityButton = Visibility.Visible;
+        private bool isEnabledButton = false;
+
+        public string AddressOfOtel
+        {
+            get => addressOfOtel;
+            set
+            {
+                addressOfOtel = value;
+                OnPropertyChanged(nameof(AddressOfOtel));
+            }
+        }
+
+        public int SelectedHotelIndex
+        {
+            get => selectedHotelIndex;
+            set
+            {
+                selectedHotelIndex = value;
+                OnPropertyChanged(nameof(SelectedHotelIndex));
+            }
+        }
+
+        public ImageSource ImageByOtel
+        {
+            get => imageByOtel;
+            set
+            {
+                imageByOtel = value;
+                OnPropertyChanged(nameof(ImageByOtel));
+            }
+        }
+
+        public string Description
+        {
+            get => description;
+            set
+            {
+                description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+
+        public NameOtel SelectedName
+        {
+            get => selectedName;
+            set
+            {
+                selectedName = value;
+                OnPropertyChanged(nameof(SelectedName));
+                LoadDescriptionByOtel();
+                LoadAddressByOtel();
+            }
+        }
+
+        public System.DateTime ArrivalDate
+        {
+            get => arrivalDate;
+            set
+            {
+                arrivalDate = value;
+                OnPropertyChanged(nameof(ArrivalDate));
+            }
+        }
+
+        public System.DateTime DeparatureDate
+        {
+            get => departureDate;
+            set
+            {
+                departureDate = value;
+                OnPropertyChanged(nameof(DeparatureDate));
+            }
+        }
+
+        public string FirstName
+        {
+            get => firstName;
+            set
+            {
+                firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
+
+        public string Phone
+        {
+            get => phone;
+            set
+            {
+                phone = value;
+                OnPropertyChanged(nameof(Phone));
+            }
+        }
+
+        public bool IsEnabledButton
+        {
+            get => isEnabledButton;
+            set
+            {
+                isEnabledButton = value;
+                OnPropertyChanged(nameof(isEnabledButton));
+            }
+        }
+
+        public Visibility VisibilityButton
+        {
+            get => visibilityButton;
+            set
+            {
+                visibilityButton = value;
+                OnPropertyChanged(nameof(VisibilityButton));
+            }
+        }
+
+        public Visibility VisibilityLabel
+        {
+            get => visibilityLabel;
+            set
+            {
+                visibilityLabel = value;
+                OnPropertyChanged(nameof(VisibilityLabel));
+            }
+        }
+
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged(nameof(Visibility));
+            }
+        }
 
         public CountryOfOtel SelectedCountry
         {
@@ -77,6 +231,8 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand FormalizationCommand { get; private set; }
+
         public TicketViewModel()
         {
             controller = new TicketViewModelController();
@@ -86,11 +242,131 @@ namespace Otel.ViewModel
             TypeRommList = new ObservableCollection<TypeRoom>();
             NameOtelList = new ObservableCollection<NameOtel>();
 
+            FormalizationCommand = new DelegateCommand(Formaliztion);
+
             LoadAllData();
+
+            LoadClient();
+
+        }
+
+        private void LoadClient()
+        {
+            if(ClientSingltone.Client != null)
+            {
+                VisibilityLabel = Visibility.Visible;
+                VisibilityButton = Visibility.Collapsed;
+                IsEnabledButton = true;
+                Phone = ClientSingltone.Client.Phone;
+                FirstName = ClientSingltone.Client.FirstName;
+            }
+
+            if (ClientSingltone.Client == null)
+            {
+                VisibilityLabel = Visibility.Collapsed;
+                VisibilityButton = Visibility.Visible;
+                isEnabledButton = false;
+            }
+        }
+
+        private void SetSplash(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                Visibility = Visibility.Visible;
+            }
+
+            if (!isEnabled)
+            {
+                Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private async void Formaliztion(object obj)
+        {
+            if(ClientSingltone.Client == null)
+            {
+                MessageBox.Show("Войдите в аккаунт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                AuthWindow authWindow = new AuthWindow();
+                authWindow.Show();
+                Application.Current.Windows[0].Close();
+
+                return;
+            }
+
+            if (ArrivalDate > DeparatureDate)
+            {
+                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return;
+            }
+
+            Date date;
+
+            date = new Date()
+            {
+                ArrivalDate = this.ArrivalDate,
+                CountyDate = this.DeparatureDate
+            };
+
+            await controller.CreateDate(date);
+        }
+
+        private async void LoadImageByOtel()
+        {
+            SetSplash(true);
+
+            var image = await controller.GetIamgeBySelectedOtel(SelectedName.ID);
+
+            var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom(image.Image);
+
+            ImageByOtel = bitmap;
+
+            SetSplash(false);
+        }
+
+        private async void LoadAddressByOtel()
+        {
+            SetSplash(true);
+
+            AddressOfOtel = string.Empty;
+
+            if(SelectedName == null)
+            {
+                return;
+            }
+
+            var address = await controller.GetAddressOfOtelBySelectedOtel(SelectedName.ID);
+
+            AddressOfOtel = address.Name + ", " + address.Number;
+
+            SetSplash(false);
+        }
+
+        private async void LoadDescriptionByOtel()
+        {
+            SetSplash(true);
+                
+            Description = string.Empty;
+
+            if(SelectedName == null)
+            {
+                return;
+            }
+            var description = await controller.GetDescriptionBySelectedOtel(SelectedName.ID);
+
+            Description = description.Name;
+
+            LoadImageByOtel();
+
+            SetSplash(false);
         }
 
         private async void LoadOtelByCountry()
         {
+            SetSplash(true);
+
             var hotelCountryList = await controller.GetOtelByCountry(SelectedCountry.ID);
 
             var otelNameList = await controller.GetNameOtlelByOtelList(hotelCountryList);
@@ -102,10 +378,15 @@ namespace Otel.ViewModel
                 NameOtelList.Add(item);
             }
 
+            SelectedName = NameOtelList[0];
+
+            SetSplash(false);
         }
 
         private async void LoadAllData()
         {
+            SetSplash(true);
+
             var hotel = await controller.GetOtelData();
             var countryOfOtel = await controller.GetCountryData();
             var room = await controller.GetRoomData();
@@ -130,6 +411,8 @@ namespace Otel.ViewModel
             {
                 TypeRommList.Add(item);
             }
+
+            SetSplash(false);
         }
     }
 }
