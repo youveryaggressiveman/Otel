@@ -32,7 +32,7 @@
                    FontSize="50"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center" />
 
         </StackPanel>
         <Grid Grid.Row="1">
@@ -45,7 +45,7 @@
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="150" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -125,9 +125,9 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Content="Отмена" 
+            <Button Content="Отмена"
                     x:Name="CancelButton"
-                    Click="CancelButton_Click"/>
+                    Click="CancelButton_Click" />
             <Button Grid.Column="1"
                     Command="{Binding AuthorizeCommand}"
                     Content="Войти" />

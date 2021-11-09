@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Otel.Style">
-    
-  <!-- Секция для кнопок -->
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Секция для кнопок -->
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background"
                 Value="#396afc" />
@@ -19,14 +18,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border
-                        CornerRadius="8"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding Property=BorderBrush}"
-                        BorderThickness="{TemplateBinding Property=BorderThickness}">
+                    <Border CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Property=BorderBrush}"
+                            BorderThickness="{TemplateBinding Property=BorderThickness}">
                         <ContentPresenter HorizontalAlignment="Center"
                                           Margin="10 0 10 0"
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -35,11 +33,16 @@
             <Trigger Property="IsMouseOver"
                      Value="True">
                 <Setter Property="Background"
-                        Value="#2948ff"/>
+                        Value="#2948ff" />
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Background"
+                        Value="#C0C0C0" />
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Cекция для Label-->
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground"
@@ -49,7 +52,8 @@
     </Style>
 
     <!--Cекция для DescriptionTextBlock-->
-    <Style x:Key="descriptionTextBlock" TargetType="{x:Type TextBlock}">
+    <Style x:Key="descriptionTextBlock"
+           TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground"
                 Value="#5f6368" />
         <Setter Property="FontSize"
@@ -88,15 +92,16 @@
         <Setter Property="BorderBrush"
                 Value="#C0C0C0" />
         <Style.Resources>
-            <Style TargetType="Border" >
+            <Style TargetType="Border">
                 <Setter Property="CornerRadius"
                         Value="8" />
             </Style>
         </Style.Resources>
     </Style>
-    
+
     <!--Секция для numberOfRoomTextBox-->
-    <Style x:Key="numberOfRoomTextBox" TargetType="{x:Type TextBox}">
+    <Style x:Key="numberOfRoomTextBox"
+           TargetType="{x:Type TextBox}">
         <Setter Property="FontSize"
                 Value="15" />
         <Setter Property="Margin"
@@ -110,9 +115,10 @@
     </Style>
 
     <!--Секция для TicketButton-->
-     <Style x:Key="ticketButton" TargetType="{x:Type Button}">
+    <Style x:Key="ticketButton"
+           TargetType="{x:Type Button}">
         <Setter Property="Background"
-                Value="Transparent"/>
+                Value="Transparent" />
         <Setter Property="Margin"
                 Value="30" />
         <Setter Property="FontSize"
@@ -126,14 +132,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border
-                        CornerRadius="8"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding Property=BorderBrush}"
-                        BorderThickness="{TemplateBinding Property=BorderThickness}">
+                    <Border CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Property=BorderBrush}"
+                            BorderThickness="{TemplateBinding Property=BorderThickness}">
                         <ContentPresenter HorizontalAlignment="Center"
                                           Margin="10 0 10 0"
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -142,7 +147,7 @@
             <Trigger Property="IsMouseOver"
                      Value="True">
                 <Setter Property="Background"
-                        Value="#F0F0F0"/>
+                        Value="#F0F0F0" />
             </Trigger>
         </Style.Triggers>
     </Style>

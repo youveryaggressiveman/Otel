@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Otel.Model
 {
-    public class CountryOfOtel
+    public class Price
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-
+        public int Number { get; set; }
+        public int ValueID { get; set; }
     }
 }

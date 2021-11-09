@@ -8,26 +8,26 @@
         mc:Ignorable="d"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
         Title="Hotel City: главное окно"
-        MinHeight="650"
+        MinHeight="700"
         MinWidth="1050"
-        Height="650"
+        Height="750"
         Width="1150"
         Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         Background="White"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="Storyboard">
-            <DoubleAnimation
-                RepeatBehavior="Forever" 
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
-                Storyboard.TargetName="Ellipse"
-                From="0" To="360"
-                Duration="0:0:5" />
+            <DoubleAnimation RepeatBehavior="Forever"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
+                             Storyboard.TargetName="Ellipse"
+                             From="0"
+                             To="360"
+                             Duration="0:0:5" />
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard}"/>
+            <BeginStoryboard Storyboard="{StaticResource Storyboard}" />
         </EventTrigger>
     </Window.Triggers>
     <Window.DataContext>
@@ -38,7 +38,9 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="120" />
@@ -64,15 +66,15 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Margin="10"
-                   Source="/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png"
-                />
+                   Source="/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png" />
             <Button x:Name="RegistrButton"
                     Visibility="{Binding VisibilityButton}"
                     Grid.Column="2"
                     Content=" Зарегистрироваться "
-                    Click="RegistrButton_Click" >
+                    Click="RegistrButton_Click">
             </Button>
-            <StackPanel Grid.Column="3" Visibility="{Binding VisibilityLabel}">
+            <StackPanel Grid.Column="3"
+                        Visibility="{Binding VisibilityLabel}">
                 <Label Grid.Column="2"
                        FontSize="25"
                        FontWeight="Bold"
@@ -80,7 +82,7 @@
                        HorizontalContentAlignment="Left"
                        VerticalContentAlignment="Bottom"
                        Height="40"
-                   Margin="5"/>
+                       Margin="5" />
                 <Label Grid.Column="2"
                        Content="{Binding Phone}"
                        FontWeight="Bold"
@@ -88,14 +90,14 @@
                        VerticalContentAlignment="Top"
                        FontSize="15"
                        Height="40"
-                   Margin="5"/>
+                       Margin="5" />
             </StackPanel>
             <Button x:Name="ComeButton"
                     HorizontalAlignment="Right"
                     Visibility="{Binding VisibilityButton}"
                     Grid.Column="3"
                     Content="    Войти    "
-                    Click="ComeButton_Click" >
+                    Click="ComeButton_Click">
             </Button>
         </Grid>
         <Frame Grid.Row="1"

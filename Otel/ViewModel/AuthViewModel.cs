@@ -14,7 +14,7 @@ namespace Otel.ViewModel
 {
     public class AuthViewModel: BaseViewModel
     {
-        private AuthViewModelController controller;
+        private readonly AuthViewModelController controller;
 
         private string phone;
         private string password;
@@ -84,7 +84,7 @@ namespace Otel.ViewModel
 
             if (selectedUser[0].Password == Password)
             {
-                MessageBox.Show(ClientSingltone.Client.FirstName + " добро пожаловать!");
+                MessageBox.Show(ClientSingltone.Client.FirstName + ", добро пожаловать!");
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Application.Current.Windows[0].Close();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Otel.Model;
+using Otel.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,12 @@ namespace Otel.View.Windows
     /// </summary>
     public partial class TicketPayment : Window
     {
-        public TicketPayment()
+        private TicketPaymentViewModel ticketViewModel;
+
+        public TicketPayment(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)
         {
+            DataContext = ticketViewModel = new TicketPaymentViewModel(ticket, date, nameOtel, rooms, typeRoom, address);
+
             InitializeComponent();
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Otel.Controllers;
+using Otel.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +10,37 @@ namespace Otel.ViewModel
 {
     public class TicketPaymentViewModel : BaseViewModel
     {
+        private TicketViewModelController ticketController;
+        private TicketPaymentViewModelController controller;
         private string country;
         private string nameHotel;
         private string typeRoom;
-        private int numberOfHotel;
+        private string numberOfHotel;
+        private string addressOfOtel;
         private System.DateTime arrivalDate;
         private System.DateTime departureDate;
         private int price;
         private string valueOfPrice;
+
+        public string ValueOfPrice
+        {
+            get => valueOfPrice;
+            set
+            {
+                valueOfPrice = value;
+                OnPropertyChanged(nameof(ValueOfPrice));
+            }
+        }
+
+        public string AddressOfHotel
+        {
+            get => addressOfOtel;
+            set
+            {
+                addressOfOtel = value;
+                OnPropertyChanged(nameof(AddressOfHotel));
+            }
+        }
 
         public string Country
         {
@@ -47,7 +72,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public int NumberOfHotel
+        public string NumberOfHotel
         {
             get => numberOfHotel;
             set
@@ -87,19 +112,34 @@ namespace Otel.ViewModel
             }
         }
 
-        public string ValueOfPrice
+
+        public TicketPaymentViewModel(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)
         {
-            get => valueOfPrice;
-            set
-            {
-                valueOfPrice = value;
-                OnPropertyChanged(nameof(ValueOfPrice));
-            }
+            ticketController = new TicketViewModelController();
+            controller = new TicketPaymentViewModelController();
+            LoadAllData(ticket, date, nameOtel, rooms, typeRoom, address);
         }
 
-        public TicketPaymentViewModel()
+        private async void LoadAllData(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)
         {
+            Country = (await controller.GetCountryByOtelId(ticket.OtelID)).Name;
+            NameHotel = nameOtel.Name;
+            ArrivalDate = date.ArrivalDate;
+            DepartureDate = date.CountyDate;
+            AddressOfHotel = address;
+            TypeRoom = typeRoom.Name;
 
+            ValueOfPrice = (await controller.GetValueByPriceId(rooms[0].PriceID)).Name;
+
+            foreach (var item in rooms)
+            {
+                Price += (await controller.GetPriceByRoomId(item.ID)).Number;
+            }
+
+            foreach (var item in rooms)
+            {
+                NumberOfHotel = item.Number + ";"; 
+            }
         }
     }
 }

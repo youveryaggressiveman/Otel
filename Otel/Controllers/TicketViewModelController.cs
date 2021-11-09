@@ -10,6 +10,18 @@ namespace Otel.Controllers
 {
     public class TicketViewModelController
     {
+        public async Task<List<Room>> GetNumerByTypeRoomId(int id)
+        {
+            HttpClient client = new HttpClient();
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Rooms/typeRoomsId?id=" + id);
+
+            var result = JsonSerializer.Deserialize<List<Room>>(stringTask);
+
+            client.Dispose();
+
+            return result;
+        }
+
         public async Task<AddressOfOtel> GetAddressOfOtelBySelectedOtel(int id)
         {
             HttpClient client = new HttpClient();
@@ -20,6 +32,18 @@ namespace Otel.Controllers
             client.Dispose();
 
             return result[0];
+        }
+
+        public async Task<Hotel> GetHotelByOtelName(string name)
+        {
+            HttpClient client = new HttpClient();
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Otels/name?otelName=" + name);
+
+            var result = JsonSerializer.Deserialize<Hotel>(stringTask);
+
+            client.Dispose();
+
+            return result;
         }
 
         public async Task<ImageOfOtel> GetIamgeBySelectedOtel(int id)

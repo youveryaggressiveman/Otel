@@ -15,7 +15,7 @@ namespace Otel.ViewModel
 {
     public class RegistrViewModel : BaseViewModel
     {
-        private RegistrViewModelController controller;
+        private readonly RegistrViewModelController controller;
 
         private ObservableCollection<CountryOfOtel> countries;
         private string passportNumber;
@@ -148,13 +148,6 @@ namespace Otel.ViewModel
             if (newUser.Count > 1)
             {
                 MessageBox.Show("Такие данные уже существуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
-            if (PassportSerial == "")
-            {
-                MessageBox.Show("Введите серию паспорта", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
