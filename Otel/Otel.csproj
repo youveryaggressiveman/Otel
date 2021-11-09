@@ -61,7 +61,6 @@
     <Compile Include="Controllers\RegistrViewModelController.cs" />
     <Compile Include="Controllers\TicketPaymentViewModelController.cs" />
     <Compile Include="Core\ClientSingltone.cs" />
-    <Compile Include="Core\TicketSingltone.cs" />
     <Compile Include="Model\AddressOfOtel.cs" />
     <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Description.cs" />
@@ -71,13 +70,20 @@
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\Value.cs" />
+    <Compile Include="ViewModel\InputCardViewModel.cs" />
     <Compile Include="ViewModel\RegistrViewModel.cs" />
     <Compile Include="ViewModel\TicketPaymentViewModel.cs" />
+    <Compile Include="View\Pages\AllTicket.xaml.cs">
+      <DependentUpon>AllTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\InputCardWindow.xaml.cs">
+      <DependentUpon>InputCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\TicketPayment.xaml.cs">
-      <DependentUpon>TicketPayment.xaml</DependentUpon>
+    <Compile Include="View\Windows\TicketPaymentWindow.xaml.cs">
+      <DependentUpon>TicketPaymentWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Style\GlobalStyle.xaml">
       <SubType>Designer</SubType>
@@ -87,11 +93,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\AllTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\NewTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\InputCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\TicketPayment.xaml">
+    <Page Include="View\Windows\TicketPaymentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

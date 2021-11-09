@@ -376,7 +376,7 @@ namespace Otel.ViewModel
                 rooms.Add(item);
             }
 
-            TicketPayment ticketPayment = new TicketPayment(ticket, date, SelectedName, rooms, SelectedTypeRoom, AddressOfOtel);
+            TicketPaymentWindow ticketPayment = new TicketPaymentWindow(ticket, date, SelectedName, rooms, SelectedTypeRoom, AddressOfOtel);
             ticketPayment.Show();
             Application.Current.Windows[0].Close();
         }

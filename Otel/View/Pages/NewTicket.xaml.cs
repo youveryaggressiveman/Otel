@@ -14,6 +14,5 @@ namespace Otel.View.Pages
             InitializeComponent();
             DataContext = viewModel;
         }
-
     }
 }

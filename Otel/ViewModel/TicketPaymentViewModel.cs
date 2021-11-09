@@ -1,10 +1,13 @@
-﻿using Otel.Controllers;
+﻿using Otel.Command;
+using Otel.Controllers;
 using Otel.Model;
+using Otel.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
@@ -112,12 +115,24 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Pay { get; private set; }
 
         public TicketPaymentViewModel(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)
         {
             ticketController = new TicketViewModelController();
             controller = new TicketPaymentViewModelController();
+
+            Pay = new DelegateCommand(PayTicket);
+
             LoadAllData(ticket, date, nameOtel, rooms, typeRoom, address);
+        }
+
+        private void PayTicket(object obj)
+        {
+
+
+            InputCardWindow inputCardWindow = new InputCardWindow();
+            inputCardWindow.Show();
         }
 
         private async void LoadAllData(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)

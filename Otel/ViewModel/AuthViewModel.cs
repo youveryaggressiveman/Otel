@@ -68,7 +68,7 @@ namespace Otel.ViewModel
 
             if (selectedUser.Count > 1)
             {
-                MessageBox.Show("Такой пользователь уже существует", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                MessageBox.Show("Таких пользователей несколько", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
                 return;
             }

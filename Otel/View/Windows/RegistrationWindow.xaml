@@ -41,7 +41,8 @@
                        VerticalAlignment="Center" />
             </StackPanel>
             <Label Grid.Row="1"
-                   Content="  Регистрация"
+                   Content="Регистрация"
+                    Margin="20 0 0 0"
                    FontSize="40"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />

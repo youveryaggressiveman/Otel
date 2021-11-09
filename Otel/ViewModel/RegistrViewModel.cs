@@ -181,7 +181,18 @@ namespace Otel.ViewModel
                 RoleID = 1
             };
 
-           ClientSingltone.Client = await controller.CreateClient(client);
+            ClientSingltone.Client = await controller.CreateClient(client);
+
+            if(ClientSingltone.Client != null)
+            {
+                MessageBox.Show(ClientSingltone.Client.FirstName + ", добро пожаловать!");
+
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Application.Current.Windows[0].Close();
+
+                return;
+            }
         }
 
         private async void LoadAllData()
