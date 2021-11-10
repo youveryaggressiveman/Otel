@@ -58,16 +58,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\InputCardViewModelController.cs" />
     <Compile Include="Controllers\RegistrViewModelController.cs" />
     <Compile Include="Controllers\TicketPaymentViewModelController.cs" />
+    <Compile Include="Converter\CardNumberConverter.cs" />
+    <Compile Include="Converter\TextWaterMarkConverter.cs" />
+    <Compile Include="Core\CardSingltone.cs" />
     <Compile Include="Core\ClientSingltone.cs" />
     <Compile Include="Model\AddressOfOtel.cs" />
+    <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Description.cs" />
     <Compile Include="Model\ImageOfOtel.cs" />
     <Compile Include="Model\Passport.cs" />
     <Compile Include="Model\Price.cs" />
     <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\RoomAndType.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\Value.cs" />
     <Compile Include="ViewModel\InputCardViewModel.cs" />
@@ -190,6 +196,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Image\Programmyi-dlya-sozdaniya-avatarok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\payment_mir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\payment_mastercard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\payment_visa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\повелитель\source\repos\Otel\Otel\obj\Debug\
+C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\
 Otel
 none
 false
 DEBUG;TRACE
-C:\Users\повелитель\source\repos\Otel\Otel\App.xaml
+C:\Users\повелитель\Desktop\Otel\Otel\App.xaml
 9-2001276201
 
-39-1911623566
+452054411816
 17-566098972
 Style\GlobalStyle.xaml;Style\GlobalTemplate.xaml;View\Pages\AllTicket.xaml;View\Pages\NewTicket.xaml;View\Windows\AuthWindow.xaml;View\Windows\InputCardWindow.xaml;View\Windows\MainWindow.xaml;View\Windows\RegistrationWindow.xaml;View\Windows\TicketPaymentWindow.xaml;
 
-False
+True
 

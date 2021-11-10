@@ -18,6 +18,9 @@ namespace Otel.ViewModel
         private readonly RegistrViewModelController controller;
 
         private ObservableCollection<CountryOfOtel> countries;
+
+        private CountryOfOtel selectedCountries;
+
         private string passportNumber;
         private string passportSerial;
         private string firstName;
@@ -25,7 +28,6 @@ namespace Otel.ViewModel
         private string lastName;
         private string password;
         private string phone;
-        private CountryOfOtel selectedCountries;
 
         public CountryOfOtel SelectedCountries
         {

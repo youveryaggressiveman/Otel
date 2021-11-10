@@ -30,7 +30,7 @@ namespace Otel.View.Windows
         private void ShowPswCheckBox_Click(object sender, RoutedEventArgs e)
         {
             if(ShowPswCheckBox.IsChecked== false)
-            {
+            { 
                 pswBox.Password = pswTextBox.Text;
                 pswBox.Visibility = Visibility.Visible;
                 pswTextBox.Visibility = Visibility.Collapsed;

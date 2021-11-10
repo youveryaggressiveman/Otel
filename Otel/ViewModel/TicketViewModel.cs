@@ -19,29 +19,59 @@ namespace Otel.ViewModel
     {
         private readonly TicketViewModelController controller;
 
+        private Room selectedRoomForDelete;
+
+        private CountryOfOtel selectedCountry;
+        private TypeRoom selectedTypeRoom;
+        private Room selectedRoom;
+        private NameOtel selectedName;
+
+        private ObservableCollection<TypeRoom> selectedRoomTypeList;
+
+        private int selectedHotelIndex = 0;
+
         private ObservableCollection<Room> roomNumber;
         private ObservableCollection<CountryOfOtel> countryOfOtelList;
         private ObservableCollection<Hotel> hotelList;
         private ObservableCollection<Room> roomList;
         private ObservableCollection<TypeRoom> typeRoomList;
         private ObservableCollection<NameOtel> nameOtelList;
-        private CountryOfOtel selectedCountry;
-        private TypeRoom selectedTypeRoom;
-        private Room selectedRoom;
-        private string firstName;
-        private int selectedHotelIndex = 0;
-        private string phone;
+
         private ImageSource imageByOtel;
-        private NameOtel selectedName;
+
+        private string firstName;
+        private string phone;
         private string addressOfOtel;
         private string description; 
+
         private System.DateTime arrivalDate = DateTime.Now;
         private System.DateTime departureDate = DateTime.Now;
+
         private Visibility visibility = Visibility.Collapsed;
         private Visibility visibilityLabel = Visibility.Collapsed;
         private Visibility visibilityButton = Visibility.Visible;
+
         private bool isEnabledButton = false;
 
+        public ObservableCollection<TypeRoom> SelectedRoomTypeList
+        {
+            get => selectedRoomTypeList;
+            set
+            {
+                selectedRoomTypeList = value;
+                OnPropertyChanged(nameof(SelectedRoomTypeList));
+            }
+        }
+
+        public Room SelectedRoomForDelete
+        {
+            get => selectedRoomForDelete;
+            set
+            {
+                selectedRoomForDelete = value;
+                OnPropertyChanged(nameof(SelectedRoomForDelete));
+            }
+        }
         public Room SelectedRoom
         {
             get => selectedRoom;
@@ -267,6 +297,7 @@ namespace Otel.ViewModel
         }
         public ICommand AddRoom { get; private set; }
         public ICommand FormalizationCommand { get; private set; }
+        public ICommand DeleteRoom { get; private set; }
 
         public TicketViewModel()
         {
@@ -277,9 +308,11 @@ namespace Otel.ViewModel
             TypeRommList = new ObservableCollection<TypeRoom>();
             NameOtelList = new ObservableCollection<NameOtel>();
             RoomNumber = new ObservableCollection<Room>();
+            SelectedRoomTypeList = new ObservableCollection<TypeRoom>();
 
             AddRoom = new DelegateCommand(AddRoomToRoomList);
             FormalizationCommand = new DelegateCommand(Formaliztion);
+            DeleteRoom = new DelegateCommand(DeleteRoomFromList);
 
             LoadAllData();
 
@@ -287,10 +320,22 @@ namespace Otel.ViewModel
 
         }
 
+        private void DeleteRoomFromList(object obj)
+        {
+            var result = MessageBox.Show($"Вы действительно хотите удалить комнату {SelectedRoomForDelete.Number} из заказа?",
+                "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (RoomList.Contains(SelectedRoomForDelete) && result == MessageBoxResult.Yes)
+            {
+                RoomList.Remove(SelectedRoomForDelete);
+            }
+        }
+
         private void AddRoomToRoomList(object obj)
         {
-            if (!RoomList.Contains(SelectedRoom))
+            if (!RoomList.Contains(SelectedRoom) && SelectedRoom != null)
             {
+                SelectedRoomTypeList.Add(SelectedTypeRoom);
                 RoomList.Add(SelectedRoom);
             }
 
@@ -370,13 +415,19 @@ namespace Otel.ViewModel
             };
 
             var rooms = new List<Room>();
+            var selectedTypeRoom = new List<TypeRoom>();
 
             foreach (var item in RoomList)
             {
                 rooms.Add(item);
             }
 
-            TicketPaymentWindow ticketPayment = new TicketPaymentWindow(ticket, date, SelectedName, rooms, SelectedTypeRoom, AddressOfOtel);
+            foreach (var item in SelectedRoomTypeList)
+            {
+                selectedTypeRoom.Add(item);
+            }
+
+            TicketPaymentWindow ticketPayment = new TicketPaymentWindow(ticket, date, SelectedName, rooms, selectedTypeRoom, AddressOfOtel);
             ticketPayment.Show();
             Application.Current.Windows[0].Close();
         }
@@ -507,7 +558,7 @@ namespace Otel.ViewModel
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка загрузки данных", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка загрузки данных, приложение будет закрыто", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 Application.Current.Shutdown();
             }

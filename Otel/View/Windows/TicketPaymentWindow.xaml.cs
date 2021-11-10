@@ -23,7 +23,7 @@ namespace Otel.View.Windows
     {
         private TicketPaymentViewModel ticketViewModel;
 
-        public TicketPaymentWindow(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, TypeRoom typeRoom, string address)
+        public TicketPaymentWindow(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, List<TypeRoom> typeRoom, string address)
         {
             DataContext = ticketViewModel = new TicketPaymentViewModel(ticket, date, nameOtel, rooms, typeRoom, address);
 

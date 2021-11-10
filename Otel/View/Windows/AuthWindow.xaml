@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Otel.View.Windows"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+        xmlns:converter="clr-namespace:Otel.Converter"
         x:Class="Otel.View.Windows.AuthWindow"
         mc:Ignorable="d"
         Title="Hotel City: Авторизация"
@@ -19,6 +20,10 @@
     <Window.DataContext>
         <ViewModel:AuthViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:TextWaterMarkConverter x:Key="TextWaterMarkConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -33,8 +38,23 @@
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
-
         </StackPanel>
+        <Label Content="©"
+               FontSize="540"
+               RenderTransformOrigin="0.7,0"
+               Grid.RowSpan="3"
+               Opacity="0.2"
+               Panel.ZIndex="-1"
+               Margin="-250">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform Angle="-40.504" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -58,8 +78,27 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Телефон"
+                       Foreground="{StaticResource WatermarkBrushForeground}"
+                       >
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="phoneTextBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="phoneTextBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
             <TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
+                      Background="Transparent"
                       Text="{Binding Phone}"
                       Grid.Column="1"
                       Width="250"
@@ -83,14 +122,15 @@
                          PasswordChanged="pswBox_PasswordChanged" />
             <TextBox  Grid.Row="2"
                       x:Name="pswTextBox"
+                      Background="Transparent"
                       Text="{Binding Password}"
                       Grid.Column="1"
                       Width="250"
                       VerticalContentAlignment="Center"
                       FontSize="15"
-                      Visibility="Collapsed"
                       HorizontalContentAlignment="Left"
                       Margin="20" />
+
             <CheckBox Content="Показать пароль"
                       Margin="0 0 40 0"
                       Grid.Column="1"

@@ -79,6 +79,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
+                <RowDefinition Height="100" />
                 <RowDefinition Height="150" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
@@ -152,7 +153,7 @@
                    Margin="15"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   Grid.Row="6" />
+                   Grid.Row="7" />
             <Label Content="Номер комнаты:"
                    Grid.Row="5"
                    Margin="15"
@@ -180,7 +181,37 @@
                          Command="{Binding AddRoom}"
                          Margin="0"/>
             </StackPanel>
-            <ScrollViewer Grid.Row="6"
+            <Label Content="Выбранные комнаты:"
+                   Grid.Row="6"
+                   Margin="15"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="2"
+                        Grid.Column="1">
+                <ListView
+                    SelectedItem="{Binding SelectedRoomForDelete}"
+                    Height="50"
+                ItemsSource="{Binding RoomList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label Content="{Binding Number}"
+                                   FontSize="12"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button 
+                    Command="{Binding DeleteRoom}"
+                    Content="Удалить выбранное"
+                        Margin="5"
+                        Height="32"
+                        />
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="7"
                           Height="125"
                           Width="300"
                           Grid.Column="1"
@@ -195,7 +226,7 @@
                 </StackPanel>
 
             </ScrollViewer>
-            <Button Grid.Row="7"
+            <Button Grid.Row="8"
                     Command="{Binding FormalizationCommand}"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
