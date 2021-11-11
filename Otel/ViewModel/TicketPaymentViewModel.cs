@@ -1,5 +1,6 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
+using Otel.Core;
 using Otel.Model;
 using Otel.View.Windows;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Otel.ViewModel
@@ -144,10 +146,19 @@ namespace Otel.ViewModel
 
         private async void PayTicket(object obj)
         {
-            //var ticket = await controller.CreateTicket();
+            if (CardSingltone.Card != null) 
+            {
+                return;
+            } 
 
-            InputCardWindow inputCardWindow = new InputCardWindow();
-            inputCardWindow.Show();
+            if(CardSingltone.Card == null)
+            {
+                InputCardWindow inputCardWindow = new InputCardWindow();
+                inputCardWindow.Show();
+                Application.Current.Windows[0].Hide();
+
+                return;
+            }
         }
 
         private async void LoadAllData(Ticket ticket, Date date, NameOtel nameOtel, List<Room> rooms, List<TypeRoom> typeRoom, string address)

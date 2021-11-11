@@ -156,3 +156,6 @@ C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.csproj.CoreCompil
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.csproj.CopyComplete
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.exe
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.pdb
+C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.csprojAssemblyReference.cache
+C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\View\Windows\CheckWindow.g.cs
+C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\View\Windows\CheckWindow.baml

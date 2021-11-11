@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Otel.View.Windows"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+        xmlns:converter="clr-namespace:Otel.Converter"
         x:Class="Otel.View.Windows.RegistrationWindow"
         mc:Ignorable="d"
         Title="Hotel City: Регистрация"
@@ -19,6 +20,10 @@
     <Window.DataContext>
         <ViewModel:RegistrViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:TextWaterMarkConverter x:Key="TextWaterMarkConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200" />
@@ -86,8 +91,27 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Имя"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="nameTextbox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="nameTextbox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
             <TextBox Grid.Column="1"
                      Text="{Binding FirstName}"
+                     x:Name="nameTextbox"
+                     Background="Transparent"
                      Width="250"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
@@ -97,7 +121,26 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Фамилия"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="secondNameTextBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="secondNameTextBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
             <TextBox Grid.Column="1"
+                     Background="Transparent"
+                     x:Name="secondNameTextBox"
                      Text="{Binding SecondName}"
                      Grid.Row="1"
                      Width="250"
@@ -109,7 +152,26 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Отчество"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="lastNameTextBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="lastNameTextBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
             <TextBox Grid.Column="1"
+                     Background="Transparent"
+                     x:Name="lastNameTextBox"
                      Text="{Binding LastName}"
                      Width="250"
                      Grid.Row="2"
@@ -130,31 +192,100 @@
                       ItemsSource="{Binding Countries}"
                       DisplayMemberPath="Name"
                       SelectedIndex="0" />
-            <StackPanel Grid.Row="4"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
+            <Grid Grid.Row="4"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <Label Content="Введите серию "
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
                        HorizontalContentAlignment="Left"
                        Margin=" 20 0 0 0" />
-                <TextBox  Width="100"
+                <TextBlock Grid.Column="1"
+                           Margin="5 20 0 20"
+                           Width="120"
+                           VerticalAlignment="Center"
+                           FontSize="15"
+                           Text="Серия"
+                           Foreground="{StaticResource WatermarkBrushForeground}">
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                            <Binding ElementName="serialTextBox"
+                                     Path="Text.IsEmpty" />
+                            <Binding ElementName="serialTextBox"
+                                     Path="IsFocused" />
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+                <TextBox  Width="120"
+                          Margin="0 20 0 20"
+                          Background="Transparent"
+                          x:Name="serialTextBox"
+                          Grid.Column="1"
                           Text="{Binding PassportSerial}"
                           VerticalContentAlignment="Center" />
-                <Label Content=" и номер " />
-                <TextBox Width="150"
+                <Label Content=" и номер "
+                       VerticalAlignment="Center"
+                       Grid.Column="2" />
+                <TextBlock Grid.Column="3"
+                           Margin="5 20 0 20"
+                           Width="100"
+                           VerticalAlignment="Center"
+                           FontSize="15"
+                           Text="Номер"
+                           Foreground="{StaticResource WatermarkBrushForeground}">
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                            <Binding ElementName="numberTextBox"
+                                     Path="Text.IsEmpty" />
+                            <Binding ElementName="numberTextBox"
+                                     Path="IsFocused" />
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+                <TextBox Width="100"
+                         Grid.Column="3"
+                         Background="Transparent"
+                         x:Name="numberTextBox"
+                         Margin="0 20 0 20"
                          Text="{Binding PassportNumber}"
                          VerticalContentAlignment="Center" />
-                <Label Content=" паспорта" />
-            </StackPanel>
+                <Label Content=" паспорта"
+                       VerticalAlignment="Center"
+                       Grid.Column="4" />
+            </Grid>
             <Label Content="Введите номер телефона:"
                    Grid.Row="5"
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
+            <TextBlock Grid.Row="5"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Телефон"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="phoneTextBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="phoneTextBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
             <TextBox Grid.Column="1"
                      Text="{Binding Phone}"
+                     Background="Transparent"
+                     x:Name="phoneTextBox"
                      Width="250"
                      Grid.Row="5"
                      VerticalContentAlignment="Center"
@@ -166,17 +297,33 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
-            <PasswordBox Grid.Column="1"
-                         Template="{StaticResource PasswordBox}"
-                         x:Name="pswBox"
-                         Width="250"
-                         Grid.Row="6"
-                         VerticalContentAlignment="Center"
-                         FontSize="15"
-                         HorizontalContentAlignment="Left"
-                         Margin="20"
-                         PasswordChanged="pswBox_PasswordChanged" />
-
+            <TextBlock Grid.Row="6"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="250"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Пароль"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="pswTextBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="pswTextBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
+            <TextBox Grid.Column="1"
+                     x:Name="pswTextBox"
+                     Background="Transparent"
+                     Width="250"
+                     Text="{Binding Password}"
+                     Grid.Row="6"
+                     VerticalContentAlignment="Center"
+                     FontSize="15"
+                     HorizontalContentAlignment="Left"
+                     Margin="20" />
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

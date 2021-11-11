@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Otel.ViewModel
@@ -71,8 +72,6 @@ namespace Otel.ViewModel
 
         private async void CreateHashCode(object obj)
         {
-
-
             var result = CardNumber.Replace(" ", "").GetHashCode() + CardCVC.GetHashCode() + CardMM.GetHashCode() + CardYY.GetHashCode();
 
             var card = new Card()
@@ -84,6 +83,9 @@ namespace Otel.ViewModel
             var hashcode = await controller.CreateCard(card);
 
             CardSingltone.Card = hashcode;
+
+            Application.Current.Windows[1].Close();
+            Application.Current.Windows[0].Show();
         }
     }
 }

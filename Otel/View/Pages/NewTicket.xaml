@@ -119,10 +119,12 @@
                         SelectedDate="{Binding ArrivalDate}"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
+                        FontSize="15"
                         Margin="8"
                         Width="200"
                         HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center" />
+                        VerticalContentAlignment="Center"
+                        Style="{DynamicResource DatePickerStyle}" />
             <Label Content="Дата отъезда:"
                    Grid.Row="2"
                    Grid.Column="2"
@@ -130,7 +132,9 @@
                    VerticalAlignment="Center" />
             <DatePicker Grid.Row="3"
                         SelectedDate="{Binding DeparatureDate}"
+                        Style="{StaticResource DatePickerStyle}"
                         Grid.Column="2"
+                        FontSize="15"
                         Width="200"
                         HorizontalContentAlignment="Center"
                         Margin="8"
@@ -202,11 +206,18 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                                    Value="8" />
+                        </Style>
+                    </ListView.Resources>
                 </ListView>
                 <Button 
                     Command="{Binding DeleteRoom}"
                     Content="Удалить выбранное"
-                        Margin="5"
+                    IsEnabled="{Binding IsEnabledButton}"
+                        Margin="8"
                         Height="32"
                         />
             </StackPanel>

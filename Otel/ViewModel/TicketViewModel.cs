@@ -322,6 +322,20 @@ namespace Otel.ViewModel
 
         private void DeleteRoomFromList(object obj)
         {
+            if (RoomList.Count == 0) 
+            {
+                MessageBox.Show("Из списка комнат нечего удалять", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return;
+            }
+
+            if(SelectedRoomForDelete == null)
+            {
+                MessageBox.Show("Выберите комнату для удаления из списка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return;
+            }
+
             var result = MessageBox.Show($"Вы действительно хотите удалить комнату {SelectedRoomForDelete.Number} из заказа?",
                 "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -382,6 +396,13 @@ namespace Otel.ViewModel
                 AuthWindow authWindow = new AuthWindow();
                 authWindow.Show();
                 Application.Current.Windows[0].Close();
+
+                return;
+            }
+
+            if (ArrivalDate == DeparatureDate)
+            {
+                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }

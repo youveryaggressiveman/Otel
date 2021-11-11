@@ -16,7 +16,7 @@ namespace Otel.ViewModel
     {
         private readonly AuthViewModelController controller;
 
-        private string phone;
+        private string phone = "89184293165";
         private string password = "123";
 
         public string Phone

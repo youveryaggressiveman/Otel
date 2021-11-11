@@ -26,7 +26,8 @@ namespace Otel.View.Windows
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Windows[1].Close();
+            Application.Current.Windows[0].Show();
+            this.Close();
         }
 
         private void cardNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -25,11 +25,6 @@ namespace Otel.View.Windows
             InitializeComponent();
         }
 
-        private void pswBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            (DataContext as RegistrViewModel).Password = pswBox.Password;
-        }
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();

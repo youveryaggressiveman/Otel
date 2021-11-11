@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Hotel City: Платежные реквизиты"
-        Height="550"    
+        Height="550"
         Width="550"
         MinHeight="550"
         MinWidth="550"
@@ -21,7 +21,7 @@
         <ViewModel:InputCardViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <converter:CardNumberConverter x:Key="myCardConverter"/>
+        <converter:CardNumberConverter x:Key="myCardConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -82,7 +82,7 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <Image Grid.Row="1"
-                   Grid.Column="1" 
+                   Grid.Column="1"
                    Panel.ZIndex="1"
                    Visibility="Collapsed"
                    x:Name="imageNumber"
@@ -90,8 +90,7 @@
                    Width="40"
                    Height="32"
                    HorizontalAlignment="Right"
-                    Source="/Resources/Image/payment_mastercard.png"
-                />
+                   Source="/Resources/Image/payment_mastercard.png" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      FontSize="20"

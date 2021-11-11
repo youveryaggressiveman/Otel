@@ -20,10 +20,6 @@
     <Window.DataContext>
         <ViewModel:AuthViewModel />
     </Window.DataContext>
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:TextWaterMarkConverter x:Key="TextWaterMarkConverter" />
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -69,7 +65,8 @@
             </Grid.RowDefinitions>
             <Label Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Content="  Авторизация"
+                   Content="Авторизация"
+                   Margin="20 0 0 0"
                    FontSize="40"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
@@ -78,24 +75,6 @@
                    HorizontalContentAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalContentAlignment="Center" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Телефон"
-                       Foreground="{StaticResource WatermarkBrushForeground}"
-                       >
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="phoneTextBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="phoneTextBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
                       Background="Transparent"
@@ -130,7 +109,6 @@
                       FontSize="15"
                       HorizontalContentAlignment="Left"
                       Margin="20" />
-
             <CheckBox Content="Показать пароль"
                       Margin="0 0 40 0"
                       Grid.Column="1"
