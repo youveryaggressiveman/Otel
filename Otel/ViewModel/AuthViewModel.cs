@@ -1,18 +1,12 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Otel.Core;
 using System.Windows;
 using System.Windows.Input;
-using Otel.View.Windows;
-using Otel.Core;
 
 namespace Otel.ViewModel
 {
-    public class AuthViewModel: BaseViewModel
+    public class AuthViewModel : BaseViewModel
     {
         private readonly AuthViewModelController controller;
 
@@ -59,32 +53,25 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if (selectedUser.Count == 0)
+            if (selectedUser == null)
             {
-                MessageBox.Show("Такого пользователя не существует","Предупреждение",  MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                MessageBox.Show("Такого пользователя не существует", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
 
                 return;
             }
 
-            if (selectedUser.Count > 1)
-            {
-                MessageBox.Show("Таких пользователей несколько", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-
-                return;
-            }
-
-            if(selectedUser[0].Password != Password)
+            if (selectedUser.Password != Password)
             {
                 MessageBox.Show("Введены неверные данные", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 return;
             }
 
-            ClientSingltone.Client = selectedUser[0];
+            UserSingltone.User = selectedUser;
 
-            if (selectedUser[0].Password == Password)
+            if (selectedUser.Password == Password)
             {
-                MessageBox.Show(ClientSingltone.Client.FirstName + ", добро пожаловать!");
+                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!","Проверка", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Application.Current.Windows[0].Close();

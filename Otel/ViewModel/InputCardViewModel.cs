@@ -2,11 +2,6 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -76,8 +71,8 @@ namespace Otel.ViewModel
 
             var card = new Card()
             {
-                ClientID = ClientSingltone.Client.ID,
-                HashCode = result
+                ClientID = UserSingltone.User.ID,
+                HashCode = result,
             };
 
             var hashcode = await controller.CreateCard(card);
@@ -89,3 +84,4 @@ namespace Otel.ViewModel
         }
     }
 }
+

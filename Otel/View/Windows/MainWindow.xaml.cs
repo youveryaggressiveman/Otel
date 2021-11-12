@@ -1,5 +1,4 @@
-﻿using Otel.Model;
-using Otel.View.Pages;
+﻿using Otel.View.Pages;
 using Otel.View.Windows;
 using Otel.ViewModel;
 using System.Windows;

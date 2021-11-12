@@ -129,7 +129,7 @@
                 <Run Text="о комнатах:" />
             </TextBlock>
             <ListView Grid.Row="4"
-                      ItemsSource="{Binding RoomAndType}"
+                      ItemsSource="{Binding Room}"
                       Grid.Column="1"
                       Height="60"
                       Foreground="#5f6368"
@@ -144,7 +144,7 @@
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center">
                             <Run Text="Ваш номер: " />
-                            <Run Text="{Binding Room.Number}" />
+                            <Run Text="{Binding Number}" />
                             <Run Text="," />
                             <LineBreak />
                             <Run Text="тип комнаты: " />

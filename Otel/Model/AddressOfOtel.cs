@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Otel.Model
+﻿namespace Otel.Model
 {
     public class AddressOfOtel
     {
@@ -12,5 +6,7 @@ namespace Otel.Model
         public int Number { get; set; }
         public string Name { get; set; }
         public int CountryOfOtelID { get; set; }
+
+        public Country Country { get; set; }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Otel.Model
 {
@@ -12,5 +8,9 @@ namespace Otel.Model
         public int TypeRoomID { get; set; }
         public int Number { get; set; }
         public int PriceID { get; set; }
+        public Nullable<int> OtelID { get; set; }
+
+        public TypeRoom TypeRoom { get; set; }
+        public Price Price { get; set; }
     }
 }

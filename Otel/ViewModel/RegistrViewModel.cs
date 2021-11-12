@@ -3,11 +3,8 @@ using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,9 +14,9 @@ namespace Otel.ViewModel
     {
         private readonly RegistrViewModelController controller;
 
-        private ObservableCollection<CountryOfOtel> countries;
+        private ObservableCollection<Country> countries;
 
-        private CountryOfOtel selectedCountries;
+        private Country selectedCountries;
 
         private string passportNumber;
         private string passportSerial;
@@ -29,7 +26,7 @@ namespace Otel.ViewModel
         private string password;
         private string phone;
 
-        public CountryOfOtel SelectedCountries
+        public Country SelectedCountries
         {
             get => selectedCountries;
             set
@@ -109,7 +106,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public ObservableCollection<CountryOfOtel> Countries
+        public ObservableCollection<Country> Countries
         {
             get => countries;
             set
@@ -127,36 +124,24 @@ namespace Otel.ViewModel
 
             RegistrCommand = new DelegateCommand(Registration);
 
-            countries = new ObservableCollection<CountryOfOtel>();
+            countries = new ObservableCollection<Country>();
 
             LoadAllData();
         }
 
         private async void Registration(object obj)
-        {
-            var selectedPasport = await controller.GetPassportBySerialData(PassportSerial);
+        { 
             var newUser = await controller.GetClientByPhone(Phone);
 
-            Client client;
+            
+
+            User user;
             Passport passport;
 
-            if (string.IsNullOrWhiteSpace(PassportSerial) || string.IsNullOrWhiteSpace(PassportNumber) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(SecondName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(Password) || SelectedCountries == null)
+            if (string.IsNullOrWhiteSpace(PassportSerial) || string.IsNullOrWhiteSpace(PassportNumber) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(SecondName) 
+                || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(Password) || SelectedCountries == null)
             {
                 MessageBox.Show("Введите все данные для регистрации", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                return;
-            }
-
-            if (newUser.Count > 1)
-            {
-                MessageBox.Show("Такие данные уже существуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
-            if (selectedPasport.Count > 1)
-            {
-                MessageBox.Show("Такие данные уже существуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }
@@ -167,11 +152,18 @@ namespace Otel.ViewModel
                 PassportNumber = this.PassportNumber
             };
 
-            var passportResult = await controller.CreatePassport(passport);
+            var passportResult = await controller.GetPassportByData(PassportSerial, PassportNumber);
 
-            var passportList = await controller.GetPassportBySerialData(passportResult.PassportSerial);
+            if (passportResult != null)
+            {
+                MessageBox.Show("Пользователь с такими паспортными данными уже зарегистрирован в системе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            client = new Client()
+                return;
+            }
+
+      
+
+            user = new User()
             {
                 SecondName = this.SecondName,
                 FirstName = this.FirstName,
@@ -179,15 +171,15 @@ namespace Otel.ViewModel
                 Phone = this.Phone,
                 Password = this.Password,
                 CountryID = SelectedCountries.ID,
-                PassportID = passportList[0].ID,
+                Passport = passport,
                 RoleID = 1
             };
 
-            ClientSingltone.Client = await controller.CreateClient(client);
+            UserSingltone.User = await controller.CreateClient(user);
 
-            if(ClientSingltone.Client != null)
+            if (UserSingltone.User != null)
             {
-                MessageBox.Show(ClientSingltone.Client.FirstName + ", добро пожаловать!");
+                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!");
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

@@ -6,7 +6,6 @@ using Otel.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -21,28 +20,27 @@ namespace Otel.ViewModel
 
         private Room selectedRoomForDelete;
 
-        private CountryOfOtel selectedCountry;
+        private Country selectedCountry;
         private TypeRoom selectedTypeRoom;
         private Room selectedRoom;
-        private NameOtel selectedName;
+        private Hotel selectedHotel;
 
         private ObservableCollection<TypeRoom> selectedRoomTypeList;
 
         private int selectedHotelIndex = 0;
 
         private ObservableCollection<Room> roomNumber;
-        private ObservableCollection<CountryOfOtel> countryOfOtelList;
+        private ObservableCollection<Country> countryOfOtelList;
         private ObservableCollection<Hotel> hotelList;
         private ObservableCollection<Room> roomList;
         private ObservableCollection<TypeRoom> typeRoomList;
-        private ObservableCollection<NameOtel> nameOtelList;
 
         private ImageSource imageByOtel;
 
         private string firstName;
         private string phone;
         private string addressOfOtel;
-        private string description; 
+        private string description;
 
         private System.DateTime arrivalDate = DateTime.Now;
         private System.DateTime departureDate = DateTime.Now;
@@ -52,6 +50,23 @@ namespace Otel.ViewModel
         private Visibility visibilityButton = Visibility.Visible;
 
         private bool isEnabledButton = false;
+
+        public Hotel SelectedHotel
+        {
+            get => selectedHotel;
+            set
+            {
+                selectedHotel = value;
+                OnPropertyChanged(nameof(SelectedHotel));
+                LoadImageByOtel();
+                LoadTypeRoom();
+                LoadAddress();
+                LoadDesc();
+                LoadNumber();
+            }
+        }
+
+        
 
         public ObservableCollection<TypeRoom> SelectedRoomTypeList
         {
@@ -99,7 +114,6 @@ namespace Otel.ViewModel
             {
                 selectedTypeRoom = value;
                 OnPropertyChanged(nameof(SelectedTypeRoom));
-                LoadRoomNumberByTypeRoom();
             }
         }
 
@@ -140,18 +154,6 @@ namespace Otel.ViewModel
             {
                 description = value;
                 OnPropertyChanged(nameof(Description));
-            }
-        }
-
-        public NameOtel SelectedName
-        {
-            get => selectedName;
-            set
-            {
-                selectedName = value;
-                OnPropertyChanged(nameof(SelectedName));
-                LoadDescriptionByOtel();
-                LoadAddressByOtel();
             }
         }
 
@@ -235,7 +237,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public CountryOfOtel SelectedCountry
+        public Country SelectedCountry
         {
             get => selectedCountry;
             set
@@ -246,23 +248,13 @@ namespace Otel.ViewModel
             }
         }
 
-        public ObservableCollection<NameOtel> NameOtelList
-        {
-            get => nameOtelList;
-            set
-            {
-                nameOtelList = value;
-                OnPropertyChanged(nameof(NameOtelList));
-            }
-        }
-
-        public ObservableCollection<TypeRoom> TypeRommList
+        public ObservableCollection<TypeRoom> TypeRoomList
         {
             get => typeRoomList;
             set
             {
                 typeRoomList = value;
-                OnPropertyChanged(nameof(TypeRommList));
+                OnPropertyChanged(nameof(TypeRoomList));
             }
         }
 
@@ -286,7 +278,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public ObservableCollection<CountryOfOtel> CountryOfOtelList
+        public ObservableCollection<Country> CountryOfOtelList
         {
             get => countryOfOtelList;
             set
@@ -302,11 +294,10 @@ namespace Otel.ViewModel
         public TicketViewModel()
         {
             controller = new TicketViewModelController();
-            CountryOfOtelList = new ObservableCollection<CountryOfOtel>();
+            CountryOfOtelList = new ObservableCollection<Country>();
             HotelList = new ObservableCollection<Hotel>();
             RoomList = new ObservableCollection<Room>();
-            TypeRommList = new ObservableCollection<TypeRoom>();
-            NameOtelList = new ObservableCollection<NameOtel>();
+            TypeRoomList = new ObservableCollection<TypeRoom>();
             RoomNumber = new ObservableCollection<Room>();
             SelectedRoomTypeList = new ObservableCollection<TypeRoom>();
 
@@ -314,22 +305,63 @@ namespace Otel.ViewModel
             FormalizationCommand = new DelegateCommand(Formaliztion);
             DeleteRoom = new DelegateCommand(DeleteRoomFromList);
 
-            LoadAllData();
+            LoadOtel();
 
             LoadClient();
 
         }
 
+        private async void LoadNumber()
+        {
+            RoomNumber = new ObservableCollection<Room>();
+
+            if (SelectedHotel == null)
+            {
+                return;
+            }
+
+            var number = await controller.GetNumerByOtel(SelectedHotel.ID);
+
+            foreach (var item in number)
+            {
+                RoomNumber.Add(item);
+            }
+        }
+
+        private void LoadAddress()
+        {
+            AddressOfOtel = String.Empty;
+
+            if (SelectedHotel == null)
+            {
+                return;
+            }
+
+            AddressOfOtel = SelectedHotel.AddressOfOtel.Name + ", " + SelectedHotel.AddressOfOtel.Number;
+        }
+
+        private void LoadDesc()
+        {
+            Description = String.Empty;
+
+            if (SelectedHotel == null)
+            {
+                return;
+            }
+
+            Description = SelectedHotel.Discription.Name;
+        }
+
         private void DeleteRoomFromList(object obj)
         {
-            if (RoomList.Count == 0) 
+            if (RoomList.Count == 0)
             {
                 MessageBox.Show("Из списка комнат нечего удалять", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }
 
-            if(SelectedRoomForDelete == null)
+            if (SelectedRoomForDelete == null)
             {
                 MessageBox.Show("Выберите комнату для удаления из списка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
@@ -357,16 +389,16 @@ namespace Otel.ViewModel
 
         private void LoadClient()
         {
-            if(ClientSingltone.Client != null)
+            if (UserSingltone.User != null)
             {
                 VisibilityLabel = Visibility.Visible;
                 VisibilityButton = Visibility.Collapsed;
                 IsEnabledButton = true;
-                Phone = ClientSingltone.Client.Phone;
-                FirstName = ClientSingltone.Client.FirstName;
+                Phone = UserSingltone.User.Phone;
+                FirstName = UserSingltone.User.FirstName;
             }
 
-            if (ClientSingltone.Client == null)
+            if (UserSingltone.User == null)
             {
                 VisibilityLabel = Visibility.Collapsed;
                 VisibilityButton = Visibility.Visible;
@@ -389,7 +421,7 @@ namespace Otel.ViewModel
 
         private async void Formaliztion(object obj)
         {
-            if(ClientSingltone.Client == null)
+            if (UserSingltone.User == null)
             {
                 MessageBox.Show("Войдите в аккаунт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
@@ -414,26 +446,12 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if(RoomList.Count == 0)
+            if (RoomList.Count == 0)
             {
                 MessageBox.Show("Выберите номер команты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
-
-            var date = new Date()
-            {
-                ArrivalDate = this.ArrivalDate,
-                CountyDate = this.DeparatureDate
-            };
-
-            var otel = await controller.GetHotelByOtelName(SelectedName.Name);
-
-            var ticket = new Ticket()
-            {
-                ClientID = ClientSingltone.Client.ID,
-                OtelID = otel.ID
-            };
 
             var rooms = new List<Room>();
             var selectedTypeRoom = new List<TypeRoom>();
@@ -448,73 +466,34 @@ namespace Otel.ViewModel
                 selectedTypeRoom.Add(item);
             }
 
-            TicketPaymentWindow ticketPayment = new TicketPaymentWindow(ticket, date, SelectedName, rooms, selectedTypeRoom, AddressOfOtel);
+            Order newOrder = new Order()
+            {
+                ClientID = UserSingltone.User.ID,
+                OtelID = SelectedHotel.ID,
+                ArrivalDate = ArrivalDate,
+                DepartureDate = DeparatureDate,
+                Room = RoomList
+            };
+
+            TicketPaymentWindow ticketPayment = new TicketPaymentWindow(newOrder, SelectedHotel);
             ticketPayment.Show();
             Application.Current.Windows[0].Close();
         }
 
-        private async void LoadImageByOtel()
+        private void LoadImageByOtel()
         {
             SetSplash(true);
 
-            var image = await controller.GetIamgeBySelectedOtel(SelectedName.ID);
+            if(SelectedHotel == null)
+            {
+                ImageByOtel = null;
 
-            var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom(image.Image);
+                return;
+            }
+
+            var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom((SelectedHotel.ImageOfOtel as List<ImageOfOtel>)[0].Image);
 
             ImageByOtel = bitmap;
-
-            SetSplash(false);
-        }
-
-        private async void LoadRoomNumberByTypeRoom()
-        {
-            SetSplash(true);
-
-            RoomNumber = new ObservableCollection<Room>();
-
-            var number = await controller.GetNumerByTypeRoomId(SelectedTypeRoom.ID);
-
-            foreach (var item in number)
-            {
-                RoomNumber.Add(item);
-            }
-
-            SetSplash(false);
-        }
-
-        private async void LoadAddressByOtel()
-        {
-            SetSplash(true);
-
-            AddressOfOtel = string.Empty;
-
-            if(SelectedName == null)
-            {
-                return;
-            }
-
-            var address = await controller.GetAddressOfOtelBySelectedOtel(SelectedName.ID);
-
-            AddressOfOtel = address.Name + ", " + address.Number;
-
-            SetSplash(false);
-        }
-
-        private async void LoadDescriptionByOtel()
-        {
-            SetSplash(true);
-                
-            Description = string.Empty;
-
-            if(SelectedName == null)
-            {
-                return;
-            }
-            var description = await controller.GetDescriptionBySelectedOtel(SelectedName.ID);
-
-            Description = description.Name;
-
-            LoadImageByOtel();
 
             SetSplash(false);
         }
@@ -528,17 +507,12 @@ namespace Otel.ViewModel
 
                 var hotelCountryList = await controller.GetOtelByCountry(SelectedCountry.ID);
 
-                var otelNameList = await controller.GetNameOtlelByOtelList(hotelCountryList);
+                HotelList = new ObservableCollection<Hotel>();
 
-                NameOtelList = new ObservableCollection<NameOtel>();
-
-                foreach (var item in otelNameList)
+                foreach (var item in hotelCountryList)
                 {
-                    NameOtelList.Add(item);
+                    HotelList.Add(item);
                 }
-
-                SelectedName = NameOtelList[0];
-
             }
             catch (Exception ex)
             {
@@ -551,31 +525,19 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
-        private async void LoadAllData()
+        private async void LoadOtel()
         {
             SetSplash(true);
 
             try
             {
-                var hotel = await controller.GetOtelData();
                 var countryOfOtel = await controller.GetCountryData();
-                var room = await controller.GetRoomData();
-                var typeRoom = await controller.GetTypeRoomData();
 
                 foreach (var item in countryOfOtel)
                 {
                     CountryOfOtelList.Add(item);
                 }
 
-                foreach (var item in hotel)
-                {
-                    HotelList.Add(item);
-                }
-
-                foreach (var item in typeRoom)
-                {
-                    TypeRommList.Add(item);
-                }
             }
             catch (Exception)
             {
@@ -585,6 +547,23 @@ namespace Otel.ViewModel
             }
 
             SetSplash(false);
+        }
+
+        private async void LoadTypeRoom()
+        {
+            TypeRoomList = new ObservableCollection<TypeRoom>();
+
+            if (SelectedHotel == null)
+            {
+                return;
+            }
+
+            var typeRoom = await controller.GetTypeRoomDataBySelectedOtel(SelectedHotel.ID);
+
+            foreach (var item in typeRoom)
+            {
+                TypeRoomList.Add(item);
+            }
         }
     }
 }

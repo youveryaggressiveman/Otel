@@ -9,9 +9,14 @@ namespace Otel.Model
     public class Hotel
     {
         public int ID { get; set; }
-        public int NameOtelID { get; set; }
+        public string Name { get; set; }
         public int AddressOfOtelID { get; set; }
-        public int ImageID { get; set; }
-        public Nullable<int> DiscriptionID { get; set; }
+        public int DiscriptionID { get; set; }
+
+        public AddressOfOtel AddressOfOtel { get; set; }
+        public Discription Discription { get; set; }
+        public ICollection<ImageOfOtel> ImageOfOtel { get; set; }
+        public ICollection<Order> Order { get; set; }
+        public ICollection<Room> Room { get; set; }
     }
 }

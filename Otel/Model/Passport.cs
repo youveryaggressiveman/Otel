@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Otel.Model
+﻿namespace Otel.Model
 {
     public class Passport
     {
