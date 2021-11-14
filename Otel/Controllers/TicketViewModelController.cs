@@ -8,16 +8,29 @@ namespace Otel.Controllers
 {
     public class TicketViewModelController
     {
-        public async Task<List<Room>> GetNumerByOtel(int id)
+        public async Task<List<Room>> GetNumerByOtel(int id, System.DateTime arrivalDate)
         {
             HttpClient client = new HttpClient();
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Rooms/otel?id=" + id);
+            try
+            {  
+                var stringTask = await client.GetAsync("http://localhost:63262/api/Rooms/otel?id=" + id + "&date=" + arrivalDate.ToString("yyyy-MM-dd"));
 
-            var result = JsonSerializer.Deserialize<List<Room>>(stringTask);
+                if (stringTask.IsSuccessStatusCode)
+                {
+                    var result = JsonSerializer.Deserialize<List<Room>>(await stringTask.Content.ReadAsStringAsync());
 
-            client.Dispose();
+                    client.Dispose();
 
-            return result;
+                    return result;
+                }
+
+                return null;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+      
         }
 
         public async Task<List<Hotel>> GetOtelByCountry(int id)

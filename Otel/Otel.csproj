@@ -58,8 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\AllTicketViewModelController.cs" />
     <Compile Include="Controllers\InputCardViewModelController.cs" />
     <Compile Include="Controllers\RegistrViewModelController.cs" />
+    <Compile Include="Controllers\TicketPaymentViewModelController.cs" />
     <Compile Include="Converter\CardNumberConverter.cs" />
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Converter\TextWaterMarkConverter.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\TypeRoom.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\AllTicketViewModel.cs" />
     <Compile Include="ViewModel\InputCardViewModel.cs" />
     <Compile Include="ViewModel\RegistrViewModel.cs" />
     <Compile Include="ViewModel\TicketPaymentViewModel.cs" />

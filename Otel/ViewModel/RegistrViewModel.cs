@@ -2,6 +2,7 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.Windows;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -160,8 +161,6 @@ namespace Otel.ViewModel
 
                 return;
             }
-
-      
 
             user = new User()
             {

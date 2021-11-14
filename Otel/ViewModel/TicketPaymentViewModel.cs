@@ -12,7 +12,11 @@ namespace Otel.ViewModel
 {
     public class TicketPaymentViewModel : BaseViewModel
     {
+        private TicketPaymentViewModelController controller;
+
         private ObservableCollection<Room> room;
+
+        private Hotel hotel;
 
         private string country;
         private string nameHotel;
@@ -129,6 +133,10 @@ namespace Otel.ViewModel
 
         public TicketPaymentViewModel(Order order, Hotel hotel)
         {
+            controller = new TicketPaymentViewModelController();
+
+            this.hotel = hotel;
+
             Room = new ObservableCollection<Room>();
 
             Pay = new DelegateCommand(PayTicket);
@@ -140,6 +148,14 @@ namespace Otel.ViewModel
         {
             if (CardSingltone.Card != null)
             {
+                CreateTicket();
+
+                MessageBox.Show(UserSingltone.User.FirstName + ", оплата прошла успешно. Билет был добавлен в ваш список. Хорошего отдыха!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                CheckWindow checkWindow = new CheckWindow();
+                checkWindow.Show();
+                Application.Current.Windows[0].Close();
+
                 return;
             }
 
@@ -151,6 +167,20 @@ namespace Otel.ViewModel
 
                 return;
             }
+        }
+
+        private async void CreateTicket()
+        {
+            Order newOrder = new Order()
+            {
+                DepartureDate = DepartureDate,
+                ArrivalDate = ArrivalDate,
+                ClientID = UserSingltone.User.ID,
+                Room = Room,
+                OtelID = hotel.ID
+            };
+
+            await controller.CreateOrder(newOrder);
         }
 
         private void LoadAllData(Order order, Hotel hotel)

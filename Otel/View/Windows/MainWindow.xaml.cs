@@ -3,7 +3,7 @@ using Otel.View.Windows;
 using Otel.ViewModel;
 using System.Windows;
 
-namespace Otel
+namespace Otel.Windows
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -28,6 +28,11 @@ namespace Otel
             RegistrationWindow registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
             Application.Current.Windows[0].Close();
+        }
+
+        private void allTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Navigate(new AllTicket());
         }
     }
 }

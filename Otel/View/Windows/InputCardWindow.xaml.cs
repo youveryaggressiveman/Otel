@@ -56,5 +56,10 @@ namespace Otel.View.Windows
             imageNumber.Visibility = Visibility.Collapsed;
 
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Windows[0].Show();
+        }
     }
 }

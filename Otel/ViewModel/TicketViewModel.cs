@@ -27,8 +27,10 @@ namespace Otel.ViewModel
 
         private ObservableCollection<TypeRoom> selectedRoomTypeList;
 
+        private int imageIndex = 0;
         private int selectedHotelIndex = 0;
 
+        private List<BitmapSource> bitmapImages;
         private ObservableCollection<Room> roomNumber;
         private ObservableCollection<Country> countryOfOtelList;
         private ObservableCollection<Hotel> hotelList;
@@ -65,8 +67,6 @@ namespace Otel.ViewModel
                 LoadNumber();
             }
         }
-
-        
 
         public ObservableCollection<TypeRoom> SelectedRoomTypeList
         {
@@ -164,6 +164,7 @@ namespace Otel.ViewModel
             {
                 arrivalDate = value;
                 OnPropertyChanged(nameof(ArrivalDate));
+                LoadNumber();
             }
         }
 
@@ -290,6 +291,8 @@ namespace Otel.ViewModel
         public ICommand AddRoom { get; private set; }
         public ICommand FormalizationCommand { get; private set; }
         public ICommand DeleteRoom { get; private set; }
+        public ICommand NextImage { get; private set; }
+        public ICommand PreviousImage { get; private set; }
 
         public TicketViewModel()
         {
@@ -301,6 +304,10 @@ namespace Otel.ViewModel
             RoomNumber = new ObservableCollection<Room>();
             SelectedRoomTypeList = new ObservableCollection<TypeRoom>();
 
+            bitmapImages = new List<BitmapSource>();
+
+            PreviousImage = new DelegateCommand(SetPreviousImage);
+            NextImage = new DelegateCommand(SetNextImage);
             AddRoom = new DelegateCommand(AddRoomToRoomList);
             FormalizationCommand = new DelegateCommand(Formaliztion);
             DeleteRoom = new DelegateCommand(DeleteRoomFromList);
@@ -309,6 +316,50 @@ namespace Otel.ViewModel
 
             LoadClient();
 
+        }
+
+        private void SetPreviousImage(object obj)
+        {
+            var imageCount = bitmapImages.Count - 1;
+
+            if (imageIndex <= imageCount)
+            {
+                imageIndex--;
+            }
+
+            if (imageIndex < 0)
+            {
+                imageIndex = imageCount;
+            }
+
+            if (bitmapImages.Count == 0)
+            {
+                return;
+            }
+
+            ImageByOtel = bitmapImages[imageIndex];
+        }
+
+        private void SetNextImage(object obj)
+        {
+            var imageCount = bitmapImages.Count - 1;
+
+            if (imageIndex <= imageCount)
+            {
+                imageIndex++;
+            }
+
+            if (imageIndex > imageCount)
+            {
+                imageIndex = 0;
+            }
+
+            if(bitmapImages.Count == 0)
+            {
+                return;
+            }
+
+            ImageByOtel = bitmapImages[imageIndex];
         }
 
         private async void LoadNumber()
@@ -320,12 +371,24 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var number = await controller.GetNumerByOtel(SelectedHotel.ID);
+            var number = await controller.GetNumerByOtel(SelectedHotel.ID, ArrivalDate);
 
-            foreach (var item in number)
+            if (number == null)
             {
-                RoomNumber.Add(item);
+                return;
             }
+
+
+            if (RoomNumber.Count > 0)
+            {
+                RoomNumber = new ObservableCollection<Room>();
+            }
+
+            for (int i = 0; i < number.Count; i++)
+            {
+                RoomNumber.Add(number[i]);
+            }
+                        
         }
 
         private void LoadAddress()
@@ -484,6 +547,8 @@ namespace Otel.ViewModel
         {
             SetSplash(true);
 
+            bitmapImages = new List<BitmapSource>();
+
             if(SelectedHotel == null)
             {
                 ImageByOtel = null;
@@ -491,9 +556,14 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom((SelectedHotel.ImageOfOtel as List<ImageOfOtel>)[0].Image);
+            foreach (var item in SelectedHotel.ImageOfOtel)
+            {
+                var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom(item.Image);
 
-            ImageByOtel = bitmap;
+                bitmapImages.Add(bitmap);
+            }
+      
+            ImageByOtel = bitmapImages[0];
 
             SetSplash(false);
         }

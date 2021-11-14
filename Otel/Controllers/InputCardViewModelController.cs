@@ -1,4 +1,5 @@
 ﻿using Otel.Model;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,6 +10,20 @@ namespace Otel.Controllers
 {
     public class InputCardViewModelController
     {
+        public async Task<List<Card>> GetListCardByClientId( int id)
+        {
+            HttpClient client = new HttpClient();
+
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Cards/client?id=" + id);
+
+            var result = JsonSerializer.Deserialize<List<Card>>(stringTask);
+
+            client.Dispose();
+
+            return result;
+
+        }
+
         public async Task<Card> CreateCard(Card card)
         {
             var JsonObject = JsonSerializer.Serialize<Card>(card);

@@ -1,14 +1,209 @@
 ﻿<Page x:Class="Otel.View.Pages.AllTicket"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Otel.View.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AllTicket">
+      mc:Ignorable="d"
+      d:DesignHeight="750"
+      d:DesignWidth="1050"
+      Title="AllTicket"
+      FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Label Content="Все билеты"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="42"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Center" /> 
+            <ListView Grid.Row="1"
+                      Margin="20"
+                      SelectedItem="{Binding SelectedOrder}"
+                      ItemsSource="{Binding OrderList}"
+                      Foreground="#5f6368"
+                      FontSize="20"
+                      Background="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                            <Run Text="Заказ #" />
+                            <Run Text="{Binding ID}" />
+                            <Run Text="," />
+                                <LineBreak />
+                                <Run Text="Дата заезда:" />
+                                <Run Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}" />
+                                <Run Text=";" />
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius"
+                            Value="8" />
+                </Style>
+                </ListView.Resources>
+            </ListView>
+            <Button Grid.Row="2"
+                    Command="{Binding InfoAboutOrder}"
+                    Content="Посмотреть информацию о выбранном билете"/>
+        </Grid>
+        <Border BorderBrush="#5f6368"
+                BorderThickness="1"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                Height="750"
+                VerticalAlignment="Top"
+                Width="1"
+                Margin="50,0,0,0" />
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+            </Grid.RowDefinitions>
+            <Label Content="Информация о билете"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="42"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Center" />
+            <TextBox Grid.Row="1"
+                     Text="{Binding Country}"
+                     Width="250"
+                     Background="Transparent"
+                     IsEnabled="False"
+                     FontSize="20"
+                     Grid.Column="1"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+            <Label Grid.Row="1"
+                   Content="Страна:"
+                   FontSize="15"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <TextBox Grid.Row="2"
+                     Text="{Binding NameOtel}"
+                     Width="250"
+                     IsEnabled="False"
+                     FontSize="20"
+                     Grid.Column="1"
+                     Background="Transparent"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+            <Label Grid.Row="2"
+                   Content="Название отеля:"
+                   FontSize="15"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <TextBox Grid.Row="3"
+                     Text="{Binding Address}"
+                     Width="250"
+                     IsEnabled="False"
+                     Background="Transparent"
+                     FontSize="20"
+                     Grid.Column="1"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+            <Label Grid.Row="3"
+                   Content="Адрес отеля:"
+                   FontSize="15"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="4"
+                       FontSize="15"
+                       Margin="25 0 0 0"
+                       HorizontalAlignment="Left"
+                       Foreground="#5f6368"
+                       VerticalAlignment="Center">
+                <Run Text="Информация" />
+                <LineBreak />
+                <Run Text="о комнатах:" />
+            </TextBlock>
+            <ListView Grid.Row="4"
+                      Grid.Column="1"
+                      Width="250"
+                      Margin="20 20 20 20"
+                      ItemsSource="{Binding RoomList}"
+                      Foreground="#5f6368"
+                      FontSize="20"
+                      Background="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                            <Run Text="Ваш номер: " />
+                            <Run Text="{Binding Number}" />
+                            <Run Text=", " />
+                            <Run Text="{Binding TypeRoom.Name}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="8" />
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+                <Label Content="Дата заезда:"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="20 0 0 0"
+                       FontSize="15" />
+                <TextBox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         IsEnabled="False"
+                         Background="Transparent"
+                         Width="auto"
+                         Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
+                         Margin="20 0 0 0"
+                         FontSize="20" />
+                <Label Content="Дата заезда:"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="20 0 0 0"
+                       FontSize="15" />
+                <TextBox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Width="auto"
+                         Background="Transparent"
+                         Text="{Binding DepartureDate, StringFormat='{}{0:dd.MM.yyyy}'}"
+                         IsEnabled="False"
+                         Margin="20 0 0 0"
+                         FontSize="20" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -16,7 +16,8 @@
         MinWidth="550"
         MaxHeight="550"
         MaxWidth="550"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png">
+        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
+        Closed="Window_Closed">
     <Window.DataContext>
         <ViewModel:InputCardViewModel />
     </Window.DataContext>
@@ -67,6 +68,40 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <ListView Grid.Row="0"
+                      Grid.RowSpan="4"
+                      Margin="20 110 20 20"
+                      Foreground="#5f6368"
+                      FontSize="20"
+                      SelectedItem="{Binding SelectedCard}"
+                      ItemsSource="{Binding CardList}"
+                      Background="Transparent"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Visibility="{Binding ListViewVisibility}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                            <Run Text="Карта #" />
+                            <Run Text="{Binding ID}" />
+                            <Run Text="," />
+                                <LineBreak />
+                                <Run Text="Последние 4 цифры:" />
+                                <Run Text="{Binding LastFourDigits}" />
+                                <Run Text=";" />
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="8" />
+                    </Style>
+                </ListView.Resources>
+            </ListView>
             <Label Grid.Row="0"
                    Background="Transparent"
                    Grid.Column="0"
@@ -78,6 +113,7 @@
                    VerticalAlignment="Center" />
             <Label Grid.Row="1"
                    Margin="10 0 0 0"
+                   Visibility="{Binding TextBoxAndLabelVisibility}"
                    Content="Номер карты:"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
@@ -92,7 +128,9 @@
                    HorizontalAlignment="Right"
                    Source="/Resources/Image/payment_mastercard.png" />
             <TextBox Grid.Row="1"
+                     Background="Transparent"
                      Grid.Column="1"
+                     Visibility="{Binding TextBoxAndLabelVisibility}"
                      FontSize="20"
                      x:Name="cardNumberTextBox"
                      TextChanged="cardNumberTextBox_TextChanged"
@@ -107,6 +145,7 @@
             <Label Grid.Row="2"
                    Margin="10 0 0 0"
                    Content="Срок действия:"
+                   Visibility="{Binding TextBoxAndLabelVisibility}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <StackPanel Orientation="Horizontal"
@@ -116,16 +155,21 @@
                         Grid.Column="1">
                 <TextBox VerticalContentAlignment="Center"
                          Style="{StaticResource monthOfCardTextBox}"
+                         Visibility="{Binding TextBoxAndLabelVisibility}"
+                         Background="Transparent"
                          Text="{Binding CardMM}"
                          FontSize="20"
                          MaxLength="2"
                          HorizontalContentAlignment="Left"
                          Width="40" />
                 <Label Content="/"
+                       Visibility="{Binding TextBoxAndLabelVisibility}"
                        Margin="5 0 0 0" />
                 <TextBox VerticalContentAlignment="Center"
                          Style="{StaticResource yearrOfCardTextBox}"
+                         Visibility="{Binding TextBoxAndLabelVisibility}"
                          Margin=" 5 0 0 0"
+                         Background="Transparent"
                          FontSize="20"
                          MaxLength="2"
                          Text="{Binding CardYY}"
@@ -134,14 +178,17 @@
             </StackPanel>
             <Label Grid.Row="3"
                    Content="CVC/CVV:"
+                   Visibility="{Binding TextBoxAndLabelVisibility}"
                    Margin="10 0 0 0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <TextBox Grid.Row="3"
                      Grid.Column="1"
+                     Visibility="{Binding TextBoxAndLabelVisibility}"
                      Margin="20"
                      Width="100"
                      FontSize="20"
+                     Background="Transparent"
                      MaxLength="3"
                      x:Name="pswBox"
                      VerticalContentAlignment="Center"
@@ -157,7 +204,13 @@
             <Button Content="Отмена"
                     x:Name="cancelButton"
                     Click="cancelButton_Click" />
+            <Button Content="Занести новые реквизиты"
+                    Command="{Binding CreateNewCard}"
+                    Visibility="{Binding ListViewVisibility}"
+                    Grid.Column="1">
+            </Button>
             <Button Content="Занести реквизиты"
+                    Visibility="{Binding TextBoxAndLabelVisibility}"
                     Command="{Binding InputCard}"
                     Grid.Column="1">
             </Button>

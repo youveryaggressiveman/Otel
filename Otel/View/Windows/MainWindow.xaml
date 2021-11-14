@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Otel"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
-        x:Class="Otel.MainWindow"
+        x:Class="Otel.Windows.MainWindow"
         mc:Ignorable="d"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
         Title="Hotel City: главное окно"
@@ -57,6 +57,8 @@
                    VerticalContentAlignment="Center" />
             <Button Grid.Column="1"
                     Style="{StaticResource ticketButton}"
+                    x:Name="allTicketButton"
+                    Click="allTicketButton_Click"
                     IsEnabled="{Binding IsEnabledButton}"
                     ToolTip="Ваши билеты">
                 <Image Source="/Resources/Image/outline_local_activity_white_48dp.png" />
@@ -101,6 +103,7 @@
             </Button>
         </Grid>
         <Frame Grid.Row="1"
+               NavigationUIVisibility="Hidden"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                x:Name="Main" />

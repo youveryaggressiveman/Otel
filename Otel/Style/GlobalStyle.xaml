@@ -48,6 +48,20 @@
         </Style.Triggers>
     </Style>
 
+    <!--Секция для buttonOfListView-->
+    <Style TargetType="{x:Type Button}"
+           x:Key="buttonOfListView">
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius"
+                        Value="8" />
+                <Setter Property="BorderThickness"
+                        Value="0.5" />
+            </Style>
+                   
+        </Style.Resources>
+    </Style>
+
     <!--Cекция для Label-->
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground"
