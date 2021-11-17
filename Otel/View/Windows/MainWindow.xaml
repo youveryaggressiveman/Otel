@@ -56,6 +56,14 @@
                    HorizontalAlignment="Left"
                    VerticalContentAlignment="Center" />
             <Button Grid.Column="1"
+                    Content="🏠"
+                    FontSize="25"
+                    Click="homeButton_Click"
+                    Visibility="Collapsed"
+                    Style="{StaticResource homeButton}"
+                    x:Name="homeButton"
+                    ToolTip="Главное меню" />
+            <Button Grid.Column="1"
                     Style="{StaticResource ticketButton}"
                     x:Name="allTicketButton"
                     Click="allTicketButton_Click"
@@ -148,7 +156,5 @@
                 </StackPanel>
             </TextBlock>
         </Border>
-
-
     </Grid>
 </Window>

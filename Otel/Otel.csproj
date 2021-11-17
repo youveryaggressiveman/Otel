@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
@@ -66,6 +70,7 @@
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Converter\TextWaterMarkConverter.cs" />
     <Compile Include="Core\CardSingltone.cs" />
+    <Compile Include="Core\Helper\WordHelper.cs" />
     <Compile Include="Core\UserSingltone.cs" />
     <Compile Include="Model\AddressOfOtel.cs" />
     <Compile Include="Model\Card.cs" />
@@ -83,6 +88,7 @@
     <Compile Include="Model\TypeRoom.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\AllTicketViewModel.cs" />
+    <Compile Include="ViewModel\CheckViewModel.cs" />
     <Compile Include="ViewModel\InputCardViewModel.cs" />
     <Compile Include="ViewModel\RegistrViewModel.cs" />
     <Compile Include="ViewModel\TicketPaymentViewModel.cs" />
@@ -180,9 +186,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Files\check_template.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Resource Include="Resources\Fonts\ZenKakuGothicNew-Black.ttf" />
     <Resource Include="Resources\Fonts\ZenKakuGothicNew-Bold.ttf" />

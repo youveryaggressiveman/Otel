@@ -11,11 +11,11 @@
         WindowStartupLocation="CenterScreen"
         Title="Hotel City: Платежные реквизиты"
         Height="550"
-        Width="550"
+        Width="650"
         MinHeight="550"
-        MinWidth="550"
+        MinWidth="650"
         MaxHeight="550"
-        MaxWidth="550"
+        MaxWidth="650"
         Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         Closed="Window_Closed">
     <Window.DataContext>
@@ -71,6 +71,7 @@
             <ListView Grid.Row="0"
                       Grid.RowSpan="4"
                       Margin="20 110 20 20"
+                      x:Name="allCardListView"
                       Foreground="#5f6368"
                       FontSize="20"
                       SelectedItem="{Binding SelectedCard}"
@@ -81,7 +82,7 @@
                       Visibility="{Binding ListViewVisibility}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center">
                             <Run Text="Карта #" />
@@ -92,6 +93,9 @@
                                 <Run Text="{Binding LastFourDigits}" />
                                 <Run Text=";" />
                             </TextBlock>
+                            <Button Command="{Binding ElementName=allCardListView, Path=DataContext.SelectCard}"
+                                    Content="Выбрать ">
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

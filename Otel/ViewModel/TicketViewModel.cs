@@ -482,7 +482,7 @@ namespace Otel.ViewModel
             }
         }
 
-        private async void Formaliztion(object obj)
+        private void Formaliztion(object obj)
         {
             if (UserSingltone.User == null)
             {
@@ -491,6 +491,34 @@ namespace Otel.ViewModel
                 AuthWindow authWindow = new AuthWindow();
                 authWindow.Show();
                 Application.Current.Windows[0].Close();
+
+                return;
+            }
+
+            if (SelectedCountry == null)
+            {
+                MessageBox.Show("Выберите страну", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            if (SelectedHotel == null)
+            {
+                MessageBox.Show("Выберите отель", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            if (SelectedTypeRoom == null)
+            {
+                MessageBox.Show("Выберите тип команты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
+            {
+                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее чмло", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }
@@ -505,6 +533,13 @@ namespace Otel.ViewModel
             if (ArrivalDate > DeparatureDate)
             {
                 MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return;
+            }
+
+            if ((DeparatureDate.Year - ArrivalDate.Year) >= 2)
+            {
+                MessageBox.Show("Бронирование на такой большой срок невозможно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }

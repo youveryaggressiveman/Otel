@@ -17,6 +17,7 @@ namespace Otel.ViewModel
         private ObservableCollection<Room> room;
 
         private Hotel hotel;
+        private Order order;
 
         private string country;
         private string nameHotel;
@@ -136,6 +137,7 @@ namespace Otel.ViewModel
             controller = new TicketPaymentViewModelController();
 
             this.hotel = hotel;
+            this.order = order;
 
             Room = new ObservableCollection<Room>();
 
@@ -152,7 +154,7 @@ namespace Otel.ViewModel
 
                 MessageBox.Show(UserSingltone.User.FirstName + ", оплата прошла успешно. Билет был добавлен в ваш список. Хорошего отдыха!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                CheckWindow checkWindow = new CheckWindow();
+                CheckWindow checkWindow = new CheckWindow(order, hotel);
                 checkWindow.Show();
                 Application.Current.Windows[0].Close();
 
@@ -195,7 +197,16 @@ namespace Otel.ViewModel
             {
                 ValueOfPrice = item.Price.Currency.Name;
                 Room.Add(item);
-                Price += item.Price.Number;
+
+                if (DepartureDate.Year == ArrivalDate.Year)
+                {
+                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear);
+                }
+                
+                if (DepartureDate.Year > ArrivalDate.Year)
+                {
+                    Price = (Price + item.Price.Number) * ((DepartureDate.DayOfYear + 365) - ArrivalDate.DayOfYear);
+                }
             }
         }
     }

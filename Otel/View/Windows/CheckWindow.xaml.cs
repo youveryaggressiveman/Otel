@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Otel.Model;
+using Otel.ViewModel;
+using System.Windows;
 
 namespace Otel.View.Windows
 {
@@ -7,9 +9,13 @@ namespace Otel.View.Windows
     /// </summary>
     public partial class CheckWindow : Window
     {
-        public CheckWindow()
+        public CheckWindow(Order order, Hotel hotel)
         {
             InitializeComponent();
+
+            CheckViewModel checkViewModel = new CheckViewModel(order, hotel);
+
+            DataContext = checkViewModel;
         }
     }
 }

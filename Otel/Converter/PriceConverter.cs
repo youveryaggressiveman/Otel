@@ -15,7 +15,26 @@ namespace Otel.Converter
 
             foreach (var item in Enumerable.Range(0, builder.Length / 3).Reverse())
             {
-                builder.Insert(2 * item + 2, " ");
+                if (builder.Length < 5)
+                {
+                    builder.Insert(1 * item + 1, " ");
+
+                    continue;
+                }
+
+                if (builder.Length == 5)
+                {
+                    builder.Insert(2 * item + 2, " ");
+
+                    continue;
+                }
+
+                if (builder.Length > 5)
+                {
+                    builder.Insert(3 * item + 3, " ");
+
+                    continue;
+                }
             }
 
             return builder.ToString().Trim();

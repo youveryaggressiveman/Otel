@@ -33,6 +33,15 @@ namespace Otel.Windows
         private void allTicketButton_Click(object sender, RoutedEventArgs e)
         {
             Main.Navigate(new AllTicket());
+            allTicketButton.Visibility = Visibility.Collapsed;
+            homeButton.Visibility = Visibility.Visible;
+        }
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Navigate(new NewTicket(DataContext as TicketViewModel));
+            allTicketButton.Visibility = Visibility.Visible;
+            homeButton.Visibility = Visibility.Collapsed;
         }
     }
 }

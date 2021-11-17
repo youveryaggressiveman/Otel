@@ -31,7 +31,7 @@ namespace Otel.ViewModel
             set
             {
                 selectedCard = value;
-                OnPropertyChanged(nameof(SelectCard));
+                OnPropertyChanged(nameof(SelectedCard));
             }
         }
 
@@ -132,14 +132,22 @@ namespace Otel.ViewModel
 
                 TextBoxAndLabelVisibility = Visibility.Collapsed;
                 ListViewVisibility = Visibility.Visible;
-            }     
+            }
         }
 
         private void SelectedByPayCard(object obj)
         {
-            CardSingltone.Card = selectedCard;
 
-            Application.Current.Windows[1].Close();
+            if (SelectedCard == null)
+            {
+                MessageBox.Show("Выберите карту", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            CardSingltone.Card = SelectedCard;
+
+            Application.Current.Windows[2].Close();
             Application.Current.Windows[0].Show();
         }
 
@@ -161,6 +169,27 @@ namespace Otel.ViewModel
 
         private async void CreateHashCode(object obj)
         {
+            if (CardNumber.Length == 0)
+            {
+                MessageBox.Show("Введите номер карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            if (CardMM.Length == 0 || CardYY.Length == 0)
+            {
+                MessageBox.Show("Введите срок службы карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            if (CardCVC.Length == 0)
+            {
+                MessageBox.Show("Введите CVC карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
             var result = CardNumber.Replace(" ", "").GetHashCode() + CardCVC.GetHashCode() + CardMM.GetHashCode() + CardYY.GetHashCode();
 
             string lastFourDigits = string.Empty;

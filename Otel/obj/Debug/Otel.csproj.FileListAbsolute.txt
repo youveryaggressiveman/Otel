@@ -159,3 +159,4 @@ C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.pdb
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\Otel.csprojAssemblyReference.cache
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\View\Windows\CheckWindow.g.cs
 C:\Users\повелитель\Desktop\Otel\Otel\obj\Debug\View\Windows\CheckWindow.baml
+C:\Users\повелитель\Desktop\Otel\Otel\bin\Debug\Resources\Files\check_template.docx
