@@ -134,8 +134,6 @@ namespace Otel.ViewModel
         { 
             var newUser = await controller.GetClientByPhone(Phone);
 
-            
-
             User user;
             Passport passport;
 
@@ -171,7 +169,8 @@ namespace Otel.ViewModel
                 Password = this.Password,
                 CountryID = SelectedCountries.ID,
                 Passport = passport,
-                RoleID = 1
+                RoleID = 1,
+                DiscountID = 1
             };
 
             UserSingltone.User = await controller.CreateClient(user);

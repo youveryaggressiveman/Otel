@@ -8,12 +8,12 @@ namespace Otel.Controllers
 {
     public class TicketViewModelController
     {
-        public async Task<List<Room>> GetNumerByOtel(int id, System.DateTime arrivalDate)
+        public async Task<List<Room>> GetNumerByOtel(int id, System.DateTime arrivalDate, int typeRoomId)
         {
             HttpClient client = new HttpClient();
             try
             {  
-                var stringTask = await client.GetAsync("http://localhost:63262/api/Rooms/otel?id=" + id + "&date=" + arrivalDate.ToString("yyyy-MM-dd"));
+                var stringTask = await client.GetAsync("http://localhost:63262/api/Rooms/otel?id=" + id + "&date=" + arrivalDate.ToString("yyyy-MM-dd") + "&typeRoom=" + typeRoomId);
 
                 if (stringTask.IsSuccessStatusCode)
                 {

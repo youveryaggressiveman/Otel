@@ -200,12 +200,12 @@ namespace Otel.ViewModel
 
                 if (DepartureDate.Year == ArrivalDate.Year)
                 {
-                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear);
+                    Price = (((Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear))/100) * (100 - UserSingltone.User.Discount.Number);
                 }
                 
                 if (DepartureDate.Year > ArrivalDate.Year)
                 {
-                    Price = (Price + item.Price.Number) * ((DepartureDate.DayOfYear + 365) - ArrivalDate.DayOfYear);
+                    Price = (((Price + item.Price.Number) * ((DepartureDate.DayOfYear + 365) - ArrivalDate.DayOfYear))/100) * (100 - UserSingltone.User.Discount.Number);
                 }
             }
         }

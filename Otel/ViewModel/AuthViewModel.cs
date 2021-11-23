@@ -11,8 +11,8 @@ namespace Otel.ViewModel
     {
         private readonly AuthViewModelController controller;
 
-        private string phone = "89184293165";
-        private string password = "123";
+        private string phone;
+        private string password;
 
         public string Phone
         {
@@ -45,14 +45,14 @@ namespace Otel.ViewModel
 
         public async void Authorize(object obj)
         {
-            var selectedUser = await controller.GetClientByPhone(Phone);
-
             if (string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Password))
             {
                 MessageBox.Show("Введите свой телефон и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
+
+            var selectedUser = await controller.GetClientByPhone(Phone);
 
             if (selectedUser == null)
             {

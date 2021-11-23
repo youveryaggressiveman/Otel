@@ -6,6 +6,25 @@
     <SolidColorBrush x:Key="WatermarkBrushForeground"
                      Color="#C0C0C0"/>
     
+    <!--Секция для ImageButton-->
+    <Style TargetType="{x:Type Button}"
+           x:Key="imageButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="25"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Property=BorderBrush}"
+                            BorderThickness="{TemplateBinding Property=BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          Margin="10 0 10 0"
+                                          VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!-- Секция для кнопок -->
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background"

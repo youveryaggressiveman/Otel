@@ -1,4 +1,5 @@
-﻿using Otel.Command;
+﻿
+using Otel.Command;
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
@@ -38,6 +39,7 @@ namespace Otel.ViewModel
         private ObservableCollection<TypeRoom> typeRoomList;
 
         private ImageSource imageByOtel;
+        private ImageSource avatar;
 
         private string firstName;
         private string phone;
@@ -52,6 +54,16 @@ namespace Otel.ViewModel
         private Visibility visibilityButton = Visibility.Visible;
 
         private bool isEnabledButton = false;
+
+        public ImageSource Avatar
+        {
+            get => avatar;
+            set
+            {
+                avatar = value;
+                OnPropertyChanged(nameof(Avatar));
+            }
+        }
 
         public Hotel SelectedHotel
         {
@@ -114,6 +126,7 @@ namespace Otel.ViewModel
             {
                 selectedTypeRoom = value;
                 OnPropertyChanged(nameof(SelectedTypeRoom));
+                LoadNumber();
             }
         }
 
@@ -371,13 +384,17 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var number = await controller.GetNumerByOtel(SelectedHotel.ID, ArrivalDate);
+            if (SelectedTypeRoom == null)
+            {
+                return;
+            }
+
+            var number = await controller.GetNumerByOtel(SelectedHotel.ID, ArrivalDate, SelectedTypeRoom.ID);
 
             if (number == null)
             {
                 return;
             }
-
 
             if (RoomNumber.Count > 0)
             {
@@ -387,8 +404,7 @@ namespace Otel.ViewModel
             for (int i = 0; i < number.Count; i++)
             {
                 RoomNumber.Add(number[i]);
-            }
-                        
+            }                      
         }
 
         private void LoadAddress()
