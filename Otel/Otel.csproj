@@ -70,6 +70,7 @@
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Converter\TextWaterMarkConverter.cs" />
     <Compile Include="Core\CardSingltone.cs" />
+    <Compile Include="Core\FrameManager.cs" />
     <Compile Include="Core\Helper\WordHelper.cs" />
     <Compile Include="Core\UserSingltone.cs" />
     <Compile Include="Model\AddressOfOtel.cs" />

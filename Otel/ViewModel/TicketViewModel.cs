@@ -435,14 +435,14 @@ namespace Otel.ViewModel
         {
             if (RoomList.Count == 0)
             {
-                MessageBox.Show("Из списка комнат нечего удалять", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Из списка комнат нечего удалять", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
             if (SelectedRoomForDelete == null)
             {
-                MessageBox.Show("Выберите комнату для удаления из списка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Выберите комнату для удаления из списка", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
@@ -502,7 +502,7 @@ namespace Otel.ViewModel
         {
             if (UserSingltone.User == null)
             {
-                MessageBox.Show("Войдите в аккаунт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Войдите в аккаунт", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 AuthWindow authWindow = new AuthWindow();
                 authWindow.Show();
@@ -534,28 +534,28 @@ namespace Otel.ViewModel
 
             if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
             {
-                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее чмло", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее чмло", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
             if (ArrivalDate == DeparatureDate)
             {
-                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
             if (ArrivalDate > DeparatureDate)
             {
-                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
             if ((DeparatureDate.Year - ArrivalDate.Year) >= 2)
             {
-                MessageBox.Show("Бронирование на такой большой срок невозможно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Бронирование на такой большой срок невозможно", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }

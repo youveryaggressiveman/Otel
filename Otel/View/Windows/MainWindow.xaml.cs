@@ -1,4 +1,5 @@
-﻿using Otel.View.Pages;
+﻿using Otel.Core;
+using Otel.View.Pages;
 using Otel.View.Windows;
 using Otel.ViewModel;
 using System.Windows;
@@ -13,7 +14,9 @@ namespace Otel.Windows
         public MainWindow()
         {
             InitializeComponent();
-            Main.Navigate(new NewTicket(DataContext as TicketViewModel));
+
+            FrameManager.MainFrame = Main;
+            FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
         }
 
         private void ComeButton_Click(object sender, RoutedEventArgs e)
@@ -32,14 +35,14 @@ namespace Otel.Windows
 
         private void allTicketButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Navigate(new AllTicket());
+            FrameManager.SetSource(new AllTicket());
             allTicketButton.Visibility = Visibility.Collapsed;
             homeButton.Visibility = Visibility.Visible;
         }
 
         private void homeButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Navigate(new NewTicket(DataContext as TicketViewModel));
+            FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
             allTicketButton.Visibility = Visibility.Visible;
             homeButton.Visibility = Visibility.Collapsed;
         }

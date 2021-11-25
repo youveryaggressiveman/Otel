@@ -140,7 +140,7 @@ namespace Otel.ViewModel
 
             if (SelectedCard == null)
             {
-                MessageBox.Show("Выберите карту", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Выберите карту", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }

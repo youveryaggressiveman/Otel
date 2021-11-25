@@ -47,7 +47,7 @@ namespace Otel.ViewModel
         {
             if (string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Password))
             {
-                MessageBox.Show("Введите свой телефон и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Введите свой телефон и пароль", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }

@@ -71,14 +71,18 @@
                     ToolTip="Ваши билеты">
                 <Image Source="/Resources/Image/outline_local_activity_white_48dp.png" />
             </Button>
-
-            <Image Grid.Column="2"
-                   Visibility="{Binding VisibilityLabel}"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center"
-                   Margin="10"
-                   Source="/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png" />
-
+            <Ellipse Width="80"
+                     Height="80"
+                     Grid.Column="2"
+                     Visibility="{Binding VisibilityLabel}"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Margin="10">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="UniformToFill"
+                                ImageSource="/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png" />
+                </Ellipse.Fill>
+            </Ellipse>
             <Button x:Name="RegistrButton"
                     Visibility="{Binding VisibilityButton}"
                     Grid.Column="2"
