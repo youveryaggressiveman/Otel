@@ -389,6 +389,11 @@ namespace Otel.ViewModel
                 return;
             }
 
+            if (RoomNumber == null)
+            {
+                return;
+            }
+
             var number = await controller.GetNumerByOtel(SelectedHotel.ID, ArrivalDate, SelectedTypeRoom.ID);
 
             if (number == null)
@@ -532,16 +537,16 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
+            if (ArrivalDate == DeparatureDate)
             {
-                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее чмло", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            if (ArrivalDate == DeparatureDate)
+            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
             {
-                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }

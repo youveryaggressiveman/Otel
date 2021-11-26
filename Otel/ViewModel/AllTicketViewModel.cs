@@ -136,6 +136,8 @@ namespace Otel.ViewModel
 
         private async void ShowInfo(object obj)
         {
+
+
             if (SelectedOrder == null)
             {
                 MessageBox.Show("Выберите билет", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -143,9 +145,17 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var hotel = await controller.GetHotelBySelectedOrderId(SelectedOrder.ID);
+            if (Country != null)
+            {
+                Country = null;
+                DepartureDate = DateTime.Now;
+                Address = null;
+                ArrivalDate = DateTime.Now;
+                RoomList = new ObservableCollection<Room>();
+                NameOtel = null;
+            }
 
-            var roomList = await controller.GetRoomBySelectedOrderId(SelectedOrder.ID);
+            var hotel = await controller.GetHotelBySelectedOrderId(SelectedOrder.ID);
 
             DepartureDate = SelectedOrder.DepartureDate;
             Address = hotel.AddressOfOtel.Name + ", " + hotel.AddressOfOtel.Number;
@@ -153,7 +163,7 @@ namespace Otel.ViewModel
             NameOtel = hotel.Name;
             Country = hotel.AddressOfOtel.Country.Name;
 
-            foreach (var item in roomList)
+            foreach (var item in SelectedOrder.Room)
             {
                 RoomList.Add(item);
             }

@@ -11,20 +11,6 @@ namespace Otel.Controllers
 {
     public class AllTicketViewModelController
     {
-        public async Task<List<Room>> GetRoomBySelectedOrderId(int id)
-        {
-            HttpClient client = new HttpClient();
-
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Rooms/order?id=" + id);
-
-            var result = JsonSerializer.Deserialize<List<Room>>(stringTask);
-
-            client.Dispose();
-
-            return result;
-
-        }
-
         public async Task<Hotel> GetHotelBySelectedOrderId(int id)
         {
             HttpClient client = new HttpClient();

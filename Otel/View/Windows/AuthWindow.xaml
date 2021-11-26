@@ -101,6 +101,7 @@
                          PasswordChanged="pswBox_PasswordChanged" />
             <TextBox  Grid.Row="2"
                       x:Name="pswTextBox"
+                      Visibility="Collapsed"
                       Background="Transparent"
                       Text="{Binding Password}"
                       Grid.Column="1"
