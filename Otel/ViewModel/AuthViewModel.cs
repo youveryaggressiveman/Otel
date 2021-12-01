@@ -1,7 +1,9 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
 using Otel.Core;
+using Otel.Core.Helper;
 using Otel.Windows;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -52,34 +54,19 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var selectedUser = await controller.GetClientByPhone(Phone);
+            AuthorizeHelper authorizeHelper = new AuthorizeHelper();
 
-            if (selectedUser == null)
+            var authResult = await authorizeHelper.Auth(Phone, Password);
+
+            if (authResult == true)
             {
-                MessageBox.Show("Такого пользователя не существует", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                return;
-            }
-
-            if (selectedUser.Password != Password)
-            {
-                MessageBox.Show("Введены неверные данные", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                return;
-            }
-
-
-            UserSingltone.User = selectedUser;
-
-            if (selectedUser.Password == Password)
-            {
-                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!","Проверка", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!", "Проверка", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Application.Current.Windows[0].Close();
-
-                return;
-            }            
+            }
         }
+
+        
     }
 }
