@@ -33,18 +33,29 @@ namespace Otel.Windows
             Application.Current.Windows[0].Close();
         }
 
-        private void allTicketButton_Click(object sender, RoutedEventArgs e)
-        {
-            FrameManager.SetSource(new AllTicket());
-            allTicketButton.Visibility = Visibility.Collapsed;
-            homeButton.Visibility = Visibility.Visible;
-        }
-
-        private void homeButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
-            allTicketButton.Visibility = Visibility.Visible;
-            homeButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void AdminButtom_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.SetSource(new AdminMode());
+        }
+
+        private void AllTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.SetSource(new AllTicket());
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
+        }
+
+        private void TheChangeRole_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.SetSource(new TheChangeRoleUser());
         }
     }
 }

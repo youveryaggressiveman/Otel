@@ -44,8 +44,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
                 <ColumnDefinition Width="250" />
                 <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="🌴 | Hotel City"
                    Margin="10"
@@ -56,24 +58,45 @@
                    HorizontalAlignment="Left"
                    VerticalContentAlignment="Center" />
             <Button Grid.Column="1"
+                    Content="🧍"
+                    x:Name="theChangeRole"
+                    Click="TheChangeRole_Click"
+                    Visibility="{Binding VisibilityTheChangeRole}"
+                    Command="{Binding ViewTheChangeRole}"
+                    FontSize="25"
+                    Style="{StaticResource theChangeRoleUsers}"
+                    ToolTip="Изменение ролей пользователей" />
+            <Button Grid.Column="1"
+                    Content="⚙"
+                    FontSize="25"
+                    Click="AdminButtom_Click"
+                    Command="{Binding ViewPageAdminMode}"
+                    Visibility="{Binding VisibilityAdminButton}"
+                    Style="{StaticResource adminButton}"
+                    x:Name="adminButtom"
+                    ToolTip="Страница администратора" />
+            <Button Grid.Column="2"
                     Content="🏠"
                     FontSize="25"
-                    Click="homeButton_Click"
-                    Visibility="Collapsed"
+                    Command="{Binding ViewPageHome}"
+                    Click="HomeButton_Click"
+                    Visibility="{Binding VisibilityHomeButton}"
                     Style="{StaticResource homeButton}"
                     x:Name="homeButton"
                     ToolTip="Главное меню" />
-            <Button Grid.Column="1"
+            <Button Grid.Column="2"
+                    Click="AllTicketButton_Click"
+                    Command="{Binding ViewPageAllTicket}"
                     Style="{StaticResource ticketButton}"
                     x:Name="allTicketButton"
-                    Click="allTicketButton_Click"
+                    Visibility="{Binding VisibilityAllTicketButton}"
                     IsEnabled="{Binding IsEnabledButton}"
                     ToolTip="Ваши билеты">
                 <Image Source="/Resources/Image/outline_local_activity_white_48dp.png" />
             </Button>
             <Ellipse Width="80"
                      Height="80"
-                     Grid.Column="2"
+                     Grid.Column="3"
                      Visibility="{Binding VisibilityLabel}"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Center"
@@ -84,14 +107,16 @@
                 </Ellipse.Fill>
             </Ellipse>
             <Button x:Name="RegistrButton"
+                    Width="200"
                     Visibility="{Binding VisibilityButton}"
-                    Grid.Column="2"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
                     Content=" Зарегистрироваться "
                     Click="RegistrButton_Click">
             </Button>
-            <StackPanel Grid.Column="3"
+            <StackPanel Grid.Column="4"
                         Visibility="{Binding VisibilityLabel}">
-                <Label Grid.Column="2"
+                <Label 
                        FontSize="25"
                        FontWeight="Bold"
                        Content="{Binding FirstName}"
@@ -99,7 +124,7 @@
                        VerticalContentAlignment="Bottom"
                        Height="50"
                        Margin="5" />
-                <Label Grid.Column="2"
+                <Label 
                        Content="{Binding Phone}"
                        FontWeight="Bold"
                        HorizontalContentAlignment="Left"
@@ -111,10 +136,20 @@
             <Button x:Name="ComeButton"
                     HorizontalAlignment="Right"
                     Visibility="{Binding VisibilityButton}"
-                    Grid.Column="3"
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
                     Content="    Войти    "
                     Click="ComeButton_Click">
             </Button>
+            <Button Grid.Column="6"
+                    x:Name="exitButton"
+                    Click="ExitButton_Click"
+                    Content="🚪"
+                    Visibility="{Binding VisibilityExitInAccount}"
+                    Command="{Binding ExitIsAccount}"
+                    FontSize="30"
+                    Style="{StaticResource exitButton}"
+                    ToolTip="Выход из аккаунта" />
         </Grid>
         <Frame Grid.Row="1"
                NavigationUIVisibility="Hidden"

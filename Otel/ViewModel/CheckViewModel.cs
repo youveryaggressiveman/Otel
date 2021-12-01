@@ -1,4 +1,5 @@
 ﻿using Otel.Command;
+using Otel.Core;
 using Otel.Core.Helper;
 using Otel.Model;
 using Otel.Windows;
@@ -47,7 +48,17 @@ namespace Otel.ViewModel
             foreach (var item in order.Room)
             {
                 roomInfo += item.Number + ", " + item.TypeRoom.Name + "/n";
-                price += item.Price.Number;
+                if (order.DepartureDate.Year == order.ArrivalDate.Year)
+                {
+                    price = (price
+                        + item.Price.Number) * (order.DepartureDate.DayOfYear - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                }
+
+                if (order.DepartureDate.Year > order.ArrivalDate.Year)
+                {
+                    price = (price
+                        + item.Price.Number) * (order.DepartureDate.DayOfYear + 365 - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                }
             }
 
             var items = new Dictionary<string, string>()
@@ -57,7 +68,9 @@ namespace Otel.ViewModel
                 { "{name_otel}", hotel.Name },
                 { "{address_of_otel}", hotel.AddressOfOtel.Country.Name + ", " + hotel.AddressOfOtel.Name + ", " + hotel.AddressOfOtel.Number },
                 { "{room_info}",  roomInfo },
-                { "{price}",  price.ToString() }
+                { "{price}",  price.ToString() },
+                { "{FIO}",  UserSingltone.User.SecondName + " " + UserSingltone.User.FirstName + " " + UserSingltone.User.LastName},
+                { "{last_card_number}", "**** " + CardSingltone.Card.LastFourDigits.ToString() }
             };
 
             helper.CreateCheck(items);

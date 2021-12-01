@@ -29,7 +29,19 @@ namespace Otel.ViewModel
         private System.DateTime arrivalDate;
         private System.DateTime departureDate;
 
+        private Visibility visibility = Visibility.Collapsed;
+
         private int price;
+
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged(nameof(Visibility));
+            }
+        }
 
         public ObservableCollection<Room> Room
         {
@@ -146,6 +158,19 @@ namespace Otel.ViewModel
             LoadAllData(order, hotel);
         }
 
+        private void SetSplash(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                Visibility = Visibility.Visible;
+            }
+
+            if (!isEnabled)
+            {
+                Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void PayTicket(object obj)
         {
             if (CardSingltone.Card != null)
@@ -173,6 +198,8 @@ namespace Otel.ViewModel
 
         private async void CreateTicket()
         {
+            SetSplash(true);
+
             Order newOrder = new Order()
             {
                 DepartureDate = DepartureDate,
@@ -183,10 +210,14 @@ namespace Otel.ViewModel
             };
 
             await controller.CreateOrder(newOrder);
+
+            SetSplash(false);
         }
 
         private void LoadAllData(Order order, Hotel hotel)
         {
+            SetSplash(true);
+
             NameHotel = hotel.Name;
             AddressOfHotel = hotel.AddressOfOtel.Name + ", " + hotel.AddressOfOtel.Number;
             ArrivalDate = order.ArrivalDate;
@@ -200,14 +231,16 @@ namespace Otel.ViewModel
 
                 if (DepartureDate.Year == ArrivalDate.Year)
                 {
-                    Price = (((Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear))/100) * (100 - UserSingltone.User.Discount.Number);
+                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
                 }
                 
                 if (DepartureDate.Year > ArrivalDate.Year)
                 {
-                    Price = (((Price + item.Price.Number) * ((DepartureDate.DayOfYear + 365) - ArrivalDate.DayOfYear))/100) * (100 - UserSingltone.User.Discount.Number);
+                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear + 365 - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
                 }
             }
+
+            SetSplash(false);
         }
     }
 }

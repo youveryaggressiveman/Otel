@@ -224,5 +224,46 @@
                     Command="{Binding Pay}"
                     Content="Оплатить" />
         </Grid>
+        <Border x:Name="Splash"
+                Visibility="{Binding Visibility}"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Opacity=".35"
+                Background="Black" />
+        <Border Grid.Row="1"
+                Visibility="{Binding Visibility}"
+                Grid.RowSpan="2"
+                Background="White"
+                Height="150"
+                Width="400">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse x:Name="Ellipse"
+                             Width="50"
+                             Height="50"
+                             StrokeThickness="5"
+                             StrokeDashArray="1,2"
+                             Stroke="#DBE4EB"
+                             StrokeDashCap="Round"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                    <Label x:Name="label"
+                           Content="Подождите..."
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0" />
+                </StackPanel>
+            </TextBlock>
+        </Border>
     </Grid>
 </Window>

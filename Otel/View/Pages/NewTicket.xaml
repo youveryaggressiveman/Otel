@@ -35,10 +35,10 @@
                    HorizontalAlignment="Center" />
             <Label Grid.Row="1"
                    Content=" Выберите страну: "
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <Label Content=" Выберите отель: "
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    Grid.Row="2" />
             <ComboBox  Style="{StaticResource RoundComboBox}"

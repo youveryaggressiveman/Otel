@@ -62,10 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\AdminViewModelController.cs" />
     <Compile Include="Controllers\AllTicketViewModelController.cs" />
     <Compile Include="Controllers\InputCardViewModelController.cs" />
     <Compile Include="Controllers\RegistrViewModelController.cs" />
+    <Compile Include="Controllers\TheChangeRoleUserViewModelController.cs" />
     <Compile Include="Controllers\TicketPaymentViewModelController.cs" />
+    <Compile Include="Controllers\UniversalController.cs" />
     <Compile Include="Converter\CardNumberConverter.cs" />
     <Compile Include="Converter\PriceConverter.cs" />
     <Compile Include="Converter\TextWaterMarkConverter.cs" />
@@ -88,13 +91,21 @@
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\TypeRoom.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AllTicketViewModel.cs" />
     <Compile Include="ViewModel\CheckViewModel.cs" />
     <Compile Include="ViewModel\InputCardViewModel.cs" />
     <Compile Include="ViewModel\RegistrViewModel.cs" />
+    <Compile Include="ViewModel\TheChangeRoleUserViewModel.cs" />
     <Compile Include="ViewModel\TicketPaymentViewModel.cs" />
+    <Compile Include="View\Pages\AdminMode.xaml.cs">
+      <DependentUpon>AdminMode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AllTicket.xaml.cs">
       <DependentUpon>AllTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TheChangeRoleUser.xaml.cs">
+      <DependentUpon>TheChangeRoleUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\CheckWindow.xaml.cs">
       <DependentUpon>CheckWindow.xaml</DependentUpon>
@@ -116,11 +127,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\AdminMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\AllTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\NewTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TheChangeRoleUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

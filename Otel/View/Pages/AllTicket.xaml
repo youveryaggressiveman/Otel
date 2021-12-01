@@ -95,7 +95,7 @@
                      Width="250"
                      Background="Transparent"
                      IsEnabled="False"
-                     FontSize="20"
+                     FontSize="18"
                      Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
@@ -109,7 +109,7 @@
                      Text="{Binding NameOtel}"
                      Width="250"
                      IsEnabled="False"
-                     FontSize="20"
+                     FontSize="18"
                      Grid.Column="1"
                      Background="Transparent"
                      HorizontalAlignment="Center"
@@ -125,7 +125,7 @@
                      Width="250"
                      IsEnabled="False"
                      Background="Transparent"
-                     FontSize="20"
+                     FontSize="18"
                      Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
@@ -151,7 +151,7 @@
                       Margin="20 20 20 20"
                       ItemsSource="{Binding RoomList}"
                       Foreground="#5f6368"
-                      FontSize="20"
+                      FontSize="18"
                       Background="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -189,8 +189,8 @@
                          Width="auto"
                          Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
                          Margin="20 0 0 0"
-                         FontSize="20" />
-                <Label Content="Дата заезда:"
+                         FontSize="18" />
+                <Label Content="Дата выезда:"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Margin="20 0 0 0"
@@ -202,7 +202,7 @@
                          Text="{Binding DepartureDate, StringFormat='{}{0:dd.MM.yyyy}'}"
                          IsEnabled="False"
                          Margin="20 0 0 0"
-                         FontSize="20" />
+                         FontSize="18" />
             </StackPanel>
         </Grid>
     </Grid>

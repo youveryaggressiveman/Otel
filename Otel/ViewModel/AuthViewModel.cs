@@ -56,7 +56,7 @@ namespace Otel.ViewModel
 
             if (selectedUser == null)
             {
-                MessageBox.Show("Такого пользователя не существует", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                MessageBox.Show("Такого пользователя не существует", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
@@ -68,6 +68,7 @@ namespace Otel.ViewModel
                 return;
             }
 
+
             UserSingltone.User = selectedUser;
 
             if (selectedUser.Password == Password)
@@ -78,7 +79,7 @@ namespace Otel.ViewModel
                 Application.Current.Windows[0].Close();
 
                 return;
-            }
+            }            
         }
     }
 }

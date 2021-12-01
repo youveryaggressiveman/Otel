@@ -27,6 +27,18 @@ namespace Otel.ViewModel
         private string password;
         private string phone;
 
+        private Visibility visibility = Visibility.Collapsed;
+
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged(nameof(Visibility));
+            }
+        }
+
         public Country SelectedCountries
         {
             get => selectedCountries;
@@ -130,20 +142,40 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        private void SetSplash(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                Visibility = Visibility.Visible;
+            }
+
+            if (!isEnabled)
+            {
+                Visibility = Visibility.Collapsed;
+            }
+        }
+
         private async void Registration(object obj)
         { 
             var newUser = await controller.GetClientByPhone(Phone);
 
-            User user;
-            Passport passport;
-
-            if (string.IsNullOrWhiteSpace(PassportSerial) || string.IsNullOrWhiteSpace(PassportNumber) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(SecondName) 
+            if (string.IsNullOrWhiteSpace(PassportSerial) || string.IsNullOrWhiteSpace(PassportNumber) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(SecondName)
                 || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(Password) || SelectedCountries == null)
             {
-                MessageBox.Show("Введите все данные для регистрации", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Введите все данные для регистрации", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
+
+            if (newUser.Phone == Phone)
+            {
+                MessageBox.Show("Данный номер телефона уже зарезервирован в системе", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            User user;
+            Passport passport;
 
             passport = new Passport()
             {
@@ -155,10 +187,12 @@ namespace Otel.ViewModel
 
             if (passportResult != null)
             {
-                MessageBox.Show("Пользователь с такими паспортными данными уже зарегистрирован в системе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Пользователь с такими данными уже зарегистрирован в системе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return;
             }
+
+            SetSplash(true);
 
             user = new User()
             {
@@ -175,6 +209,8 @@ namespace Otel.ViewModel
 
             UserSingltone.User = await controller.CreateClient(user);
 
+            SetSplash(false);
+
             if (UserSingltone.User != null)
             {
                 MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!");
@@ -189,6 +225,8 @@ namespace Otel.ViewModel
 
         private async void LoadAllData()
         {
+            SetSplash(true);
+
             var countryList = await controller.GetCountryData();
 
             foreach (var item in countryList)
@@ -196,6 +234,7 @@ namespace Otel.ViewModel
                 Countries.Add(item);
             }
 
+            SetSplash(false);
         }
     }
 }

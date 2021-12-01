@@ -53,7 +53,63 @@ namespace Otel.ViewModel
         private Visibility visibilityLabel = Visibility.Collapsed;
         private Visibility visibilityButton = Visibility.Visible;
 
+        private Visibility visibilityTheChangeRole = Visibility.Collapsed;
+        private Visibility visibilityExitInAccount = Visibility.Collapsed;
+        private Visibility visibilityAdminButton = Visibility.Collapsed;
+        private Visibility visibilityHomeButton = Visibility.Collapsed;
+        private Visibility visibilityAllTicketButton = Visibility.Visible;
+
         private bool isEnabledButton = false;
+
+        public Visibility VisibilityTheChangeRole
+        {
+            get => visibilityTheChangeRole;
+            set
+            {
+                visibilityTheChangeRole = value;
+                OnPropertyChanged(nameof(VisibilityTheChangeRole));
+            }
+        }
+
+        public Visibility VisibilityExitInAccount
+        {
+            get => visibilityExitInAccount;
+            set
+            {
+                visibilityExitInAccount = value;
+                OnPropertyChanged(nameof(VisibilityExitInAccount));
+            }
+        }
+
+        public Visibility VisibilityAllTicketButton
+        {
+            get => visibilityAllTicketButton;
+            set
+            {
+                visibilityAllTicketButton = value;
+                OnPropertyChanged(nameof(VisibilityAllTicketButton));
+            }
+        }
+
+        public Visibility VisibilityHomeButton
+        {
+            get => visibilityHomeButton;
+            set
+            {
+                visibilityHomeButton = value;
+                OnPropertyChanged(nameof(VisibilityHomeButton));
+            }
+        }
+
+        public Visibility VisibilityAdminButton
+        {
+            get => visibilityAdminButton;
+            set
+            {
+                visibilityAdminButton = value;
+                OnPropertyChanged(nameof(VisibilityAdminButton));
+            }
+        }
 
         public ImageSource Avatar
         {
@@ -301,6 +357,12 @@ namespace Otel.ViewModel
                 OnPropertyChanged(nameof(CountryOfOtelList));
             }
         }
+
+        public ICommand ViewTheChangeRole { get; private set; }
+        public ICommand ExitIsAccount { get; private set; }
+        public ICommand ViewPageAdminMode { get; private set; }
+        public ICommand ViewPageHome { get; private set; }
+        public ICommand ViewPageAllTicket { get; private set; }
         public ICommand AddRoom { get; private set; }
         public ICommand FormalizationCommand { get; private set; }
         public ICommand DeleteRoom { get; private set; }
@@ -319,6 +381,11 @@ namespace Otel.ViewModel
 
             bitmapImages = new List<BitmapSource>();
 
+            ViewTheChangeRole = new DelegateCommand(TheChangeRole);
+            ExitIsAccount = new DelegateCommand(ExitAccount);
+            ViewPageAdminMode = new DelegateCommand(PageAdminMode);
+            ViewPageHome = new DelegateCommand(PageHome);
+            ViewPageAllTicket = new DelegateCommand(PageAllTicket);
             PreviousImage = new DelegateCommand(SetPreviousImage);
             NextImage = new DelegateCommand(SetNextImage);
             AddRoom = new DelegateCommand(AddRoomToRoomList);
@@ -326,9 +393,71 @@ namespace Otel.ViewModel
             DeleteRoom = new DelegateCommand(DeleteRoomFromList);
 
             LoadOtel();
+            LoadClient();
+        }
+
+        private void ExitAccount(object obj)
+        {
+            UserSingltone.User = null;
+
+            RoomList = new ObservableCollection<Room>();
 
             LoadClient();
+        }
 
+        private void TheChangeRole(object obj)
+        {
+            VisibilityTheChangeRole = Visibility.Collapsed;
+            VisibilityAllTicketButton = Visibility.Collapsed;
+            VisibilityHomeButton = Visibility.Visible;
+            VisibilityAdminButton = Visibility.Visible;
+        }
+
+        private void PageAdminMode(object obj)
+        {
+            VisibilityAdminButton = Visibility.Collapsed;
+            VisibilityAllTicketButton = Visibility.Collapsed;
+            VisibilityHomeButton = Visibility.Visible;
+            if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
+            {
+                VisibilityTheChangeRole = Visibility.Visible;
+            }
+            
+            if (UserSingltone.User.RoleID == 2)
+            {
+                VisibilityTheChangeRole = Visibility.Collapsed;
+            }
+        }
+
+        private void PageHome(object obj)
+        {
+            VisibilityAllTicketButton = Visibility.Visible;
+            VisibilityHomeButton = Visibility.Collapsed;
+
+            if (UserSingltone.User.RoleID == 2)
+            {
+                VisibilityAdminButton = Visibility.Visible;
+            }
+
+            if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
+            {
+                VisibilityAdminButton = Visibility.Visible;
+                VisibilityTheChangeRole = Visibility.Collapsed;
+            }
+
+            if (UserSingltone.User.RoleID == 1)
+            {
+                VisibilityAdminButton = Visibility.Collapsed;
+                VisibilityTheChangeRole = Visibility.Collapsed;
+            }
+        }
+
+        private void PageAllTicket(object obj)
+        {
+            VisibilityTheChangeRole = Visibility.Collapsed;
+            VisibilityAllTicketButton = Visibility.Collapsed;
+            VisibilityAdminButton = Visibility.Collapsed;
+            VisibilityHomeButton = Visibility.Visible;
         }
 
         private void SetPreviousImage(object obj)
@@ -401,6 +530,7 @@ namespace Otel.ViewModel
                 return;
             }
 
+
             if (RoomNumber.Count > 0)
             {
                 RoomNumber = new ObservableCollection<Room>();
@@ -409,11 +539,12 @@ namespace Otel.ViewModel
             for (int i = 0; i < number.Count; i++)
             {
                 RoomNumber.Add(number[i]);
-            }                      
+            }
         }
 
         private void LoadAddress()
         {
+
             AddressOfOtel = String.Empty;
 
             if (SelectedHotel == null)
@@ -477,16 +608,39 @@ namespace Otel.ViewModel
             {
                 VisibilityLabel = Visibility.Visible;
                 VisibilityButton = Visibility.Collapsed;
+                VisibilityExitInAccount = Visibility.Visible;
                 IsEnabledButton = true;
                 Phone = UserSingltone.User.Phone;
                 FirstName = UserSingltone.User.FirstName;
+
+                if (UserSingltone.User.RoleID == 2)
+                {
+                    VisibilityAdminButton = Visibility.Visible;
+                }
+
+                if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
+                {
+                    VisibilityAdminButton = Visibility.Visible;
+                    VisibilityTheChangeRole = Visibility.Collapsed;
+                }
+
+                if (UserSingltone.User.RoleID == 1)
+                {
+                    VisibilityAdminButton = Visibility.Collapsed;
+                    VisibilityTheChangeRole = Visibility.Collapsed;
+                }
             }
 
             if (UserSingltone.User == null)
             {
                 VisibilityLabel = Visibility.Collapsed;
                 VisibilityButton = Visibility.Visible;
-                isEnabledButton = false;
+                VisibilityAdminButton = Visibility.Collapsed;
+                VisibilityHomeButton = Visibility.Collapsed;
+                VisibilityTheChangeRole = Visibility.Collapsed;
+                VisibilityAllTicketButton = Visibility.Visible;
+                VisibilityExitInAccount = Visibility.Collapsed;
+                IsEnabledButton = false;
             }
         }
 
@@ -544,16 +698,16 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
+            if (ArrivalDate > DeparatureDate)
             {
-                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            if (ArrivalDate > DeparatureDate)
+            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
             {
-                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
@@ -571,6 +725,31 @@ namespace Otel.ViewModel
 
                 return;
             }
+
+            if (RoomList.Count >= 2)
+            {
+                for (int i = 1; i < RoomList.Count; i++)
+                {
+                    if (RoomList[i].OtelID == RoomList[i-1].OtelID && RoomList[i].Number == RoomList[i - 1].Number)
+                    {
+                        MessageBox.Show("В вашем списке присутствуют две одинаковые комнаты.\nПожалуйста, оставьте только один экземпляр данной комнаты",
+                           "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        return;
+                    }
+
+                    if (RoomList[i].OtelID != RoomList[i - 1].OtelID)
+                    {
+                        MessageBox.Show("В списке ваших комнат присутствуют комнаты с разными отелями.\nПожалуйста, оставьте в списке комнаты только те, которые относятся к одному отелю",
+                            "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        return;
+                    }
+                }
+
+            }
+
+            SetSplash(true);
 
             var rooms = new List<Room>();
             var selectedTypeRoom = new List<TypeRoom>();
@@ -597,12 +776,12 @@ namespace Otel.ViewModel
             TicketPaymentWindow ticketPayment = new TicketPaymentWindow(newOrder, SelectedHotel);
             ticketPayment.Show();
             Application.Current.Windows[0].Close();
+
+            SetSplash(false);
         }
 
         private void LoadImageByOtel()
         {
-            SetSplash(true);
-
             bitmapImages = new List<BitmapSource>();
 
             if(SelectedHotel == null)
@@ -620,8 +799,6 @@ namespace Otel.ViewModel
             }
       
             ImageByOtel = bitmapImages[0];
-
-            SetSplash(false);
         }
 
         private async void LoadOtelByCountry()
