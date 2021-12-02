@@ -1,0 +1,108 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Otel.View.Windows"
+        xmlns:converter="clr-namespace:Otel.Converter"
+        xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+        x:Class="Otel.View.Windows.AddCountryWindow"
+        mc:Ignorable="d"
+        Title="HotelCity: Добавление новой страны"
+        Height="450"
+        Width="450"
+        MinHeight="450"
+        MinWidth="450"
+        MaxHeight="450"
+        MaxWidth="450"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
+        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:TextWaterMarkConverter x:Key="TextWaterMarkConverter" />
+    </Window.Resources>
+    <Window.DataContext>
+        <ViewModel:AddCountryViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Label Content="🌴 | Hotel City "
+                   Style="{StaticResource headerLabel}"
+                   FontSize="50"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        </StackPanel>
+        <Label Content="🗺️"
+               FontSize="350"
+               RenderTransformOrigin="0.8, -0.1"
+               Grid.RowSpan="3"
+               Opacity="0.2"
+               Panel.ZIndex="-1"
+               Margin="-250">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform Angle="-36.504" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Добавление страны"
+               Grid.Row="1"
+               Margin="20 0 0 0"
+               FontSize="40"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="2"
+                   Margin="5 0 0 0"
+                   Content="Введите страну: "
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Margin="25 20 20 20"
+                       Width="150"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Text="Страна"
+                       Foreground="{StaticResource WatermarkBrushForeground}">
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
+                        <Binding ElementName="countryBox"
+                                 Path="Text.IsEmpty" />
+                        <Binding ElementName="countryBox"
+                                 Path="IsFocused" />
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
+            <TextBox x:Name="countryBox"
+                     Background="Transparent"
+                     Grid.Row="2"
+                     Text="{Binding Country}"
+                     Height="34"
+                     Grid.Column="1"
+                     Width="160"
+                     VerticalContentAlignment="Center"
+                     FontSize="15"
+                     HorizontalContentAlignment="Left"
+                     Margin="20" />
+        </Grid>
+        <Button Grid.Row="3"
+                Content="Добавить новую страну"
+                Command="{Binding AddNewCountry}" />
+    </Grid>
+</Window>

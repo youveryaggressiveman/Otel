@@ -15,8 +15,17 @@ namespace Otel.Windows
         {
             InitializeComponent();
 
+            Dispatcher.UnhandledException += OnDispatcherUnhandledException;
+
             FrameManager.MainFrame = Main;
             FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
+        }
+
+        private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            string errorMessage = string.Format("Непредвиденная ошибка: {0}", e.Exception.Message);
+            MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
         }
 
         private void ComeButton_Click(object sender, RoutedEventArgs e)

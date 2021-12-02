@@ -1,6 +1,7 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
 using Otel.Model;
+using Otel.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,21 +18,84 @@ namespace Otel.ViewModel
         private AdminViewModelController controller;
 
         private Room selectedRoomByDelete;
+        private TypeRoom selectedTypeRoom;
+        private Currency selectedCurrency;
+        private Country selectedCountry;
 
         private ObservableCollection<Room> listRoom;
         private ObservableCollection<ImageOfOtel> listImage;
+        private ObservableCollection<TypeRoom> listTypeRoom;
+        private ObservableCollection<Currency> listCurrency;
+        private ObservableCollection<Country> listCountry;
 
         private Room newRoom;
 
-        private string country;
         private string nameOtel;
-        private string typeRoom;
         private string nameStreet;
-        private int numberStreet;
+        private string numberStreet;
         private string description;
-        private int numberOfRoom;
-        private int numberOfPrice;
-        private string currency;
+        private string numberOfRoom;
+        private string numberOfPrice;
+
+        public Country SelectedCountry
+        {
+            get => selectedCountry;
+            set
+            {
+                selectedCountry = value;
+                OnPropertyChanged(nameof(SelectedCountry));
+            }
+        }
+
+        public ObservableCollection<Country> ListCountry
+        {
+            get => listCountry;
+            set
+            {
+                listCountry = value;
+                OnPropertyChanged(nameof(ListCountry));
+            }
+        }
+
+        public Currency SelectedCurrency
+        {
+            get => selectedCurrency;
+            set
+            {
+                selectedCurrency = value;
+                OnPropertyChanged(nameof(SelectedCurrency));
+            }
+        }
+
+        public TypeRoom SelectedTypeRoom
+        {
+            get => selectedTypeRoom;
+            set
+            {
+                selectedTypeRoom = value;
+                OnPropertyChanged(nameof(SelectedTypeRoom));
+            }
+        }
+
+        public ObservableCollection<Currency> ListCurrency
+        {
+            get => listCurrency;
+            set
+            {
+                listCurrency = value;
+                OnPropertyChanged(nameof(ListCurrency));
+            }
+        }
+
+        public ObservableCollection<TypeRoom> ListTypeRoom
+        {
+            get => listTypeRoom;
+            set
+            {
+                listTypeRoom = value;
+                OnPropertyChanged(nameof(ListTypeRoom));
+            }
+        }
 
         public Room SelectedRoomByDelete
         {
@@ -63,17 +127,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public string Currency
-        {
-            get => currency;
-            set
-            {
-                currency = value;
-                OnPropertyChanged(nameof(Currency));
-            }
-        }
-
-        public int NumberOfPrice
+        public string NumberOfPrice
         {
             get => numberOfPrice;
             set
@@ -83,7 +137,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public int NumberOfRoom
+        public string NumberOfRoom
         {
             get => numberOfRoom;
             set
@@ -113,16 +167,6 @@ namespace Otel.ViewModel
             }
         }
 
-        public string TypeRoom
-        {
-            get => typeRoom;
-            set
-            {
-                typeRoom = value;
-                OnPropertyChanged(nameof(TypeRoom));
-            }
-        }
-
         public string NameStreet
         {
             get => nameStreet;
@@ -133,7 +177,7 @@ namespace Otel.ViewModel
             }
         }
 
-        public int NumberStreet
+        public string NumberStreet
         {
             get => numberStreet;
             set
@@ -153,16 +197,9 @@ namespace Otel.ViewModel
             }
         }
 
-        public string Country
-        {
-            get => country;
-            set
-            {
-                country = value;
-                OnPropertyChanged(nameof(country));
-            }
-        }
-
+        public ICommand PostNewCurrency { get; private set; }
+        public ICommand PostNewTypeRoom { get; private set; }
+        public ICommand PostNewCountry { get; private set; }
         public ICommand PutInNewRoom { get; private set; }
         public ICommand PutInNewOtel { get; private set; }
         public ICommand PutInNewImage { get; private set; }
@@ -172,13 +209,45 @@ namespace Otel.ViewModel
         {
             controller = new AdminViewModelController();
 
+            ListCountry = new ObservableCollection<Country>();
+            ListCurrency = new ObservableCollection<Currency>();
+            ListTypeRoom = new ObservableCollection<TypeRoom>();
             ListImage = new ObservableCollection<ImageOfOtel>();
             ListRoom = new ObservableCollection<Room>();
 
+            PostNewCurrency = new DelegateCommand(NewCurrency);
+            PostNewTypeRoom = new DelegateCommand(NewTypeRoom);
+            PostNewCountry = new DelegateCommand(NewCountry);
             DeleteRoom = new DelegateCommand(DeleteSelectedRoom);
             PutInNewImage = new DelegateCommand(NewImage);
             PutInNewRoom = new DelegateCommand(LoadnewRoomList);
             PutInNewOtel = new DelegateCommand(NewOtel);
+
+            LoadAllData();
+        }
+
+        private void NewCurrency(object obj)
+        {
+            AddCurrencyWindow addCurrencyWindow = new AddCurrencyWindow();
+            addCurrencyWindow.ShowDialog();
+
+            LoadAllData();
+        }
+
+        private void NewTypeRoom(object obj)
+        {
+            AddTypeRoomWindow addTypeRoomWindow = new AddTypeRoomWindow();
+            addTypeRoomWindow.ShowDialog();
+
+            LoadAllData();
+        }
+
+        private void NewCountry(object obj)
+        {
+            AddCountryWindow addCountryWindow = new AddCountryWindow();
+            addCountryWindow.ShowDialog();
+
+            LoadAllData();
         }
 
         private void DeleteSelectedRoom(object obj)
@@ -213,7 +282,7 @@ namespace Otel.ViewModel
 
         private async void NewOtel(object obj)
         {
-            if (Country == null)
+            if (SelectedCountry == null)
             {
                 MessageBox.Show("Введите страну для отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -234,7 +303,7 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if (NumberStreet.ToString() == null)
+            if (NumberStreet == null)
             {
                 MessageBox.Show("Введите номер улицы отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -267,16 +336,11 @@ namespace Otel.ViewModel
                 Name = description
             };
 
-            var country = new Country()
-            {
-                Name = Country
-            };
-
             var addressOfOtel = new AddressOfOtel()
             {
                 Name = NameStreet,
-                Number = NumberStreet,
-                Country = country           
+                Number = Convert.ToInt32(NumberStreet),
+                Country = SelectedCountry,        
             };
 
             var otel = new Hotel()
@@ -305,58 +369,74 @@ namespace Otel.ViewModel
 
         private void LoadnewRoomList(object obj)
         {
-            if (TypeRoom == null)
+            if (SelectedTypeRoom == null)
             {
                 MessageBox.Show("Введите тип комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            if (NumberOfRoom.ToString() == null)
+            if (NumberOfRoom == null)
             {
                 MessageBox.Show("Введите номер комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            if (NumberOfPrice.ToString() == null)
+            if (NumberOfPrice == null)
             {
                 MessageBox.Show("Введите цену комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            if (Currency == null)
+            if (SelectedCurrency == null)
             {
                 MessageBox.Show("Введите валюту для оплаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 return;
             }
 
-            var typeRoom = new TypeRoom()
-            {
-                Name = TypeRoom
-            };
-
-            var currency = new Currency()
-            {
-                Name = Currency
-            };
-
             var price = new Price()
             {
-                Number = NumberOfPrice,
-                Currency = currency
+                Number = Convert.ToInt32(NumberOfPrice),
+                Currency = SelectedCurrency
             };
 
             newRoom = new Room()
             {
-                TypeRoom = typeRoom,
-                Number = NumberOfRoom,
+                TypeRoom = SelectedTypeRoom,
+                Number = Convert.ToInt32(NumberOfRoom),
                 Price = price
             };
 
             ListRoom.Add(newRoom);
+        }
+
+        private async void LoadAllData()
+        {
+            ListCurrency = new ObservableCollection<Currency>();
+            ListTypeRoom = new ObservableCollection<TypeRoom>();
+            ListCountry = new ObservableCollection<Country>();
+
+            var listTypeRoom = await controller.GetAllTypeRoomList();
+            var listCurrency = await controller.GetAllCurrencyList();
+            var listCountry = await controller.GetAllCountryList();
+
+            foreach (var item in listCountry)
+            {
+                ListCountry.Add(item);
+            }
+
+            foreach (var item in listCurrency)
+            {
+                ListCurrency.Add(item);
+            }
+
+            foreach (var item in listTypeRoom)
+            {
+                ListTypeRoom.Add(item);
+            }
         }
     }
 }

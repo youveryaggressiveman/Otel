@@ -40,6 +40,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Data" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
@@ -62,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\AddCountryViewModelController.cs" />
+    <Compile Include="Controllers\AddCurrencyViewModelController.cs" />
+    <Compile Include="Controllers\AddTypeRoomViewModelController.cs" />
     <Compile Include="Controllers\AdminViewModelController.cs" />
     <Compile Include="Controllers\AllTicketViewModelController.cs" />
     <Compile Include="Controllers\InputCardViewModelController.cs" />
@@ -92,6 +96,9 @@
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\TypeRoom.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\AddCountryViewModel.cs" />
+    <Compile Include="ViewModel\AddCurrencyViewModel.cs" />
+    <Compile Include="ViewModel\AddTypeRoomViewModel.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AllTicketViewModel.cs" />
     <Compile Include="ViewModel\CheckViewModel.cs" />
@@ -107,6 +114,15 @@
     </Compile>
     <Compile Include="View\Pages\TheChangeRoleUser.xaml.cs">
       <DependentUpon>TheChangeRoleUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\AddCountryWindow.xaml.cs">
+      <DependentUpon>AddCountryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\AddCurrencyWindow.xaml.cs">
+      <DependentUpon>AddCurrencyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\AddTypeRoomWindow.xaml.cs">
+      <DependentUpon>AddTypeRoomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\CheckWindow.xaml.cs">
       <DependentUpon>CheckWindow.xaml</DependentUpon>
@@ -141,6 +157,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\TheChangeRoleUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\AddCountryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\AddCurrencyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\AddTypeRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

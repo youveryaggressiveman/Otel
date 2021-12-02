@@ -57,7 +57,7 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center">
-                            <Run Text="Пользователь(ФИО): " />
+                            <Run Text="Пользователь(ФИ): " />
                             <Run Text="{Binding SecondName}" />
                             <Run Text=" " />
                             <Run Text="{Binding FirstName}" />  

@@ -27,3 +27,5 @@ C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\obj\Debug\Hote
 C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\obj\Debug\HotelUnitTest.csproj.CopyComplete
 C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\obj\Debug\HotelUnitTest.dll
 C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\obj\Debug\HotelUnitTest.pdb
+C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\bin\Debug\HotelUnitTest.dll.config
+C:\Users\повелитель\Desktop\HotelAll\Otel\HotelUnitTest\bin\Debug\System.Buffers.xml

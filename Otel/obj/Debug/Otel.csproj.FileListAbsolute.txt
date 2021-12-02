@@ -256,3 +256,9 @@ C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\Otel.csproj.C
 C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\Otel.csproj.CopyComplete
 C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\Otel.exe
 C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\Otel.pdb
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddCountryWindow.g.cs
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddCountryWindow.baml
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddTypeRoomWindow.g.cs
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddTypeRoomWindow.baml
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddCurrencyWindow.g.cs
+C:\Users\повелитель\Desktop\HotelAll\Otel\Otel\obj\Debug\View\Windows\AddCurrencyWindow.baml

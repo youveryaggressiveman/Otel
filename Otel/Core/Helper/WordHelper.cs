@@ -54,11 +54,11 @@ namespace Otel.Core.Helper
                     Replace: replace);
             }
 
-            Object newFilePath = Path.Combine(fileInfo.DirectoryName, DateTime.Now.Date.ToString("yyyyMMdd HHmmss") + fileInfo.Name);
+            Object newFilePath = Path.Combine(fileInfo.DirectoryName, DateTime.Now.Date.ToString("yyyyMMdd HHmmss") + fileInfo.Name).Replace(".docx", ".pdf").Replace("check_template", informationPairs["{FIO}"]);
 
             try
             {
-                app.ActiveDocument.ExportAsFixedFormat(newFilePath.ToString(), Word.WdExportFormat.wdExportFormatPDF);
+                app.ActiveDocument.SaveAs(newFilePath, Word.WdSaveFormat.wdFormatPDF);
             }
             catch (Exception ex)
             {

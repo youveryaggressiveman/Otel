@@ -43,7 +43,7 @@ namespace Otel.ViewModel
 
 
             string roomInfo = string.Empty;
-            double price = 0;
+            int price = 0;
 
             foreach (var item in order.Room)
             {

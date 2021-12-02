@@ -8,12 +8,12 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Hotel City: Чек"
-        Height="400"
-        Width="400"
-        MinHeight="400"
-        MinWidth="400"
-        MaxHeight="400"
-        MaxWidth="400"
+        Height="450"
+        Width="450"
+        MinHeight="450"
+        MinWidth="450"
+        MaxHeight="450"
+        MaxWidth="450"
         Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Grid>
@@ -44,6 +44,13 @@
                    FontSize="40"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                   HorizontalAlignment="Left"
+                   Margin="5 0 0 0"
+                   TextWrapping="Wrap"
+                       Foreground="#5f6368"
+                       FontSize="22"
+                   Text="Ваш чек был сохранен в папке ресурсов приложения, не забудьте распечатать его. Приятного отдыха!" />
         </Grid>
         <Grid Grid.Row="2">
             <Button Content="Завершить бронирование"

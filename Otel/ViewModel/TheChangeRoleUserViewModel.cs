@@ -169,6 +169,8 @@ namespace Otel.ViewModel
                 SelectedUser.Role = SelectedRole;
 
                 await controller.RefreshUserRole(SelectedUser);
+
+                LoadAllData();
             }
 
             if (result == MessageBoxResult.No)
@@ -226,6 +228,22 @@ namespace Otel.ViewModel
             {
                 UserList.Add(item);
             }
+        }
+
+        private void LoadAllData()
+        {
+            UserList = new ObservableCollection<User>();
+            RoleList = new ObservableCollection<Role>();
+
+            FIO = null;
+            Country = null;
+            Role = null;
+            NumberPassport = null;
+            SerialPassport = null;
+            Phone = null;
+
+            LoadRole();
+            LoadUsers();  
         }
     }
 }

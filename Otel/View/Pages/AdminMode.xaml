@@ -56,33 +56,27 @@
                        Content=" Страна отеля: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Страна"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="countryTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="countryTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
-                <TextBox Grid.Row="1"
-                          x:Name="countryTextBox"
-                          Background="Transparent"
-                          Text="{Binding Country}"
-                          Grid.Column="1"
-                          Width="180"
-                          VerticalContentAlignment="Center"
-                          FontSize="15"
-                          HorizontalContentAlignment="Left"
-                          Margin="20" />
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+                    <ComboBox  Style="{StaticResource RoundComboBox}"
+                               Margin="110 0 0 0"
+                               ItemContainerStyle="{StaticResource RoundComboBoxItem}"
+                               ItemsSource="{Binding ListCountry}"
+                               SelectedItem="{Binding SelectedCountry}"
+                               Width="180"
+                               DisplayMemberPath="Name"
+                               Grid.Row="1"
+                               SelectedIndex="0"
+                               Grid.Column="1"
+                               x:Name="CountryBox" />
+                    <Button  Width="45"
+                             Command="{Binding PostNewCountry}"
+                             Margin="10 0 0 0"
+                             Height="32"
+                             Content="✚"
+                             ToolTip="Добавить в список новую страну"/>
+                </StackPanel>
                 <Label Grid.Row="2"
                        Content=" Название отеля: "
                        HorizontalAlignment="Left"
@@ -239,33 +233,27 @@
                        Content=" Тип комнаты: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Тип комнаты"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="typeRoomTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="typeRoomTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
-                <TextBox Background="Transparent"
-                         x:Name="typeRoomTextBox"
-                         Grid.Row="1"
-                         Text="{Binding TypeRoom}"
-                         Grid.Column="1"
-                         Width="180"
-                         VerticalContentAlignment="Center"
-                         FontSize="15"
-                         HorizontalContentAlignment="Left"
-                         Margin="20" />
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+                    <ComboBox  Style="{StaticResource RoundComboBox}"
+                               ItemContainerStyle="{StaticResource RoundComboBoxItem}"
+                               ItemsSource="{Binding ListTypeRoom}"
+                               SelectedItem="{Binding SelectedTypeRoom}"
+                               Width="180"
+                               DisplayMemberPath="Name"
+                               Grid.Row="1"
+                               SelectedIndex="0"
+                               Grid.Column="1"
+                               x:Name="TypeRoomBox" />
+                    <Button  Width="45"
+                             Margin="10 0 0 0"
+                             Command="{Binding PostNewTypeRoom}"
+                             Height="32"
+                             Content="✚"
+                             ToolTip="Добавить в список новый тип комнаты" />
+                </StackPanel>
+               
                 <Label Grid.Row="2"
                        Content=" Номер комнаты: "
                        HorizontalAlignment="Left"
@@ -332,33 +320,26 @@
                        Content=" Валюта: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-                <TextBlock Grid.Row="4"
-                           Grid.Column="1"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Валюта"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="currencyByRoom"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="currencyByRoom"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
-                <TextBox Background="Transparent"
-                         x:Name="currencyByRoom"
-                         Text="{Binding Currency}"
-                         Grid.Row="4"
-                         Grid.Column="1"
-                         Width="180"
-                         VerticalContentAlignment="Center"
-                         FontSize="15"
-                         HorizontalContentAlignment="Left"
-                         Margin="20" />
+                <StackPanel Grid.Row="4"
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+                    <ComboBox  Style="{StaticResource RoundComboBox}"
+                               ItemContainerStyle="{StaticResource RoundComboBoxItem}"
+                               ItemsSource="{Binding ListCurrency}"
+                               SelectedItem="{Binding SelectedCurrency}"
+                               Width="180"
+                               DisplayMemberPath="Name"
+                               Grid.Row="4"
+                               SelectedIndex="0"
+                               Grid.Column="1"
+                               x:Name="CurrencyBox" />
+                    <Button  Width="45"
+                             Command="{Binding PostNewCurrency}"
+                             Margin="10 0 0 0"
+                             Height="32"
+                             Content="✚"
+                             ToolTip="Добавить в список новую валюту" />
+                </StackPanel>
                 <Button Grid.Row="5"
                         Grid.Column="0"
                         Width="130"

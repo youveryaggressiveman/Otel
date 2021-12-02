@@ -28,6 +28,45 @@ namespace Otel.Controllers
 
             return parsedResult;
         }
+
+        public async Task<List<TypeRoom>> GetAllTypeRoomList()
+        {
+            HttpClient client = new HttpClient();
+
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/TypeRooms");
+
+            var result = JsonSerializer.Deserialize<List<TypeRoom>>(stringTask);
+
+            client.Dispose();
+
+            return result;
+        }
+
+        public async Task<List<Currency>> GetAllCurrencyList()
+        {
+            HttpClient client = new HttpClient();
+
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Currencies");
+
+            var result = JsonSerializer.Deserialize<List<Currency>>(stringTask);
+
+            client.Dispose();
+
+            return result;
+        }
+
+        public async Task<List<Country>> GetAllCountryList()
+        {
+            HttpClient client = new HttpClient();
+
+            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Countries");
+
+            var result = JsonSerializer.Deserialize<List<Country>>(stringTask);
+
+            client.Dispose();
+
+            return result;
+        }
     }
 }
 
