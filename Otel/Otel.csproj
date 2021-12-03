@@ -85,7 +85,6 @@
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Currency.cs" />
-    <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\Discription.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\ImageOfOtel.cs" />

@@ -18,13 +18,10 @@ namespace Otel.Model
         public int PassportID { get; set; }
         public int RoleID { get; set; }
         public byte[] Avatar { get; set; }
-        public Nullable<int> DiscountID { get; set; }
 
         public ICollection<Card> Card { get; set; }
 
         public Country Country { get; set; }
-
-        public Discount Discount { get; set; }
 
         public ICollection<Order> Order { get; set; }
 

@@ -372,6 +372,7 @@ namespace Otel.ViewModel
         public TicketViewModel()
         {
             controller = new TicketViewModelController();
+
             CountryOfOtelList = new ObservableCollection<Country>();
             HotelList = new ObservableCollection<Hotel>();
             RoomList = new ObservableCollection<Room>();
@@ -418,6 +419,7 @@ namespace Otel.ViewModel
             VisibilityAdminButton = Visibility.Collapsed;
             VisibilityAllTicketButton = Visibility.Collapsed;
             VisibilityHomeButton = Visibility.Visible;
+
             if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
             {
                 VisibilityTheChangeRole = Visibility.Visible;
@@ -609,7 +611,9 @@ namespace Otel.ViewModel
                 VisibilityLabel = Visibility.Visible;
                 VisibilityButton = Visibility.Collapsed;
                 VisibilityExitInAccount = Visibility.Visible;
+
                 IsEnabledButton = true;
+
                 Phone = UserSingltone.User.Phone;
                 FirstName = UserSingltone.User.FirstName;
 
@@ -640,6 +644,7 @@ namespace Otel.ViewModel
                 VisibilityTheChangeRole = Visibility.Collapsed;
                 VisibilityAllTicketButton = Visibility.Visible;
                 VisibilityExitInAccount = Visibility.Collapsed;
+
                 IsEnabledButton = false;
             }
         }

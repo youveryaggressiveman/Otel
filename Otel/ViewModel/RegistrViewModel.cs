@@ -204,7 +204,6 @@ namespace Otel.ViewModel
                 CountryID = SelectedCountries.ID,
                 Passport = passport,
                 RoleID = 1,
-                DiscountID = 1
             };
 
             UserSingltone.User = await controller.CreateClient(user);

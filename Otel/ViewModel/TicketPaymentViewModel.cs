@@ -3,6 +3,7 @@ using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
 using Otel.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -231,12 +232,12 @@ namespace Otel.ViewModel
 
                 if (DepartureDate.Year == ArrivalDate.Year)
                 {
-                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);
                 }
                 
                 if (DepartureDate.Year > ArrivalDate.Year)
                 {
-                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear + 365 - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                    Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear + 365 - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);
                 }
             }
 

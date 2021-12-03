@@ -51,13 +51,13 @@ namespace Otel.ViewModel
                 if (order.DepartureDate.Year == order.ArrivalDate.Year)
                 {
                     price = (price
-                        + item.Price.Number) * (order.DepartureDate.DayOfYear - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                        + item.Price.Number) * (order.DepartureDate.DayOfYear - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);
                 }
 
                 if (order.DepartureDate.Year > order.ArrivalDate.Year)
                 {
                     price = (price
-                        + item.Price.Number) * (order.DepartureDate.DayOfYear + 365 - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Discount.Number);
+                        + item.Price.Number) * (order.DepartureDate.DayOfYear + 365 - order.ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);
                 }
             }
 
