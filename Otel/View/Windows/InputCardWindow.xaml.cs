@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -60,6 +61,18 @@ namespace Otel.View.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Windows[0].Show();
+        }
+
+        private void AllTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            string input = e.Text.ToString();
+            Regex inputRegex = new Regex(@"^[0-9]*$");
+            Match match = inputRegex.Match(input);
+
+            if (!match.Success)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -16,7 +16,6 @@
         MinWidth="650"
         MaxHeight="550"
         MaxWidth="650"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         Closed="Window_Closed">
     <Window.DataContext>
         <ViewModel:InputCardViewModel />
@@ -161,7 +160,9 @@
                          Style="{StaticResource monthOfCardTextBox}"
                          Visibility="{Binding TextBoxAndLabelVisibility}"
                          Background="Transparent"
+                         x:Name="monthText"
                          Text="{Binding CardMM}"
+                         PreviewTextInput="AllTextBox_PreviewTextInput"
                          FontSize="20"
                          MaxLength="2"
                          HorizontalContentAlignment="Left"
@@ -173,6 +174,8 @@
                          Style="{StaticResource yearrOfCardTextBox}"
                          Visibility="{Binding TextBoxAndLabelVisibility}"
                          Margin=" 5 0 0 0"
+                         x:Name="yearTextBox"
+                         PreviewTextInput="AllTextBox_PreviewTextInput"
                          Background="Transparent"
                          FontSize="20"
                          MaxLength="2"
@@ -188,6 +191,7 @@
                    VerticalAlignment="Center" />
             <TextBox Grid.Row="3"
                      Grid.Column="1"
+                     PreviewTextInput="AllTextBox_PreviewTextInput"
                      Visibility="{Binding TextBoxAndLabelVisibility}"
                      Margin="20"
                      Width="100"

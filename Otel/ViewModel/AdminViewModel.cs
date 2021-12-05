@@ -324,12 +324,12 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if (ListImage.Count == 0)
-            {
-                MessageBox.Show("Добавьте хотя бы одно изображение в альбом", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            //if (ListImage.Count == 0)
+            //{
+            //    MessageBox.Show("Добавьте хотя бы одно изображение в альбом", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                return;
-            }
+            //    return;
+            //}
 
             var discription = new Discription()
             {

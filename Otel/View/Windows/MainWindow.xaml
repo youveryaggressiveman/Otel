@@ -12,7 +12,6 @@
         MinWidth="1050"
         Height="750"
         Width="1150"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         Background="White"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>

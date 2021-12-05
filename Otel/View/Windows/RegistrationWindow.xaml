@@ -15,8 +15,7 @@
         MinWidth="640"
         MaxHeight="875"
         MaxWidth="640"
-        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png">
+        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.DataContext>
         <ViewModel:RegistrViewModel />
     </Window.DataContext>
@@ -286,6 +285,8 @@
                      Text="{Binding Phone}"
                      Background="Transparent"
                      x:Name="phoneTextBox"
+                     MaxLength="11"
+                     PreviewTextInput="phoneTextBox_PreviewTextInput"
                      Width="250"
                      Grid.Row="5"
                      VerticalContentAlignment="Center"

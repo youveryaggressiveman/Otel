@@ -133,6 +133,7 @@ namespace Otel.ViewModel
                 LoadAddress();
                 LoadDesc();
                 LoadNumber();
+                RoomList = new ObservableCollection<Room>();
             }
         }
 
@@ -315,6 +316,7 @@ namespace Otel.ViewModel
                 selectedCountry = value;
                 OnPropertyChanged(nameof(SelectedCountry));
                 LoadOtelByCountry();
+                RoomList = new ObservableCollection<Room>();
             }
         }
 
@@ -400,6 +402,7 @@ namespace Otel.ViewModel
         private void ExitAccount(object obj)
         {
             UserSingltone.User = null;
+            CardSingltone.Card = null;
 
             RoomList = new ObservableCollection<Room>();
 
@@ -787,6 +790,7 @@ namespace Otel.ViewModel
 
         private void LoadImageByOtel()
         {
+
             bitmapImages = new List<BitmapSource>();
 
             if(SelectedHotel == null)
@@ -801,6 +805,13 @@ namespace Otel.ViewModel
                 var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom(item.Image);
 
                 bitmapImages.Add(bitmap);
+            }
+
+            if (bitmapImages.Count == 0)
+            {
+                ImageByOtel = null;
+
+                return;
             }
       
             ImageByOtel = bitmapImages[0];

@@ -14,7 +14,6 @@
         MinWidth="550"
         MaxHeight="800"
         MaxWidth="550"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.Resources>
         <converter:PriceConverter x:Key="myPriceConverter" />

@@ -14,7 +14,6 @@
         MinWidth="450"
         MaxHeight="450"
         MaxWidth="450"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Grid>
         <Grid.RowDefinitions>

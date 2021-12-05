@@ -167,7 +167,7 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if (newUser.Phone == Phone)
+            if (newUser != null && newUser.Phone == Phone )
             {
                 MessageBox.Show("Данный номер телефона уже зарезервирован в системе", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -201,9 +201,14 @@ namespace Otel.ViewModel
                 LastName = this.LastName,
                 Phone = this.Phone,
                 Password = this.Password,
-                CountryID = SelectedCountries.ID,
+                Country = SelectedCountries,
                 Passport = passport,
-                RoleID = 1,
+                Role = new Role() 
+                { 
+                    ID = 1,
+                    Discount = 0,
+                    Name = "Клиент"
+                },
             };
 
             UserSingltone.User = await controller.CreateClient(user);

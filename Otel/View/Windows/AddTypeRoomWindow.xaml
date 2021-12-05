@@ -15,8 +15,7 @@
         MaxHeight="450"
         MaxWidth="450"
         WindowStartupLocation="CenterScreen"
-        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png">
+        FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:TextWaterMarkConverter x:Key="TextWaterMarkConverter" />

@@ -22,7 +22,7 @@
                 <RowDefinition />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <Label Content="Все билеты"
+            <Label Content="Все заказы"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    FontSize="42"
@@ -84,7 +84,7 @@
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
-            <Label Content="Информация о билете"
+            <Label Content="Информация о заказе"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    FontSize="42"
@@ -93,8 +93,8 @@
             <TextBox Grid.Row="1"
                      Text="{Binding Country}"
                      Width="250"
+                     IsReadOnly="True"
                      Background="Transparent"
-                     IsEnabled="False"
                      FontSize="18"
                      Grid.Column="1"
                      HorizontalAlignment="Center"
@@ -108,7 +108,7 @@
             <TextBox Grid.Row="2"
                      Text="{Binding NameOtel}"
                      Width="250"
-                     IsEnabled="False"
+                     IsReadOnly="True"
                      FontSize="18"
                      Grid.Column="1"
                      Background="Transparent"
@@ -121,9 +121,10 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <TextBox Grid.Row="3"
+                     HorizontalScrollBarVisibility="Auto"
                      Text="{Binding Address}"
                      Width="250"
-                     IsEnabled="False"
+                     IsReadOnly="True"
                      Background="Transparent"
                      FontSize="18"
                      Grid.Column="1"
@@ -184,7 +185,7 @@
                        FontSize="15" />
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         IsEnabled="False"
+                         IsReadOnly="True"
                          Background="Transparent"
                          Width="auto"
                          Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
@@ -200,7 +201,7 @@
                          Width="auto"
                          Background="Transparent"
                          Text="{Binding DepartureDate, StringFormat='{}{0:dd.MM.yyyy}'}"
-                         IsEnabled="False"
+                         IsReadOnly="True"
                          Margin="20 0 0 0"
                          FontSize="18" />
             </StackPanel>

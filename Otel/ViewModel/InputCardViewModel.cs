@@ -119,6 +119,13 @@ namespace Otel.ViewModel
             SelectCard = new DelegateCommand(SelectedByPayCard);
             CreateNewCard = new DelegateCommand(CreateCard);
 
+            if (UserSingltone.User.Card == null)
+            {
+                TextBoxAndLabelVisibility = Visibility.Visible;
+                ListViewVisibility = Visibility.Collapsed;
+
+                return;
+            }
 
             if (UserSingltone.User.Card.Count == 0)
             {

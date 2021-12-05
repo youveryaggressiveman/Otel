@@ -84,7 +84,7 @@
     <!--Cекция для Label-->
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground"
-                Value="#5f6368" />
+                Value="#666666" />
         <Setter Property="FontSize"
                 Value="20" />
     </Style>

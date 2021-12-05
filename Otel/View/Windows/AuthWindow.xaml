@@ -15,8 +15,7 @@
         MaxHeight="700"
         MaxWidth="600"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
-        WindowStartupLocation="CenterScreen"
-        Icon="/Otel;component/Resources/Image/baseline_luggage_black_48dp.png">
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <ViewModel:AuthViewModel />
     </Window.DataContext>
