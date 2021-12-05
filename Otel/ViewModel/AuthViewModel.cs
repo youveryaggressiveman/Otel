@@ -2,6 +2,7 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Core.Helper;
+using Otel.View.Windows;
 using Otel.Windows;
 using System.Threading.Tasks;
 using System.Windows;
@@ -61,9 +62,17 @@ namespace Otel.ViewModel
             if (authResult == true)
             {
                 MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!", "Проверка", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                Application.Current.Windows[0].Close();
+
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is AuthWindow)
+                    {
+                        item.Close();
+                    }
+                }
             }
         }
 

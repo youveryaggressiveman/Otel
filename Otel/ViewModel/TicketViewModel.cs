@@ -4,6 +4,7 @@ using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
 using Otel.View.Windows;
+using Otel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -673,7 +674,14 @@ namespace Otel.ViewModel
 
                 AuthWindow authWindow = new AuthWindow();
                 authWindow.Show();
-                Application.Current.Windows[0].Close();
+
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is MainWindow)
+                    {
+                        item.Close();
+                    }
+                }
 
                 return;
             }
@@ -783,7 +791,14 @@ namespace Otel.ViewModel
 
             TicketPaymentWindow ticketPayment = new TicketPaymentWindow(newOrder, SelectedHotel);
             ticketPayment.Show();
-            Application.Current.Windows[0].Close();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    item.Close();
+                }
+            }
 
             SetSplash(false);
         }

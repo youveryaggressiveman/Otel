@@ -2,6 +2,7 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.View.Windows;
 using Otel.Windows;
 using System;
 using System.Collections.ObjectModel;
@@ -221,7 +222,14 @@ namespace Otel.ViewModel
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                Application.Current.Windows[0].Close();
+
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is RegistrationWindow)
+                    {
+                        item.Close();
+                    }
+                }
 
                 return;
             }

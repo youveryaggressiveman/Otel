@@ -150,6 +150,8 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="FontSize"
                 Value="15" />
+        <Setter Property="Foreground"
+                Value="Black" />
         <Setter Property="BorderBrush"
                 Value="#C0C0C0" />
         <Style.Resources>

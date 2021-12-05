@@ -182,7 +182,14 @@ namespace Otel.ViewModel
 
                 CheckWindow checkWindow = new CheckWindow(order, hotel);
                 checkWindow.Show();
-                Application.Current.Windows[0].Close();
+
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is TicketPaymentWindow)
+                    {
+                        item.Close();
+                    }
+                }
 
                 return;
             }
@@ -191,7 +198,14 @@ namespace Otel.ViewModel
             {
                 InputCardWindow inputCardWindow = new InputCardWindow();
                 inputCardWindow.Show();
-                Application.Current.Windows[0].Hide();
+
+                foreach (Window item in Application.Current.Windows)
+                {
+                    if (item is TicketPaymentWindow)
+                    {
+                        item.Close();
+                    }
+                }
 
                 return;
             }

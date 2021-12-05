@@ -2,6 +2,7 @@
 using Otel.Core;
 using Otel.Core.Helper;
 using Otel.Model;
+using Otel.View.Windows;
 using Otel.Windows;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,14 @@ namespace Otel.ViewModel
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            Application.Current.Windows[0].Close();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is CheckWindow)
+                {
+                    item.Close();
+                }
+            }
         }
 
         private void CreateCheckFileToPdf()

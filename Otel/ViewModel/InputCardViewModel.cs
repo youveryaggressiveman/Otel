@@ -2,6 +2,7 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.View.Windows;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -154,8 +155,18 @@ namespace Otel.ViewModel
 
             CardSingltone.Card = SelectedCard;
 
-            Application.Current.Windows[2].Close();
-            Application.Current.Windows[0].Show();
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is InputCardWindow)
+                {
+                    item.Close();
+                }
+
+                if (item is TicketPaymentWindow)
+                {
+                    item.Show();
+                }
+            }
         }
 
         private void CreateCard(object obj)
@@ -202,7 +213,7 @@ namespace Otel.ViewModel
             string lastFourDigits = string.Empty;
 
             for (int i = 11; i < 15; i++)
-            {   
+            {
                 lastFourDigits += CardNumber.Replace(" ", "")[i];
             }
 
@@ -217,8 +228,18 @@ namespace Otel.ViewModel
 
             CardSingltone.Card = hashcode;
 
-            Application.Current.Windows[2].Close();
-            Application.Current.Windows[0].Show();
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is InputCardWindow)
+                {
+                    item.Close();
+                }
+
+                if (item is TicketPaymentWindow)
+                {
+                    item.Show();
+                }
+            }
         }
     }
 }
