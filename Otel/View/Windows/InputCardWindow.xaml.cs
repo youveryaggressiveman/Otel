@@ -60,7 +60,13 @@ namespace Otel.View.Windows
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Application.Current.Windows[0].Show();
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is TicketPaymentWindow)
+                {
+                    item.Show();
+                }
+            }
         }
 
         private void AllTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

@@ -28,20 +28,6 @@ namespace Otel.Windows
             e.Handled = true;
         }
 
-        private void ComeButton_Click(object sender, RoutedEventArgs e)
-        {
-            AuthWindow authWindow = new AuthWindow();
-            authWindow.Show();
-            Application.Current.Windows[0].Close();
-        }
-
-        private void RegistrButton_Click(object sender, RoutedEventArgs e)
-        {
-            RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.Show();
-            Application.Current.Windows[0].Close();
-        }
-
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));

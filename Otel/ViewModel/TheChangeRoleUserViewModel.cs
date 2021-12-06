@@ -1,6 +1,8 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
+using Otel.Core;
 using Otel.Model;
+using Otel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -168,7 +170,15 @@ namespace Otel.ViewModel
                 SelectedUser.RoleID = SelectedRole.ID;
                 SelectedUser.Role = SelectedRole;
 
-                await controller.RefreshUserRole(SelectedUser);
+                var newUser = await controller.RefreshUserRole(SelectedUser);
+
+                if (UserSingltone.User.Passport.PassportNumber == newUser.Passport.PassportNumber  
+                    && UserSingltone.User.Passport.PassportSerial == newUser.Passport.PassportSerial)
+                {
+                    UserSingltone.User = null;
+
+                    UserSingltone.User = newUser;
+                }
 
                 LoadAllData();
             }

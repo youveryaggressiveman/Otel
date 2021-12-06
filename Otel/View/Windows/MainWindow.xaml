@@ -111,7 +111,7 @@
                     Grid.Column="3"
                     Grid.ColumnSpan="2"
                     Content=" Зарегистрироваться "
-                    Click="RegistrButton_Click">
+                    Command="{Binding Registration}">
             </Button>
             <StackPanel Grid.Column="4"
                         Visibility="{Binding VisibilityLabel}">
@@ -138,7 +138,7 @@
                     Grid.Column="4"
                     Grid.ColumnSpan="2"
                     Content="    Войти    "
-                    Click="ComeButton_Click">
+                    Command="{Binding Authorization}">
             </Button>
             <Button Grid.Column="6"
                     x:Name="exitButton"

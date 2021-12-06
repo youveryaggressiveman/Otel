@@ -40,7 +40,7 @@ namespace Otel.Controllers
 
         }
 
-        public async Task RefreshUserRole(User user)
+        public async Task<User> RefreshUserRole(User user)
         {
             var JsonObject = JsonSerializer.Serialize<User>(user);
             var url = "http://localhost:63262/api/Users/" + user.ID;
@@ -51,6 +51,10 @@ namespace Otel.Controllers
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var result = await client.PutAsync(url, content);
+
+            var parsedResult = JsonSerializer.Deserialize<User>(await result.Content.ReadAsStringAsync());
+
+            return parsedResult;
         }
     }
 }

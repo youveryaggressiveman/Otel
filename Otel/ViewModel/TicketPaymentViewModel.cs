@@ -187,7 +187,7 @@ namespace Otel.ViewModel
                 {
                     if (item is TicketPaymentWindow)
                     {
-                        item.Close();
+                        item.Hide();
                     }
                 }
 
@@ -203,7 +203,7 @@ namespace Otel.ViewModel
                 {
                     if (item is TicketPaymentWindow)
                     {
-                        item.Close();
+                        item.Hide();
                     }
                 }
 

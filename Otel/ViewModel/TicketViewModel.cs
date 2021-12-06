@@ -361,6 +361,8 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Authorization { get; private set; }
+        public ICommand Registration { get; private set; }
         public ICommand ViewTheChangeRole { get; private set; }
         public ICommand ExitIsAccount { get; private set; }
         public ICommand ViewPageAdminMode { get; private set; }
@@ -385,6 +387,8 @@ namespace Otel.ViewModel
 
             bitmapImages = new List<BitmapSource>();
 
+            Authorization = new DelegateCommand(Auth);
+            Registration = new DelegateCommand(Registr);
             ViewTheChangeRole = new DelegateCommand(TheChangeRole);
             ExitIsAccount = new DelegateCommand(ExitAccount);
             ViewPageAdminMode = new DelegateCommand(PageAdminMode);
@@ -398,6 +402,34 @@ namespace Otel.ViewModel
 
             LoadOtel();
             LoadClient();
+        }
+
+        private void Auth(object obj)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    item.Close();
+                }
+            }
+        }
+
+        private void Registr(object obj)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    item.Close();
+                }
+            }
         }
 
         private void ExitAccount(object obj)
