@@ -3,6 +3,7 @@ using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
 using Otel.View.Windows;
+using Otel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -143,6 +144,7 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Cancel { get; private set; }
         public ICommand Pay { get; private set; }
 
         public TicketPaymentViewModel(Order order, Hotel hotel)
@@ -154,9 +156,24 @@ namespace Otel.ViewModel
 
             Room = new ObservableCollection<Room>();
 
+            Cancel = new DelegateCommand(CancelThisWindow);
             Pay = new DelegateCommand(PayTicket);
 
             LoadAllData(order, hotel);
+        }
+
+        private void CancelThisWindow(object obj)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is TicketPaymentWindow)
+                {
+                    item.Close();
+                }
+            }
         }
 
         private void SetSplash(bool isEnabled)

@@ -29,7 +29,7 @@ namespace Otel.Command
                 return canExecute(parameter);
             }
 
-            return true;
+            return false;
         }
 
         public void Execute(object parameter)

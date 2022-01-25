@@ -37,13 +37,29 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Cancel { get; private set; }
         public ICommand AuthorizeCommand { get; private set; }
 
         public AuthViewModel()
         {
             controller = new AuthViewModelController();
 
+            Cancel = new DelegateCommand(CancelThisWindow);
             AuthorizeCommand = new DelegateCommand(Authorize);
+        }
+
+        private void CancelThisWindow(object obj)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is AuthWindow)
+                {
+                    item.Close();
+                }
+            }
         }
 
         public async void Authorize(object obj)

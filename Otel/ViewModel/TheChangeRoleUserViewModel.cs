@@ -172,8 +172,7 @@ namespace Otel.ViewModel
 
                 var newUser = await controller.RefreshUserRole(SelectedUser);
 
-                if (UserSingltone.User.Passport.PassportNumber == newUser.Passport.PassportNumber  
-                    && UserSingltone.User.Passport.PassportSerial == newUser.Passport.PassportSerial)
+                if (UserSingltone.User.ID == newUser.ID)
                 {
                     UserSingltone.User = null;
 

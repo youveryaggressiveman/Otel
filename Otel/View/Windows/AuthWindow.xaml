@@ -145,7 +145,7 @@
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
                     x:Name="CancelButton"
-                    Click="CancelButton_Click" />
+                    Command="{Binding Cancel}" />
             <Button Grid.Column="1"
                     Command="{Binding AuthorizeCommand}"
                     Content="Войти" />

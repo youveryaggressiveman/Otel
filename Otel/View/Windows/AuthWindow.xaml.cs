@@ -10,8 +10,6 @@ namespace Otel.View.Windows
     /// </summary>
     public partial class AuthWindow : Window
     {
-
-
         public AuthWindow()
         {
             InitializeComponent();
@@ -42,14 +40,14 @@ namespace Otel.View.Windows
         {
             RegistrationWindow registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
-            Application.Current.Windows[0].Close();
-        }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Application.Current.Windows[0].Close();
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is AuthWindow)
+                {
+                    item.Close();
+                }
+            }
         }
     }
 }

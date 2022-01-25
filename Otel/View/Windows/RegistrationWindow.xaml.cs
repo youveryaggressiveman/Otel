@@ -14,13 +14,6 @@ namespace Otel.View.Windows
             InitializeComponent();
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Application.Current.Windows[0].Close();
-        }
-
         private void phoneTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             string input = e.Text.ToString();

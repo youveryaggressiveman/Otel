@@ -130,17 +130,33 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Cancel { get; private set; }
         public ICommand RegistrCommand { get; private set; }
 
         public RegistrViewModel()
         {
             controller = new RegistrViewModelController();
 
+            Cancel = new DelegateCommand(CancelThisWindow);
             RegistrCommand = new DelegateCommand(Registration);
 
             countries = new ObservableCollection<Country>();
 
             LoadAllData();
+        }
+
+        private void CancelThisWindow(object obj)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is RegistrationWindow)
+                {
+                    item.Close();
+                }
+            }
         }
 
         private void SetSplash(bool isEnabled)

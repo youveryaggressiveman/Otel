@@ -106,6 +106,7 @@ namespace Otel.ViewModel
             }
         }
 
+        public ICommand Cancel { get; private set; }
         public ICommand InputCard { get; private set; }
         public ICommand CreateNewCard { get; private set; }
         public ICommand SelectCard { get; private set; }
@@ -116,6 +117,7 @@ namespace Otel.ViewModel
 
             CardList = new ObservableCollection<Card>();
 
+            Cancel = new DelegateCommand(CancelThisWindow);
             InputCard = new DelegateCommand(CreateHashCode);
             SelectCard = new DelegateCommand(SelectedByPayCard);
             CreateNewCard = new DelegateCommand(CreateCard);
@@ -140,6 +142,22 @@ namespace Otel.ViewModel
 
                 TextBoxAndLabelVisibility = Visibility.Collapsed;
                 ListViewVisibility = Visibility.Visible;
+            }
+        }
+
+        private void CancelThisWindow(object obj)
+        {
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is TicketPaymentWindow)
+                {
+                    item.Show();
+                }
+
+                if (item is InputCardWindow)
+                {
+                    item.Close();
+                }
             }
         }
 
