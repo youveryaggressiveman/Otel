@@ -37,37 +37,38 @@
             <StackPanel Grid.Row="0"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <Label Content="🌴 | Hotel City"
-                       Style="{StaticResource headerLabel}"
-                       FontSize="50"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+                <TextBlock Text="🌴 | Hotel City"
+                           Style="{StaticResource TextBlockDefaultPrimary}"
+                           FontSize="50"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
             </StackPanel>
-            <Label Content="🌊"
-                   FontSize="450"
-                   RenderTransformOrigin="1,-0.4"
-                   Opacity="0.2"
-                   Panel.ZIndex="-1"
-                   Margin="-550"
-                   Grid.Row="1"
-                   Grid.RowSpan="3">
-                <Label.RenderTransform>
+            <TextBlock Text="🌊"
+                       FontSize="450"
+                       RenderTransformOrigin="1,-0.3"
+                       Opacity="0.2"
+                       Panel.ZIndex="-1"
+                       Margin="-550"
+                       Grid.Row="1"
+                       Grid.RowSpan="3">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform />
                         <SkewTransform />
                         <RotateTransform Angle="-35.504" />
                         <TranslateTransform />
                     </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <Label Grid.Row="1"
-                   Background="Transparent"
-                   Content="Регистрация"
-                   Margin="20 0 0 0"
-                   FontSize="40"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Background="Transparent"
+                       Text="Регистрация"
+                       Style="{StaticResource TextBlockTitle}"
+                       Margin="20 0 0 0"
+                       FontSize="40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
 
         </Grid>
         <Grid Grid.Row="1">
@@ -85,15 +86,17 @@
                 <RowDefinition Height="75" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Content="Введите имя:"
-                   Grid.Row="0"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Введите имя:"
+                       Grid.Row="0"
+                       HorizontalAlignment="Left"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Margin="25 20 20 20"
                        Width="250"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        VerticalAlignment="Center"
                        FontSize="15"
                        Text="Имя"
@@ -108,6 +111,7 @@
                 </TextBlock.Visibility>
             </TextBlock>
             <TextBox Grid.Column="1"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding FirstName}"
                      x:Name="nameTextbox"
                      Background="Transparent"
@@ -115,15 +119,17 @@
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
-            <Label Content="Введите фамилию:"
-                   Grid.Row="1"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Введите фамилию:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Row="1"
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
                        Margin="25 20 20 20"
                        Width="250"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        VerticalAlignment="Center"
                        FontSize="15"
                        Text="Фамилия"
@@ -138,6 +144,7 @@
                 </TextBlock.Visibility>
             </TextBlock>
             <TextBox Grid.Column="1"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Background="Transparent"
                      x:Name="secondNameTextBox"
                      Text="{Binding SecondName}"
@@ -146,13 +153,15 @@
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
-            <Label Content="Введите отчество:"
-                   Grid.Row="2"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Введите отчество:"
+                       Grid.Row="2"
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="2"
                        Grid.Column="1"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        Margin="25 20 20 20"
                        Width="250"
                        VerticalAlignment="Center"
@@ -170,6 +179,7 @@
             </TextBlock>
             <TextBox Grid.Column="1"
                      Background="Transparent"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      x:Name="lastNameTextBox"
                      Text="{Binding LastName}"
                      Width="250"
@@ -177,16 +187,15 @@
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
-            <Label Content="Выберите страну:"
-                   Grid.Row="3"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Выберите страну:"
+                       Grid.Row="3"
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <ComboBox Grid.Row="3"
                       Grid.Column="1"
-                      Style="{StaticResource RoundComboBox}"
+                      Style="{StaticResource ComboBoxExtend}"
                       Width="250"
-                      ItemContainerStyle="{StaticResource RoundComboBoxItem}"
                       SelectedItem="{Binding SelectedCountries}"
                       ItemsSource="{Binding Countries}"
                       DisplayMemberPath="Name"
@@ -201,14 +210,16 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label Content="Введите серию "
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       HorizontalContentAlignment="Left"
-                       Margin=" 20 0 0 0" />
+                <TextBlock Text="Введите серию "
+                           Grid.Column="0"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin=" 20 0 0 0" />
                 <TextBlock Grid.Column="1"
                            Margin="5 20 0 20"
                            Width="120"
+                           Style="{StaticResource TextBlockBaseStyle}"
                            VerticalAlignment="Center"
                            FontSize="15"
                            Text="Серия"
@@ -224,15 +235,18 @@
                 </TextBlock>
                 <TextBox  Width="120"
                           Margin="0 20 0 20"
+                          Style="{StaticResource TextBoxBaseStyle}"
                           Background="Transparent"
                           x:Name="serialTextBox"
                           Grid.Column="1"
                           Text="{Binding PassportSerial}"
                           VerticalContentAlignment="Center" />
-                <Label Content=" и номер "
-                       VerticalAlignment="Center"
-                       Grid.Column="2" />
+                <TextBlock Text=" и номер "
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           VerticalAlignment="Center"
+                           Grid.Column="2" />
                 <TextBlock Grid.Column="3"
+                           Style="{StaticResource TextBlockBaseStyle}"
                            Margin="5 20 0 20"
                            Width="100"
                            VerticalAlignment="Center"
@@ -249,6 +263,7 @@
                     </TextBlock.Visibility>
                 </TextBlock>
                 <TextBox Width="100"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Grid.Column="3"
                          Background="Transparent"
                          x:Name="numberTextBox"
@@ -259,12 +274,14 @@
                        VerticalAlignment="Center"
                        Grid.Column="4" />
             </Grid>
-            <Label Content="Введите номер телефона:"
-                   Grid.Row="5"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Введите номер телефона:"
+                       Grid.Row="5"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="5"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        Grid.Column="1"
                        Margin="25 20 20 20"
                        Width="250"
@@ -282,6 +299,7 @@
                 </TextBlock.Visibility>
             </TextBlock>
             <TextBox Grid.Column="1"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding Phone}"
                      Background="Transparent"
                      x:Name="phoneTextBox"
@@ -293,13 +311,15 @@
                      FontSize="15"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
-            <Label Content="Введите пароль:"
-                   Grid.Row="6"
-                   HorizontalContentAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="Введите пароль:"
+                       Grid.Row="6"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="6"
                        Grid.Column="1"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        Margin="25 20 20 20"
                        Width="250"
                        VerticalAlignment="Center"
@@ -316,6 +336,7 @@
                 </TextBlock.Visibility>
             </TextBlock>
             <TextBox Grid.Column="1"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      x:Name="pswTextBox"
                      Background="Transparent"
                      Width="250"
@@ -332,9 +353,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
+                    Style="{StaticResource ButtonPrimary}"
                     x:Name="CancelButton"
                     Command="{Binding Cancel}" />
             <Button Grid.Column="1"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding RegistrCommand}"
                     Content="Зарегистрироваться" />
         </Grid>

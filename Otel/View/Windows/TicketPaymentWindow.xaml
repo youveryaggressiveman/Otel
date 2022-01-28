@@ -25,32 +25,32 @@
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <Grid>
-            <Label Content="🌴 | Hotel City"
-                   Margin="10"
-                   Style="{StaticResource headerLabel}"
-                   Grid.Column="0"
-                   FontWeight="Bold"
-                   FontSize="50"
-                   HorizontalAlignment="Center"
-                   VerticalContentAlignment="Center" />
+            <TextBlock Text="🌴 | Hotel City"
+                       Margin="10"
+                       Style="{StaticResource TextBlockDefaultPrimary}"
+                       Grid.Column="0"
+                       FontWeight="Bold"
+                       FontSize="50"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
         </Grid>
-        <Label Content="🎟"
-               FontSize="450"
-               RenderTransformOrigin="0.85,-0.1"
-               Opacity="0.2"
-               Panel.ZIndex="-1"
-               Margin="-550"
-               Grid.Row="1"
-               Grid.RowSpan="3">
-            <Label.RenderTransform>
+        <TextBlock Text="🎟"
+                   FontSize="450"
+                   RenderTransformOrigin="0.85,-0.1"
+                   Opacity="0.2"
+                   Panel.ZIndex="-1"
+                   Margin="-550"
+                   Grid.Row="1"
+                   Grid.RowSpan="3">
+            <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
                     <SkewTransform />
                     <RotateTransform Angle="-40.504" />
                     <TranslateTransform />
                 </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+            </TextBlock.RenderTransform>
+        </TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -65,52 +65,59 @@
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Content="Оплата"
-                   Margin="30 0 0 0"
-                   FontSize="40"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
-            <Label Grid.Row="1"
-                   Content="Страна:"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Style="{StaticResource TextBlockTitle}"
+                       Grid.ColumnSpan="2"
+                       Text="Оплата"
+                       Margin="30 0 0 0"
+                       FontSize="40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text="Страна:"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="1"
                      Width="340"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      IsEnabled="False"
                      Text="{Binding Country}"
                      FontSize="20"
                      Grid.Column="1"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Center" />
-            <Label Grid.Row="2"
-                   Content="Название отеля:"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text="Название отеля:"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="2"
                      Width="340"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      IsEnabled="False"
                      Grid.Column="1"
                      FontSize="20"
                      Text="{Binding NameHotel}"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Center" />
-            <Label Content="Адрес отеля:"
-                   Grid.Row="3"
-                   Grid.Column="0"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Text="Адрес отеля:"
+                       Grid.Row="3"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Column="0"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="3"
                      Grid.Column="1"
                      Width="340"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      IsEnabled="False"
                      Text="{Binding AddressOfHotel}"
                      FontSize="20"
@@ -118,6 +125,7 @@
                      VerticalAlignment="Center"
                      Margin="0,23" />
             <TextBlock Grid.Row="4"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        FontSize="15"
                        Margin="25 0 0 0"
                        HorizontalAlignment="Left"
@@ -128,6 +136,7 @@
                 <Run Text="о комнатах:" />
             </TextBlock>
             <ListView Grid.Row="4"
+                      Style="{StaticResource ListViewBaseStyle}"
                       ItemsSource="{Binding Room}"
                       Grid.Column="1"
                       Height="60"
@@ -141,6 +150,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center"
+                                       Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Ваш номер: " />
                             <Run Text="{Binding Number}" />
@@ -163,36 +173,41 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Orientation="Horizontal">
-                <Label Content="Дата заезда:"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="20 0 0 0"
-                       FontSize="15" />
+                <TextBlock Text="Дата заезда:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"
+                           FontSize="15" />
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          IsEnabled="False"
                          Width="100"
                          Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
                          Margin="20 0 0 0"
                          FontSize="20" />
-                <Label Content="Дата заезда:"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="20 0 0 0"
-                       FontSize="15" />
+                <TextBlock Text="Дата заезда:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"
+                           FontSize="15" />
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
                          Width="100"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          IsEnabled="False"
                          Text="{Binding DepartureDate , StringFormat='{}{0:dd.MM.yyyy}'}"
                          Margin="20 0 0 0"
                          FontSize="20" />
             </StackPanel>
-            <Label Grid.Row="6"
-                   Content="Цена:"
-                   FontSize="15"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="6"
+                       Text="Цена:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       FontSize="15"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
             <StackPanel Grid.Row="6"
                         Grid.Column="1"
                         HorizontalAlignment="Left"
@@ -200,11 +215,13 @@
                         Orientation="Horizontal">
                 <TextBox Text="{Binding Price, Converter={StaticResource myPriceConverter}}"
                          FontSize="20"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          IsEnabled="False"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center" />
                 <TextBox FontSize="20"
                          IsEnabled="False"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Margin="10 0 0 0"
                          Text="{Binding ValueOfPrice}"
                          HorizontalAlignment="Center"
@@ -217,9 +234,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
+                    Style="{StaticResource ButtonPrimary}"
                     x:Name="CancelButton"
                     Command="{Binding Cancel}" />
             <Button Grid.Column="1"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding Pay}"
                     Content="Оплатить" />
         </Grid>

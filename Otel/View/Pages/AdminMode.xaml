@@ -362,7 +362,7 @@
                               Grid.Column="1"
                               x:Name="CurrencyBox" />
                     <Button Width="45"
-                            Style="{StaticResource ButtonDashedPrimary.Small}"
+                            Style="{StaticResource ButtonPrimary.Small}"
                             Command="{Binding PostNewCurrency}"
                             Margin="10 0 0 0"
                             Height="32"
@@ -371,13 +371,13 @@
                 </StackPanel>
                 <Button Grid.Row="5"
                         Grid.Column="0"
-                        Style="{StaticResource ButtonDashedPrimary}"
+                        Style="{StaticResource ButtonPrimary}"
                         Width="130"
                         Command="{Binding PutInNewRoom}"
                         Content="Занести" />
                 <Button Grid.Row="5"
                         Width="130"
-                        Style="{StaticResource ButtonDashedPrimary}"
+                        Style="{StaticResource ButtonPrimary}"
                         Grid.Column="1"
                         Command="{Binding DeleteRoom}"
                         Content="Удалить" />

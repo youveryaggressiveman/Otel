@@ -137,14 +137,15 @@
                     <Run Text="Забыли пароль" />
                 </Hyperlink>
             </TextBlock>
-            <Label Content="   Хотите зарегистрироваться в системе"
+            <TextBlock Text="Хотите зарегистрироваться в системе"
                    Grid.Row="4"
                    Grid.Column="0"
+                       Style="{StaticResource TextBlockBaseStyle}"
                    x:Name="registrLabel"
-                   MouseDoubleClick="registrLabel_MouseDoubleClick"
+                   MouseLeftButtonDown="registrLabel_MouseDoubleClick"
                    Grid.ColumnSpan="2"
-                   HorizontalContentAlignment="Center"
-                   VerticalContentAlignment="Center" />
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
         </Grid>
 
         <Grid Grid.Row="2">
@@ -153,9 +154,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
+                    Style="{StaticResource ButtonPrimary}"
                     x:Name="CancelButton"
                     Command="{Binding Cancel}" />
             <Button Grid.Column="1"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding AuthorizeCommand}"
                     Content="Войти" />
         </Grid>

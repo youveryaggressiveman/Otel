@@ -24,8 +24,8 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Label Content="🌴 | Hotel City "
-                   Style="{StaticResource headerLabel}"
+            <TextBlock Text="🌴 | Hotel City "
+                   Style="{StaticResource TextBlockDefaultPrimary}"
                    FontSize="50"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
@@ -36,14 +36,16 @@
                 <RowDefinition Height="100" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0"
+            <TextBlock Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Content="Чек"
+                   Text="Чек"
+                       Style="{StaticResource TextBlockTitle}"
                    Margin="20 0 0 0"
                    FontSize="40"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
             <TextBlock Grid.Row="1"
+                       Style="{StaticResource TextBlockBaseStyle}"
                    HorizontalAlignment="Left"
                    Margin="5 0 0 0"
                    TextWrapping="Wrap"
@@ -53,6 +55,7 @@
         </Grid>
         <Grid Grid.Row="2">
             <Button Content="Завершить бронирование"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding EndPayOrder}" />
         </Grid>
     </Grid>
