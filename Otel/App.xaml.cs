@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using HandyControl.Tools;
+using System.Windows;
 
 namespace Otel
 {
@@ -7,5 +8,9 @@ namespace Otel
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            ConfigHelper.Instance.SetLang("ru-ru");
+        }
     }
 }

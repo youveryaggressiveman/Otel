@@ -21,7 +21,6 @@ namespace Otel.Command
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }
-
         public bool CanExecute(object parameter)
         {
             if (canExecute != null)
@@ -29,7 +28,7 @@ namespace Otel.Command
                 return canExecute(parameter);
             }
 
-            return false;
+            return true;
         }
 
         public void Execute(object parameter)

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Otel.View.Pages"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d"
       d:DesignHeight="750"
       d:DesignWidth="1050"
@@ -15,11 +16,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="Режим администратора: Изменение ролей"
-                   Margin="20 0 0 0"
-                   FontSize="40"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Text="Режим администратора: Изменение ролей"
+                       Margin="20 0 0 0"
+                       Style="{StaticResource TextBlockTitle}"
+                       FontSize="40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -37,13 +39,15 @@
                     <RowDefinition />
                     <RowDefinition Height="100" />
                 </Grid.RowDefinitions>
-                <Label Content="Список пользователей"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       FontSize="42"
-                       VerticalContentAlignment="Center"
-                       HorizontalAlignment="Center" />
+                <TextBlock Text="Список пользователей"
+                           Grid.Column="0"
+                           Style="{StaticResource TextBlockSubTitle}"
+                           Grid.ColumnSpan="2"
+                           FontSize="42"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
                 <ListView Grid.Row="1"
+                          Style="{StaticResource ListViewBaseStyle}"
                           Margin="20"
                           SelectedItem="{Binding SelectedUser}"
                           ItemsSource="{Binding UserList}"
@@ -56,6 +60,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
+                                           Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">
                             <Run Text="Пользователь(ФИ): " />
                             <Run Text="{Binding SecondName}" />
@@ -77,18 +82,20 @@
                         </Style>
                     </ListView.Resources>
                 </ListView>
-                <Button Grid.Row="2" 
+                <Button Grid.Row="2"
+                        Style="{StaticResource ButtonPrimary}"
                         Content="Посмотреть подробную информацию"
-                        Command="{Binding ViewSelectedUser}"/>
+                        Command="{Binding ViewSelectedUser}" />
             </Grid>
-            <Border BorderBrush="#5f6368"
-                    BorderThickness="1"
-                    Grid.Column="1"
-                    HorizontalAlignment="Left"
-                    Height="650"
-                    VerticalAlignment="Top"
-                    Width="1"
-                    Margin="50,0,0,0" />
+            <hc:Divider Grid.Column="1"
+                        LineStrokeThickness="2"
+                        LineStroke="{DynamicResource BorderBrush}"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Left"
+                        Height="750"
+                        VerticalAlignment="Top"
+                        Width="1"
+                        Margin="50,0,0,0" />
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -96,7 +103,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100" />
-                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75" />
                     <RowDefinition Height="75" />
                     <RowDefinition Height="75" />
                     <RowDefinition Height="75" />
@@ -104,13 +111,15 @@
                     <RowDefinition Height="75" />
                     <RowDefinition Height="100" />
                 </Grid.RowDefinitions>
-                <Label Content="Подробная информация"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       FontSize="42"
-                       VerticalContentAlignment="Center"
-                       HorizontalAlignment="Center" />
+                <TextBlock Text="Подробная информация"
+                           Grid.Column="0"
+                           Style="{StaticResource TextBlockSubTitle}"
+                           Grid.ColumnSpan="2"
+                           FontSize="42"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
                 <TextBox Grid.Row="1"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding FIO}"
                          Width="250"
                          Background="Transparent"
@@ -119,13 +128,15 @@
                          Grid.Column="1"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center" />
-                <Label Grid.Row="1"
-                       Content="ФИО:"
-                       FontSize="15"
-                       Margin="20 0 0 0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
+                <TextBlock Grid.Row="1"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           Text="ФИО:"
+                           FontSize="15"
+                           Margin="20 0 0 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
                 <TextBox Grid.Row="2"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Phone}"
                          Width="250"
                          Background="Transparent"
@@ -134,13 +145,15 @@
                          Grid.Column="1"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center" />
-                <Label Grid.Row="2"
-                       Content="Телефон:"
-                       FontSize="15"
-                       Margin="20 0 0 0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
+                <TextBlock Grid.Row="2"
+                           Text="Телефон:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           FontSize="15"
+                           Margin="20 0 0 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
                 <TextBox Grid.Row="3"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Country}"
                          Width="250"
                          Background="Transparent"
@@ -149,13 +162,15 @@
                          Grid.Column="1"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center" />
-                <Label Grid.Row="3"
-                       Content="Страна:"
-                       FontSize="15"
-                       Margin="20 0 0 0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
+                <TextBlock Grid.Row="3"
+                           Text="Страна:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           FontSize="15"
+                           Margin="20 0 0 0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
                 <TextBox Grid.Row="4"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Role}"
                          Width="250"
                          Background="Transparent"
@@ -164,55 +179,62 @@
                          Grid.Column="1"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center" />
-                <Label Grid.Row="4"
-                       Content="Роль:"
-                       FontSize="15"
-                       Margin="20 0 0 0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
-                <StackPanel Grid.Row="5"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Orientation="Horizontal">
-                    <Label Grid.Row="3"
-                           Content="Серия "
+                <TextBlock Grid.Row="4"
+                           Text="Роль:"
+                           Style="{StaticResource TextBlockBaseStyle}"
                            FontSize="15"
                            Margin="20 0 0 0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
+                <StackPanel Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Orientation="Horizontal">
+                    <TextBlock Grid.Row="3"
+                               Text="Серия "
+                               Style="{StaticResource TextBlockBaseStyle}"
+                               FontSize="15"
+                               Margin="20 0 0 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
                     <TextBox Background="Transparent"
                              Width="100"
                              IsEnabled="False"
+                             Style="{StaticResource TextBoxBaseStyle}"
                              Text="{Binding SerialPassport}"
                              FontSize="15"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"
                              Margin="0,23" />
-                    <Label Grid.Row="3"
-                           Content=" и номер "
-                           FontSize="15"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="3"
+                               Text=" и номер "
+                               FontSize="15"
+                               Style="{StaticResource TextBlockBaseStyle}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
                     <TextBox Background="Transparent"
                              Width="100"
+                             Style="{StaticResource TextBoxBaseStyle}"
                              IsEnabled="False"
                              Text="{Binding NumberPassport}"
                              FontSize="15"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"
                              Margin="0,23" />
-                    <Label Grid.Row="3"
-                           Content=" паспорта "
+                    <TextBlock Grid.Row="3"
+                               Text=" паспорта "
+                               Style="{StaticResource TextBlockBaseStyle}"
+                               FontSize="15"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Grid.Row="6"
+                           Text="Роль для изменения:"
                            FontSize="15"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           Margin="20 0 0 0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                </StackPanel>
-                <Label Grid.Row="6"
-                       Content="Роль для изменения:"
-                       FontSize="15"
-                       Margin="20 0 0 0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
                 <ComboBox Grid.Row="6"
                           Grid.Column="1"
                           Width="250"
@@ -221,10 +243,11 @@
                           SelectedIndex="0"
                           DisplayMemberPath="Name"
                           SelectedItem="{Binding SelectedRole}"
-                          Style="{StaticResource RoundComboBox}"
-                          ItemContainerStyle="{StaticResource RoundComboBoxItem}" />
+                          Style="{StaticResource ComboBoxExtend}"
+                          Margin="0 20 0 20" />
                 <Button Grid.Row="7"
                         Grid.Column="0"
+                        Style="{StaticResource ButtonPrimary}"
                         Grid.ColumnSpan="2"
                         Content="Обновить роль у выбранного клиента"
                         Command="{Binding UpdateRoleBySelectedUser}" />

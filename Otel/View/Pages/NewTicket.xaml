@@ -4,11 +4,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Otel.View.Pages"
       xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
       x:Class="Otel.View.Pages.NewTicket"
       mc:Ignorable="d"
       d:DesignHeight="750"
       d:DesignWidth="1050"
       Title="NewTicket"
+      FontSize="16"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,42 +29,46 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label Content="Информация об отеле"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   FontSize="42"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Center" />
-            <Label Grid.Row="1"
-                   Content=" Выберите страну: "
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
-            <Label Content=" Выберите отель: "
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Grid.Row="2" />
-            <ComboBox  Style="{StaticResource RoundComboBox}"
-                       ItemContainerStyle="{StaticResource RoundComboBoxItem}"
-                       ItemsSource="{Binding CountryOfOtelList}"
-                       SelectedItem="{Binding SelectedCountry}"
-                       Width="250"
-                       DisplayMemberPath="Name"
-                       Grid.Row="1"
-                       SelectedIndex="0"
-                       Grid.Column="1"
-                       x:Name="CountryBox">
+            <TextBlock Text="Информация об отеле"
+                       Style="{StaticResource TextBlockSubTitle}"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       FontSize="42"
+                       HorizontalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text=" Выберите страну: "
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock Style="{StaticResource TextBlockBaseStyle}"
+                       Text=" Выберите отель: "
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Grid.Row="2" />
+            <ComboBox Style="{StaticResource ComboBoxExtend}"
+                      Margin="20"
+                      ItemsSource="{Binding CountryOfOtelList}"
+                      SelectedItem="{Binding SelectedCountry}"
+                      Width="250"
+                      DisplayMemberPath="Name"
+                      Grid.Row="1"
+                      SelectedIndex="0"
+                      Grid.Column="1"
+                      x:Name="CountryBox">
             </ComboBox>
             <ComboBox Grid.Row="2"
                       x:Name="NameOtelBox"
-                      Style="{StaticResource RoundComboBox}"
+                      Style="{StaticResource ComboBoxExtend}"
+                      Margin="20"
                       ItemsSource="{Binding HotelList}"
                       Width="250"
                       SelectedIndex="{Binding SelectedHotelIndex}"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding SelectedHotel}"
-                      ItemContainerStyle="{StaticResource RoundComboBoxItem}"
                       Grid.Column="1" />
-            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2">
                 <Image Width="420"
                        Height="350"
                        Grid.ColumnSpan="2"
@@ -80,13 +86,17 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Назад"
                             Width="180"
-                            Command="{Binding PreviousImage}"/>
+                            Margin="20 0 20 0"
+                            Style="{StaticResource ButtonPrimary}"
+                            Command="{Binding PreviousImage}" />
                     <Button Content="Вперед"
+                            Margin="20 0 20 0"
+                            Style="{StaticResource ButtonPrimary}"
                             Width="180"
                             Command="{Binding NextImage}" />
                 </StackPanel>
             </StackPanel>
-           
+
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
@@ -96,7 +106,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="150" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
@@ -105,17 +115,18 @@
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   Grid.ColumnSpan="3"
-                   Content="Информация о заказе"
-                   FontSize="42"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Center" />
-            <Label Grid.Row="1"
-                   Margin="15"
-                   Content="Тип номера:"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TextBlockSubTitle}"
+                       Text="Информация о заказе"
+                       FontSize="42"
+                       HorizontalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Margin="15"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text="Тип номера:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <ComboBox Grid.Row="1"
                       Grid.Column="1"
                       Grid.ColumnSpan="2"
@@ -125,13 +136,14 @@
                       SelectedIndex="0"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding SelectedTypeRoom}"
-                      Style="{StaticResource RoundComboBox}"
-                      ItemContainerStyle="{StaticResource RoundComboBoxItem}" />
-            <Label Content="Дата заезда:"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+                      Style="{StaticResource ComboBoxExtend}"
+                      Margin="20" />
+            <TextBlock Text="Дата заезда:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
             <DatePicker Grid.Row="3"
                         SelectedDate="{Binding ArrivalDate, UpdateSourceTrigger=PropertyChanged}"
                         Grid.Column="0"
@@ -141,86 +153,97 @@
                         Width="200"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        Style="{DynamicResource DatePickerStyle}" />
-            <Label Content="Дата отъезда:"
-                   Grid.Row="2"
-                   Grid.Column="2"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+                        Style="{StaticResource DatePickerExtend}" />
+            <TextBlock Text="Дата отъезда:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Row="2"
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
             <DatePicker Grid.Row="3"
                         SelectedDate="{Binding DeparatureDate}"
-                        Style="{StaticResource DatePickerStyle}"
+                        Style="{StaticResource DatePickerExtend}"
                         Grid.Column="2"
                         FontSize="15"
                         Width="200"
                         HorizontalContentAlignment="Center"
                         Margin="8"
                         VerticalContentAlignment="Center" />
-            <Label Grid.Row="4"
-                   Margin="15"
-                   Content="Адрес:"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="4"
+                       Margin="15"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text="Адрес:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="4"
                      Background="Transparent"
                      IsReadOnly="True"
+                     Style="{StaticResource TextBoxExtendBaseStyle}"
                      HorizontalScrollBarVisibility="Visible"
-                   Grid.Column="1"
-                   Width="250"
-                   Grid.ColumnSpan="2"
-                   Margin="15"
-                   Text="{Binding AddressOfOtel}">
+                     Grid.Column="1"
+                     Width="250"
+                     Grid.ColumnSpan="2"
+                     Margin="15"
+                     Text="{Binding AddressOfOtel}">
             </TextBox>
-            <Label Content="Описание: "
-                   Margin="15"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Grid.Row="7" />
-            <Label Content="Номер комнаты:"
-                   Grid.Row="5"
-                   Margin="15"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
-            <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+            <TextBlock Text="Описание: "
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Margin="15"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Grid.Row="7" />
+            <TextBlock Text="Номер комнаты:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Row="5"
+                       Margin="15"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <StackPanel Grid.Row="5"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
-            <ComboBox Grid.Row="5"
-                     Style="{StaticResource RoundComboBox}"
-                     DisplayMemberPath="Number"
-                     SelectedIndex="0"
-                      SelectedItem="{Binding SelectedRoom}"
-                     ItemsSource="{Binding RoomNumber}"
-                     ItemContainerStyle="{StaticResource RoundComboBoxItem}"
-                     Grid.Column="1"
-                     Grid.ColumnSpan="2"
-                     Width="200"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center" />
-                <Button  Width="45"  Height="32"
-                         IsEnabled="{Binding IsEnabledButton}"
-                         Content="✚"
-                         Command="{Binding AddRoom}"
-                         Margin="0"/>
+                <ComboBox Grid.Row="5"
+                          Style="{StaticResource ComboBoxExtend}"
+                          DisplayMemberPath="Number"
+                          SelectedIndex="0"
+                          SelectedItem="{Binding SelectedRoom}"
+                          ItemsSource="{Binding RoomNumber}"
+                          ItemContainerStyle="{StaticResource RoundComboBoxItem}"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="2"
+                          Width="200"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center" />
+                <Button Width="45"
+                        Height="32"
+                        Style="{StaticResource ButtonPrimary.Small}"
+                        IsEnabled="{Binding IsEnabledButton}"
+                        Content="✚"
+                        Command="{Binding AddRoom}"
+                        Margin="0" />
             </StackPanel>
-            <Label Content="Выбранные комнаты:"
-                   Grid.Row="6"
-                   Margin="15"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Text="Выбранные комнаты:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Grid.Row="6"
+                       Margin="15"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <StackPanel Orientation="Vertical"
                         Grid.Row="6"
                         Grid.ColumnSpan="2"
                         Grid.Column="1">
-                <ListView
-                    SelectedItem="{Binding SelectedRoomForDelete}"
-                    Height="50"
-                ItemsSource="{Binding RoomList}">
+                <ListView Margin="10"
+                          SelectedItem="{Binding SelectedRoomForDelete}"
+                          Height="50"
+                          Style="{StaticResource ListBoxBaseStyle}"
+                          ItemsSource="{Binding RoomList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <Label Content="{Binding Number}"
-                                   FontSize="12"/>
+                                       FontSize="12" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -231,16 +254,16 @@
                         </Style>
                     </ListView.Resources>
                 </ListView>
-                <Button 
-                    Command="{Binding DeleteRoom}"
-                    Content="Удалить выбранное"
-                    IsEnabled="{Binding IsEnabledButton}"
+                <Button Command="{Binding DeleteRoom}"
+                        Content="Удалить выбранное"
+                        Style="{StaticResource ButtonPrimary}"
+                        IsEnabled="{Binding IsEnabledButton}"
                         Margin="8"
-                        Height="32"
-                        />
+                        Height="32" />
             </StackPanel>
 
-            <ScrollViewer Grid.Row="7"
+            <ScrollViewer Style="{StaticResource ScrollViewerUpDown}"
+                          Grid.Row="7"
                           Height="125"
                           Width="300"
                           Grid.Column="1"
@@ -249,13 +272,14 @@
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding Description}"
-                               Style="{StaticResource descriptionTextBlock}"
+                               Style="{StaticResource TextBlockBaseStyle}"
                                TextWrapping="Wrap"
                                FontSize="15" />
                 </StackPanel>
 
             </ScrollViewer>
             <Button Grid.Row="8"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding FormalizationCommand}"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
@@ -263,13 +287,14 @@
                     Content="Оформить">
             </Button>
         </Grid>
-        <Border BorderBrush="#5f6368"
-                BorderThickness="1"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                Height="750"
-                VerticalAlignment="Top"
-                Width="1"
-                Margin="50,0,0,0" />
+        <hc:Divider Grid.Column="1"
+                    LineStrokeThickness="2"
+                    LineStroke="{DynamicResource BorderBrush}"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    Height="750"
+                    VerticalAlignment="Top"
+                    Width="1"
+                    Margin="50,0,0,0" />
     </Grid>
 </Page>

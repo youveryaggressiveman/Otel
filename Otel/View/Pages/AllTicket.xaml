@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Otel.View.Pages"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d"
       d:DesignHeight="750"
       d:DesignWidth="1050"
@@ -22,13 +23,15 @@
                 <RowDefinition />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <Label Content="Все заказы"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   FontSize="42"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Center" /> 
+            <TextBlock Text="Все заказы"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       FontSize="42"
+                       Style="{StaticResource TextBlockSubTitle}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
             <ListView Grid.Row="1"
+                      Style="{StaticResource ListViewBaseStyle}"
                       Margin="20"
                       SelectedItem="{Binding SelectedOrder}"
                       ItemsSource="{Binding OrderList}"
@@ -39,6 +42,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center"
+                                       Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Заказ #" />
                             <Run Text="{Binding ID}" />
@@ -52,24 +56,26 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius"
-                            Value="8" />
-                </Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="8" />
+                    </Style>
                 </ListView.Resources>
             </ListView>
             <Button Grid.Row="2"
+                    Style="{StaticResource ButtonPrimary}"
                     Command="{Binding InfoAboutOrder}"
-                    Content="Посмотреть информацию о выбранном билете"/>
+                    Content="Посмотреть информацию о выбранном билете" />
         </Grid>
-        <Border BorderBrush="#5f6368"
-                BorderThickness="1"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                Height="750"
-                VerticalAlignment="Top"
-                Width="1"
-                Margin="50,0,0,0" />
+        <hc:Divider Grid.Column="1"
+                    LineStrokeThickness="2"
+                    LineStroke="{DynamicResource BorderBrush}"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    Height="750"
+                    VerticalAlignment="Top"
+                    Width="1"
+                    Margin="50,0,0,0" />
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -84,13 +90,15 @@
                 <RowDefinition Height="75" />
                 <RowDefinition Height="75" />
             </Grid.RowDefinitions>
-            <Label Content="Информация о заказе"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   FontSize="42"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Center" />
+            <TextBlock Text="Информация о заказе"
+                       Grid.Column="0"
+                       Style="{StaticResource TextBlockSubTitle}"
+                       Grid.ColumnSpan="2"
+                       FontSize="42"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
             <TextBox Grid.Row="1"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding Country}"
                      Width="250"
                      IsReadOnly="True"
@@ -99,13 +107,15 @@
                      Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
-            <Label Grid.Row="1"
-                   Content="Страна:"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       Text="Страна:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="2"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding NameOtel}"
                      Width="250"
                      IsReadOnly="True"
@@ -114,15 +124,17 @@
                      Background="Transparent"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
-            <Label Grid.Row="2"
-                   Content="Название отеля:"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2"
+                       Text="Название отеля:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBox Grid.Row="3"
                      HorizontalScrollBarVisibility="Auto"
                      Text="{Binding Address}"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Width="250"
                      IsReadOnly="True"
                      Background="Transparent"
@@ -130,17 +142,18 @@
                      Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
-            <Label Grid.Row="3"
-                   Content="Адрес отеля:"
-                   FontSize="15"
-                   Margin="20 0 0 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+            <TextBlock Grid.Row="3"
+                       Text="Адрес отеля:"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       FontSize="15"
+                       Margin="20 0 0 0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBlock Grid.Row="4"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        FontSize="15"
                        Margin="25 0 0 0"
                        HorizontalAlignment="Left"
-                       Foreground="#5f6368"
                        VerticalAlignment="Center">
                 <Run Text="Информация" />
                 <LineBreak />
@@ -148,6 +161,7 @@
             </TextBlock>
             <ListView Grid.Row="4"
                       Grid.Column="1"
+                      Style="{StaticResource ListViewBaseStyle}"
                       Width="250"
                       Margin="20 20 20 20"
                       ItemsSource="{Binding RoomList}"
@@ -158,6 +172,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center"
+                                       Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Ваш номер: " />
                             <Run Text="{Binding Number}" />
@@ -178,26 +193,30 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Orientation="Horizontal">
-                <Label Content="Дата заезда:"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="20 0 0 0"
-                       FontSize="15" />
+                <TextBlock Text="Дата заезда:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"
+                           FontSize="15" />
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
                          IsReadOnly="True"
                          Background="Transparent"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Width="auto"
                          Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
                          Margin="20 0 0 0"
                          FontSize="18" />
-                <Label Content="Дата выезда:"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="20 0 0 0"
-                       FontSize="15" />
+                <TextBlock Text="Дата выезда:"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"
+                           FontSize="15" />
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
+                         Style="{StaticResource TextBoxBaseStyle}"
                          Width="auto"
                          Background="Transparent"
                          Text="{Binding DepartureDate, StringFormat='{}{0:dd.MM.yyyy}'}"

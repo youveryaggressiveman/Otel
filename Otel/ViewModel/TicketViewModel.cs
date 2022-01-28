@@ -18,6 +18,7 @@ namespace Otel.ViewModel
 {
     public class TicketViewModel : BaseViewModel
     {
+        #region fields
         private readonly TicketViewModelController controller;
 
         private Room selectedRoomForDelete;
@@ -61,7 +62,9 @@ namespace Otel.ViewModel
         private Visibility visibilityAllTicketButton = Visibility.Visible;
 
         private bool isEnabledButton = false;
+        #endregion
 
+        #region properties
         public Visibility VisibilityTheChangeRole
         {
             get => visibilityTheChangeRole;
@@ -360,7 +363,9 @@ namespace Otel.ViewModel
                 OnPropertyChanged(nameof(CountryOfOtelList));
             }
         }
+        #endregion
 
+        #region command
         public ICommand Authorization { get; private set; }
         public ICommand Registration { get; private set; }
         public ICommand ViewTheChangeRole { get; private set; }
@@ -373,7 +378,7 @@ namespace Otel.ViewModel
         public ICommand DeleteRoom { get; private set; }
         public ICommand NextImage { get; private set; }
         public ICommand PreviousImage { get; private set; }
-
+        #endregion
         public TicketViewModel()
         {
             controller = new TicketViewModelController();

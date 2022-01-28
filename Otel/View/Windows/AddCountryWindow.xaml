@@ -32,46 +32,50 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Label Content="🌴 | Hotel City "
-                   Style="{StaticResource headerLabel}"
-                   FontSize="50"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+            <TextBlock Text="🌴 | Hotel City "
+                       Style="{StaticResource TextBlockDefaultPrimary}"
+                       FontSize="50"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
         </StackPanel>
-        <Label Content="🗺️"
-               FontSize="350"
-               RenderTransformOrigin="0.8, -0.1"
-               Grid.RowSpan="3"
-               Opacity="0.2"
-               Panel.ZIndex="-1"
-               Margin="-250">
-            <Label.RenderTransform>
+        <TextBlock Text="🗺️"
+                   Style="{StaticResource TextBlockBaseStyle}"
+                   FontSize="350"
+                   RenderTransformOrigin="0.8, 0.3"
+                   Grid.RowSpan="3"
+                   Opacity="0.2"
+                   Panel.ZIndex="-1"
+                   Margin="-250">
+            <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
                     <SkewTransform />
                     <RotateTransform Angle="-36.504" />
                     <TranslateTransform />
                 </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label Content="Добавление страны"
-               Grid.Row="1"
-               Margin="20 0 0 0"
-               FontSize="40"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Center" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Text="Добавление страны"
+                   Grid.Row="1"
+                   Style="{StaticResource TextBlockTitle}"
+                   Margin="20 0 0 0"
+                   FontSize="40"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="2"
-                   Margin="5 0 0 0"
-                   Content="Введите страну: "
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
             <TextBlock Grid.Row="2"
+                       Margin="5 0 0 0"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       Text="Введите страну: "
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2"
+                       Style="{StaticResource TextBlockBaseStyle}"
                        Grid.Column="1"
                        Margin="25 20 20 20"
                        Width="150"
@@ -91,6 +95,7 @@
             <TextBox x:Name="countryBox"
                      Background="Transparent"
                      Grid.Row="2"
+                     Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding Country}"
                      Height="34"
                      Grid.Column="1"
@@ -101,6 +106,7 @@
                      Margin="20" />
         </Grid>
         <Button Grid.Row="3"
+                Style="{StaticResource ButtonPrimary}"
                 Content="Добавить новую страну"
                 Command="{Binding AddNewCountry}" />
     </Grid>

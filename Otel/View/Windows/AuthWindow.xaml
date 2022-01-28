@@ -27,29 +27,30 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Label Content="🌴 | Hotel City "
-                   Style="{StaticResource headerLabel}"
+            <TextBlock Text="🌴 | Hotel City "
+                   Style="{StaticResource TextBlockDefaultPrimary}"
                    FontSize="50"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
         </StackPanel>
-        <Label Content="🌊"
+        <TextBlock Text="🌊"
                FontSize="450"
-               RenderTransformOrigin="1, 0"
+                   Style="{StaticResource TextBlockBaseStyle}"
+               RenderTransformOrigin="1, 0.3"
                Grid.RowSpan="3"
                Opacity="0.2"
                Panel.ZIndex="-1"
                Margin="-250">
-            <Label.RenderTransform>
+            <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
                     <SkewTransform />
                     <RotateTransform Angle="-40.504" />
                     <TranslateTransform />
                 </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+            </TextBlock.RenderTransform>
+        </TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -62,20 +63,23 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0"
+            <TextBlock Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Content="Авторизация"
+                   Text="Авторизация"
+                       Style="{StaticResource TextBlockTitle}"
                    Margin="20 0 0 0"
                    FontSize="40"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
-            <Label Content="Введите номер телефона:"
+            <TextBlock Text="Введите номер телефона:"
                    Grid.Row="1"
-                   HorizontalContentAlignment="Left"
+                   HorizontalAlignment="Left"
+                       Style="{StaticResource TextBlockBaseStyle}"
                    Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+                   VerticalAlignment="Center" />
             <TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
+                      Style="{StaticResource TextBoxBaseStyle}"
                       Background="Transparent"
                       Text="{Binding Phone}"
                       Grid.Column="1"
@@ -84,14 +88,16 @@
                       FontSize="15"
                       HorizontalContentAlignment="Left"
                       Margin="20" />
-            <Label Content="Введите пароль:"
+            <TextBlock Text="Введите пароль:"
                    Grid.Row="2"
-                   HorizontalContentAlignment="Left"
+                       Style="{StaticResource TextBlockBaseStyle}"
+                   HorizontalAlignment="Left"
                    Margin=" 20 0 0 0"
-                   VerticalContentAlignment="Center" />
+                   VerticalAlignment="Center" />
             <PasswordBox Grid.Column="1"
                          Template="{StaticResource PasswordBox}"
                          Grid.Row="2"
+                         Style="{StaticResource PasswordBoxBaseStyle}"
                          x:Name="pswBox"
                          Width="250"
                          VerticalContentAlignment="Center"
@@ -101,6 +107,7 @@
             <TextBox  Grid.Row="2"
                       x:Name="pswTextBox"
                       Visibility="Collapsed"
+                      Style="{StaticResource TextBoxBaseStyle}"
                       Background="Transparent"
                       Text="{Binding Password}"
                       Grid.Column="1"
@@ -111,6 +118,7 @@
                       Margin="20" />
             <CheckBox Content="Показать пароль"
                       Margin="0 0 40 0"
+                      Style="{StaticResource CheckBoxBaseStyle}"
                       Grid.Column="1"
                       Grid.Row="3"
                       FontSize="17"
@@ -119,15 +127,16 @@
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Center"
                       Click="ShowPswCheckBox_Click" />
-            <Label Grid.Row="3"
-                   HorizontalContentAlignment="Center"
+            <TextBlock Grid.Row="3"
+                   HorizontalAlignment="Center"
                    FontSize="17"
+                       Style="{StaticResource TextBlockBaseStyle}"
                    Margin="0 0 10 0"
-                   VerticalContentAlignment="Center">
+                   VerticalAlignment="Center">
                 <Hyperlink>
                     <Run Text="Забыли пароль" />
                 </Hyperlink>
-            </Label>
+            </TextBlock>
             <Label Content="   Хотите зарегистрироваться в системе"
                    Grid.Row="4"
                    Grid.Column="0"
