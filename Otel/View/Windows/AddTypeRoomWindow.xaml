@@ -11,6 +11,7 @@
         Height="450"
         Width="450"
         MinHeight="450"
+        FontSize="16"
         MinWidth="450"
         MaxHeight="450"
         MaxWidth="450"
@@ -106,6 +107,9 @@
                          Margin="20" />
             </Grid>
             <Button Grid.Row="3"
+                    Height="40"
+                    FontSize="16"
+                    IsDefault="True"
                     Style="{StaticResource ButtonPrimary}"
                     Content="Добавить новый тип команты"
                     Command="{Binding AddNewTypeRoom}" />

@@ -140,7 +140,7 @@ namespace Otel.ViewModel
 
             if (SelectedOrder == null)
             {
-                MessageBox.Show("Выберите билет", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите билет", "Предупреждение");
 
                 return;
             }

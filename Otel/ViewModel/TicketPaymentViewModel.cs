@@ -195,7 +195,7 @@ namespace Otel.ViewModel
             {
                 CreateTicket();
 
-                MessageBox.Show(UserSingltone.User.FirstName + ", оплата прошла успешно. Билет был добавлен в ваш список. Хорошего отдыха!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Success(UserSingltone.User.FirstName + ", оплата прошла успешно. Билет был добавлен в ваш список. Хорошего отдыха!", "Информация");
 
                 CheckWindow checkWindow = new CheckWindow(order, hotel);
                 checkWindow.Show();

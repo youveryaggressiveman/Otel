@@ -41,7 +41,7 @@ namespace Otel.ViewModel
         {
             if (TypeRoom == null)
             {
-                MessageBox.Show("Введите новый тип команты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите новый тип команты", "Предупреждение");
 
                 return;
             }
@@ -55,12 +55,12 @@ namespace Otel.ViewModel
 
             if (newTypeRoom.ID == 0)
             {
-                MessageBox.Show("Такой тип команты уже существует в базе данных", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Такой тип команты уже существует в базе данных", "Предупреждение");
 
                 return;
             }
 
-            MessageBox.Show(newTypeRoom.Name + " тип команты добавлен список", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            HandyControl.Controls.MessageBox.Success(newTypeRoom.Name + " тип команты добавлен список", "Предупреждение");
 
             foreach (Window item in Application.Current.Windows)
             {

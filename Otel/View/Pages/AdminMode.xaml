@@ -9,6 +9,7 @@
       mc:Ignorable="d"
       d:DesignHeight="750"
       d:DesignWidth="1050"
+      FontSize="16"
       Title="AdminMode"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Page.Resources>
@@ -212,6 +213,8 @@
                          FontSize="15" />
                 <Button Grid.Row="6"
                         Grid.Column="0"
+                        FontSize="16"
+                        Height="40"
                         Grid.ColumnSpan="2"
                         Style="{StaticResource ButtonPrimary}"
                         Content="Добавить новый отель в базу данных"
@@ -399,6 +402,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
+                                           Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">
                             <Run Text="Тип комнаты: " />
                             <Run Text="{Binding  TypeRoom.Name}" />

@@ -7,6 +7,7 @@
       xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d"
       d:DesignHeight="750"
+      FontSize="16"
       d:DesignWidth="1050"
       Title="AllTicket"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
@@ -63,6 +64,8 @@
                 </ListView.Resources>
             </ListView>
             <Button Grid.Row="2"
+                    FontSize="16"
+                    Height="40"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding InfoAboutOrder}"
                     Content="Посмотреть информацию о выбранном билете" />

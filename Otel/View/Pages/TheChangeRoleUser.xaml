@@ -8,6 +8,7 @@
       mc:Ignorable="d"
       d:DesignHeight="750"
       d:DesignWidth="1050"
+      FontSize="16"
       Title="TheChangeRoleUser"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Grid>
@@ -83,6 +84,8 @@
                     </ListView.Resources>
                 </ListView>
                 <Button Grid.Row="2"
+                        Height="40"
+                        FontSize="16"
                         Style="{StaticResource ButtonPrimary}"
                         Content="Посмотреть подробную информацию"
                         Command="{Binding ViewSelectedUser}" />
@@ -247,6 +250,9 @@
                           Margin="0 20 0 20" />
                 <Button Grid.Row="7"
                         Grid.Column="0"
+                        Height="40"
+                        IsDefault="True"
+                        FontSize="16"
                         Style="{StaticResource ButtonPrimary}"
                         Grid.ColumnSpan="2"
                         Content="Обновить роль у выбранного клиента"

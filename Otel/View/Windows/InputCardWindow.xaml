@@ -12,6 +12,7 @@
         WindowStartupLocation="CenterScreen"
         Title="Hotel City: Платежные реквизиты"
         Height="550"
+        FontSize="16"
         Width="650"
         MinHeight="550"
         MinWidth="650"
@@ -223,16 +224,26 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
+                    Height="40"
+                    FontSize="16"
+                    IsCancel="True"
+                    Width="200"
                     x:Name="cancelButton"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding Cancel}" />
             <Button Content="Занести новые реквизиты"
+                    Height="40"
+                    FontSize="16"
+                    IsDefault="True"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding CreateNewCard}"
                     Visibility="{Binding ListViewVisibility}"
                     Grid.Column="1">
             </Button>
             <Button Content="Занести реквизиты"
+                    Height="40"
+                    FontSize="16"
+                    IsDefault="True"
                     Style="{StaticResource ButtonPrimary}"
                     Visibility="{Binding TextBoxAndLabelVisibility}"
                     Command="{Binding InputCard}"

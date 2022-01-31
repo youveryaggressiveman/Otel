@@ -10,7 +10,8 @@
     FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
     Title="Hotel City: главное окно"
     MinHeight="700"
-    MinWidth="1050"
+        FontSize="16"
+        MinWidth="1050"
     Height="750"
     Width="1150"
     Background="White"
@@ -50,7 +51,7 @@
             VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
-                    Width="350" />
+                    Width="*" />
                 <ColumnDefinition
                     Width="120" />
                 <ColumnDefinition
@@ -129,10 +130,14 @@
             </Ellipse>
             <Button
                 x:Name="RegistrButton"
-                Style="{StaticResource ButtonPrimary}"
+                    Height="40"
+                    FontSize="16"
+                    Style="{StaticResource ButtonPrimary}"
                 Visibility="{Binding VisibilityButton}"
-                Grid.Column="4"
-                Margin="10"
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Margin="0 0 60 0"
                 Content=" Зарегистрироваться "
                 Command="{Binding Registration}">
             </Button>
@@ -156,13 +161,14 @@
                     Height="40"
                     Margin="5" />
             </StackPanel>
-            <Button
-                x:Name="ComeButton"
+            <Button Height="40"
+                    FontSize="16"
+                    x:Name="ComeButton"
+                    Margin="0 0 20 0"
                 HorizontalAlignment="Right"
                 Style="{StaticResource ButtonPrimary}"
                 Visibility="{Binding VisibilityButton}"
                 Grid.Column="4"
-                Margin="10"
                 Grid.ColumnSpan="2"
                 Content="    Войти    "
                 Command="{Binding Authorization}">
@@ -172,6 +178,7 @@
                 x:Name="exitButton"
                 Click="ExitButton_Click"
                 Content="🚪"
+                HorizontalAlignment="Right"
                 Visibility="{Binding VisibilityExitInAccount}"
                 Command="{Binding ExitIsAccount}"
                 FontSize="30"
@@ -179,6 +186,7 @@
                 ToolTip="Выход из аккаунта" />
         </Grid>
         <Frame
+            Style="{StaticResource FrameBaseStyle}"
             Grid.Row="1"
             NavigationUIVisibility="Hidden"
             VerticalAlignment="Center"

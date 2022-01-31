@@ -41,7 +41,7 @@ namespace Otel.ViewModel
         {
             if (Country == null)
             {
-                MessageBox.Show("Введите новую страну", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите новую страну", "Предупреждение");
 
                 return;
             }
@@ -55,12 +55,12 @@ namespace Otel.ViewModel
 
             if (newCountry.ID == 0)
             {
-                MessageBox.Show("Такая страна уже есть в базе данных", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Такая страна уже есть в базе данных", "Предупреждение");
 
                 return;
             }
 
-            MessageBox.Show(newCountry.Name + " добавлена в список", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            HandyControl.Controls.MessageBox.Success(newCountry.Name + " добавлена в список", "Предупреждение");
 
             foreach (Window item in Application.Current.Windows)
             {

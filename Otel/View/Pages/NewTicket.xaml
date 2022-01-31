@@ -85,14 +85,14 @@
                 </Image>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Назад"
-                            Width="180"
+                            Width="200"
                             Margin="20 0 20 0"
                             Style="{StaticResource ButtonPrimary}"
                             Command="{Binding PreviousImage}" />
                     <Button Content="Вперед"
                             Margin="20 0 20 0"
                             Style="{StaticResource ButtonPrimary}"
-                            Width="180"
+                            Width="200"
                             Command="{Binding NextImage}" />
                 </StackPanel>
             </StackPanel>
@@ -210,7 +210,6 @@
                           SelectedIndex="0"
                           SelectedItem="{Binding SelectedRoom}"
                           ItemsSource="{Binding RoomNumber}"
-                          ItemContainerStyle="{StaticResource RoundComboBoxItem}"
                           Grid.Column="1"
                           Grid.ColumnSpan="2"
                           Width="200"
@@ -218,11 +217,11 @@
                           VerticalContentAlignment="Center" />
                 <Button Width="45"
                         Height="32"
+                        Margin="10 0 0 0"
                         Style="{StaticResource ButtonPrimary.Small}"
                         IsEnabled="{Binding IsEnabledButton}"
                         Content="✚"
-                        Command="{Binding AddRoom}"
-                        Margin="0" />
+                        Command="{Binding AddRoom}" />
             </StackPanel>
             <TextBlock Text="Выбранные комнаты:"
                        Style="{StaticResource TextBlockBaseStyle}"
@@ -242,7 +241,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Label Content="{Binding Number}"
+                                <TextBlock Text="{Binding Number}"
+                                           Style="{StaticResource TextBlockBaseStyle}"
                                        FontSize="12" />
                             </StackPanel>
                         </DataTemplate>
@@ -279,11 +279,16 @@
 
             </ScrollViewer>
             <Button Grid.Row="8"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    Margin="0 25 0 0"
+                    Width="250"
+                    IsDefault="True"
+                    Height="40"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding FormalizationCommand}"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    Margin="8"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
                     Content="Оформить">
             </Button>
         </Grid>

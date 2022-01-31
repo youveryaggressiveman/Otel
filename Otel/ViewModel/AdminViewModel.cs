@@ -254,22 +254,22 @@ namespace Otel.ViewModel
         {
             if (ListRoom.Count == 0)
             {
-                MessageBox.Show("Из списка комнат нечего удалять", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Из списка комнат нечего удалять", "Предупреждение");
 
                 return;
             }
 
             if (SelectedRoomByDelete == null)
             {
-                MessageBox.Show("Выберите комнату для удаления из списка", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите комнату для удаления из списка", "Предупреждение");
 
                 return;
             }
 
-            var result = MessageBox.Show($"Вы действительно хотите удалить комнату {SelectedRoomByDelete.Number} из заказа?",
-                "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = HandyControl.Controls.MessageBox.Ask($"Вы действительно хотите удалить комнату {SelectedRoomByDelete.Number} из заказа?",
+                "Подтверждение");
 
-            if (ListRoom.Contains(SelectedRoomByDelete) && result == MessageBoxResult.Yes)
+            if (ListRoom.Contains(SelectedRoomByDelete) && result == MessageBoxResult.OK)
             {
                 ListRoom.Remove(SelectedRoomByDelete);
             }
@@ -284,52 +284,52 @@ namespace Otel.ViewModel
         {
             if (SelectedCountry == null)
             {
-                MessageBox.Show("Введите страну для отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите страну для отеля", "Предупреждение");
 
                 return;
             }
 
             if (NameOtel == null)
             {
-                MessageBox.Show("Введите название отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите название отеля", "Предупреждение");
 
                 return;
             }
 
             if (NameStreet == null)
             {
-                MessageBox.Show("Введите название улицы отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите название улицы отеля", "Предупреждение");
 
                 return;
             }
 
             if (NumberStreet == null)
             {
-                MessageBox.Show("Введите номер улицы отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите номер улицы отеля", "Предупреждение");
 
                 return;
             }
 
             if (Description == null)
             {
-               MessageBox.Show("Добавьте описание для отеля", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Добавьте описание для отеля", "Предупреждение");
 
                return;
             }
 
             if (ListRoom.Count == 0)
             {
-                MessageBox.Show("Добавьте хотя бы одну комнату в список", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Добавьте хотя бы одну комнату в список", "Предупреждение");
 
                 return;
             }
 
-            //if (ListImage.Count == 0)
-            //{
-            //    MessageBox.Show("Добавьте хотя бы одно изображение в альбом", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (ListImage.Count == 0)
+            {
+                HandyControl.Controls.MessageBox.Info("Добавьте хотя бы одно изображение в альбом", "Предупреждение");
 
-            //    return;
-            //}
+                return;
+            }
 
             var discription = new Discription()
             {
@@ -352,16 +352,16 @@ namespace Otel.ViewModel
                 ImageOfOtel = ListImage
             };
 
-            var result = MessageBox.Show("Вы уверены что хотите занести отель " + NameOtel + " в базу данных", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            var result = HandyControl.Controls.MessageBox.Ask("Вы уверены что хотите занести отель " + NameOtel + " в базу данных", "Предупреждение");
 
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.OK)
             {
                 await controller.CreateHotel(otel);
 
-                MessageBox.Show("Отель успешно занесен в базу данных", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Success("Отель успешно занесен в базу данных", "Информация");
             }
 
-            if (result == MessageBoxResult.No)
+            if (result == MessageBoxResult.Cancel)
             {
                 return;
             } 
@@ -371,28 +371,28 @@ namespace Otel.ViewModel
         {
             if (SelectedTypeRoom == null)
             {
-                MessageBox.Show("Введите тип комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите тип комнаты", "Предупреждение");
 
                 return;
             }
 
             if (NumberOfRoom == null)
             {
-                MessageBox.Show("Введите номер комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите номер комнаты", "Предупреждение");
 
                 return;
             }
 
             if (NumberOfPrice == null)
             {
-                MessageBox.Show("Введите цену комнаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите цену комнаты", "Предупреждение");
 
                 return;
             }
 
             if (SelectedCurrency == null)
             {
-                MessageBox.Show("Введите валюту для оплаты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите валюту для оплаты", "Предупреждение");
 
                 return;
             }

@@ -41,7 +41,7 @@ namespace Otel.ViewModel
         {
             if (Currency == null)
             {
-                MessageBox.Show("Введите новую валюту", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите новую валюту", "Предупреждение");
 
                 return;
             }
@@ -55,12 +55,12 @@ namespace Otel.ViewModel
 
             if (newCurrency.ID == 0)
             {
-                MessageBox.Show("Такая валюта уже есть в базе данных", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Такая валюта уже есть в базе данных", "Предупреждение");
 
                 return;
             }
 
-            MessageBox.Show(newCurrency.Name + " добавлен в список валют", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            HandyControl.Controls.MessageBox.Success(newCurrency.Name + " добавлен в список валют", "Предупреждение");
 
             foreach (Window item in Application.Current.Windows)
             {

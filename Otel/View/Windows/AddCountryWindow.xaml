@@ -10,6 +10,7 @@
         Title="HotelCity: Добавление новой страны"
         Height="450"
         Width="450"
+        FontSize="16"
         MinHeight="450"
         MinWidth="450"
         MaxHeight="450"
@@ -107,6 +108,9 @@
         </Grid>
         <Button Grid.Row="3"
                 Style="{StaticResource ButtonPrimary}"
+                Height="40"
+                FontSize="16"
+                IsDefault="True"
                 Content="Добавить новую страну"
                 Command="{Binding AddNewCountry}" />
     </Grid>

@@ -12,6 +12,7 @@
         Width="450"
         MinHeight="450"
         MinWidth="450"
+        FontSize="16"
         MaxHeight="450"
         MaxWidth="450"
         WindowStartupLocation="CenterScreen"
@@ -106,6 +107,9 @@
                      Margin="20" />
         </Grid>
         <Button Grid.Row="3"
+                Height="40"
+                FontSize="16"
+                IsDefault="True"
                 Style="{StaticResource ButtonPrimary}"
                 Content="Добавить новую валюту"
                 Command="{Binding AddNewCurrency}" />

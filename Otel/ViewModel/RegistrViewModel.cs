@@ -179,14 +179,14 @@ namespace Otel.ViewModel
             if (string.IsNullOrWhiteSpace(PassportSerial) || string.IsNullOrWhiteSpace(PassportNumber) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(SecondName)
                 || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(Password) || SelectedCountries == null)
             {
-                MessageBox.Show("Введите все данные для регистрации", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите все данные для регистрации", "Предупреждение");
 
                 return;
             }
 
             if (newUser != null && newUser.Phone == Phone )
             {
-                MessageBox.Show("Данный номер телефона уже зарезервирован в системе", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Данный номер телефона уже зарезервирован в системе", "Предупреждение");
 
                 return;
             }
@@ -204,7 +204,7 @@ namespace Otel.ViewModel
 
             if (passportResult != null)
             {
-                MessageBox.Show("Пользователь с такими данными уже зарегистрирован в системе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                HandyControl.Controls.MessageBox.Warning("Пользователь с такими данными уже зарегистрирован в системе", "Ошибка");
 
                 return;
             }
@@ -234,7 +234,7 @@ namespace Otel.ViewModel
 
             if (UserSingltone.User != null)
             {
-                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!");
+                HandyControl.Controls.MessageBox.Success(UserSingltone.User.FirstName + ", добро пожаловать!");
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

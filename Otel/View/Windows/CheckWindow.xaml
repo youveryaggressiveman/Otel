@@ -12,6 +12,7 @@
         Width="450"
         MinHeight="450"
         MinWidth="450"
+        FontSize="16"
         MaxHeight="450"
         MaxWidth="450"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
@@ -55,6 +56,9 @@
         </Grid>
         <Grid Grid.Row="2">
             <Button Content="Завершить бронирование"
+                    Height="40"
+                    FontSize="16"
+                    IsDefault="True"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding EndPayOrder}" />
         </Grid>

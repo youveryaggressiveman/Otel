@@ -11,6 +11,7 @@
         Height="700"
         Width="600"
         MinHeight="700"
+        FontSize="16"
         MinWidth="600"
         MaxHeight="700"
         MaxWidth="600"
@@ -139,6 +140,7 @@
             </TextBlock>
             <TextBlock Text="Хотите зарегистрироваться в системе"
                    Grid.Row="4"
+                       FontSize="20"
                    Grid.Column="0"
                        Style="{StaticResource TextBlockBaseStyle}"
                    x:Name="registrLabel"
@@ -156,8 +158,16 @@
             <Button Content="Отмена"
                     Style="{StaticResource ButtonPrimary}"
                     x:Name="CancelButton"
+                    Height="40"
+                    FontSize="16"
+                    IsCancel="True"
+                    Width="200"
                     Command="{Binding Cancel}" />
             <Button Grid.Column="1"
+                    Height="40"
+                    IsDefault="True"
+                    Width="200"
+                    FontSize="16"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding AuthorizeCommand}"
                     Content="Войти" />

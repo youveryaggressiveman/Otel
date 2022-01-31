@@ -166,7 +166,7 @@ namespace Otel.ViewModel
 
             if (SelectedCard == null)
             {
-                MessageBox.Show("Выберите карту", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите карту", "Предупреждение");
 
                 return;
             }
@@ -207,21 +207,21 @@ namespace Otel.ViewModel
         {
             if (CardNumber.Length == 0)
             {
-                MessageBox.Show("Введите номер карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите номер карты", "Предупреждение");
 
                 return;
             }
 
             if (CardMM.Length == 0 || CardYY.Length == 0)
             {
-                MessageBox.Show("Введите срок службы карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите срок службы карты", "Предупреждение");
 
                 return;
             }
 
             if (CardCVC.Length == 0)
             {
-                MessageBox.Show("Введите CVC карты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите CVC карты", "Предупреждение");
 
                 return;
             }

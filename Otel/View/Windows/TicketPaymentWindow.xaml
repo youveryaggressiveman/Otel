@@ -9,6 +9,7 @@
         Title="Hotel City: Оплата"
         Height="800"
         Width="550"
+        FontSize="16"
         WindowStartupLocation="CenterScreen"
         MinHeight="800"
         MinWidth="550"
@@ -234,10 +235,18 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Content="Отмена"
+                    Width="200"
+                    Height="40"
+                    IsCancel="True"
+                    FontSize="16"
                     Style="{StaticResource ButtonPrimary}"
                     x:Name="CancelButton"
                     Command="{Binding Cancel}" />
             <Button Grid.Column="1"
+                    Width="200"
+                    Height="40"
+                    IsDefault="True"
+                    FontSize="16"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding Pay}"
                     Content="Оплатить" />

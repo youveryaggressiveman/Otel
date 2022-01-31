@@ -614,20 +614,20 @@ namespace Otel.ViewModel
         {
             if (RoomList.Count == 0)
             {
-                MessageBox.Show("Из списка комнат нечего удалять", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Из списка комнат нечего удалять", "Предупреждение");
 
                 return;
             }
 
             if (SelectedRoomForDelete == null)
             {
-                MessageBox.Show("Выберите комнату для удаления из списка", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите комнату для удаления из списка", "Предупреждение");
 
                 return;
             }
 
-            var result = MessageBox.Show($"Вы действительно хотите удалить комнату {SelectedRoomForDelete.Number} из заказа?",
-                "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = HandyControl.Controls.MessageBox.Ask($"Вы действительно хотите удалить комнату {SelectedRoomForDelete.Number} из заказа?",
+                "Подтверждение");
 
             if (RoomList.Contains(SelectedRoomForDelete) && result == MessageBoxResult.Yes)
             {
@@ -707,7 +707,7 @@ namespace Otel.ViewModel
         {
             if (UserSingltone.User == null)
             {
-                MessageBox.Show("Войдите в аккаунт", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Войдите в аккаунт", "Предупреждение");
 
                 AuthWindow authWindow = new AuthWindow();
                 authWindow.Show();
@@ -725,56 +725,56 @@ namespace Otel.ViewModel
 
             if (SelectedCountry == null)
             {
-                MessageBox.Show("Выберите страну", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите страну", "Предупреждение");
 
                 return;
             }
 
             if (SelectedHotel == null)
             {
-                MessageBox.Show("Выберите отель", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите отель", "Предупреждение");
 
                 return;
             }
 
             if (SelectedTypeRoom == null)
             {
-                MessageBox.Show("Выберите тип команты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите тип команты", "Предупреждение");
 
                 return;
             }
 
             if (ArrivalDate == DeparatureDate)
             {
-                MessageBox.Show("Дата приезда не может быть одинаковой с датой отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Дата приезда не может быть одинаковой с датой отъезда", "Предупреждение");
 
                 return;
             }
 
             if (ArrivalDate > DeparatureDate)
             {
-                MessageBox.Show("Дата приезда не может быть позже чем дата отъезда", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Дата приезда не может быть позже чем дата отъезда", "Предупреждение");
 
                 return;
             }
 
             if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
             {
-                MessageBox.Show("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение");
 
                 return;
             }
 
             if ((DeparatureDate.Year - ArrivalDate.Year) >= 2)
             {
-                MessageBox.Show("Бронирование на такой большой срок невозможно", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Бронирование на такой большой срок невозможно", "Предупреждение");
 
                 return;
             }
 
             if (RoomList.Count == 0)
             {
-                MessageBox.Show("Выберите номер команты", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите номер команты", "Предупреждение");
 
                 return;
             }
@@ -785,16 +785,16 @@ namespace Otel.ViewModel
                 {
                     if (RoomList[i].OtelID == RoomList[i-1].OtelID && RoomList[i].Number == RoomList[i - 1].Number)
                     {
-                        MessageBox.Show("В вашем списке присутствуют две одинаковые комнаты.\nПожалуйста, оставьте только один экземпляр данной комнаты",
-                           "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HandyControl.Controls.MessageBox.Info("В вашем списке присутствуют две одинаковые комнаты.\nПожалуйста, оставьте только один экземпляр данной комнаты",
+                           "Предупреждение");
 
                         return;
                     }
 
                     if (RoomList[i].OtelID != RoomList[i - 1].OtelID)
                     {
-                        MessageBox.Show("В списке ваших комнат присутствуют комнаты с разными отелями.\nПожалуйста, оставьте в списке комнаты только те, которые относятся к одному отелю",
-                            "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HandyControl.Controls.MessageBox.Info("В списке ваших комнат присутствуют комнаты с разными отелями.\nПожалуйста, оставьте в списке комнаты только те, которые относятся к одному отелю",
+                            "Предупреждение");
 
                         return;
                     }
@@ -887,8 +887,7 @@ namespace Otel.ViewModel
             }
             catch (Exception ex)
             {
-
-                var result = MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var result = HandyControl.Controls.MessageBox.Error(ex.Message, "Error");
 
                 Application.Current.Shutdown();
             }
@@ -912,7 +911,7 @@ namespace Otel.ViewModel
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка загрузки данных, приложение будет закрыто", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                HandyControl.Controls.MessageBox.Error("Ошибка загрузки данных, приложение будет закрыто", "Error");
 
                 Application.Current.Shutdown();
             }

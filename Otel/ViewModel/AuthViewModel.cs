@@ -66,7 +66,7 @@ namespace Otel.ViewModel
         {
             if (string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Password))
             {
-                MessageBox.Show("Введите свой телефон и пароль", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Введите свой телефон и пароль", "Предупреждение");
 
                 return;
             }
@@ -77,7 +77,7 @@ namespace Otel.ViewModel
 
             if (authResult == true)
             {
-                MessageBox.Show(UserSingltone.User.FirstName + ", добро пожаловать!", "Проверка", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Success(UserSingltone.User.FirstName + ", добро пожаловать!", "Проверка");
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

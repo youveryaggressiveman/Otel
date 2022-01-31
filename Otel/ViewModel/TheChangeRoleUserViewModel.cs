@@ -151,21 +151,21 @@ namespace Otel.ViewModel
         {
             if (SelectedUser == null)
             {
-                MessageBox.Show("Выберите пользователя для обновления роли", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите пользователя для обновления роли", "Предупреждение");
 
                 return;
             }
 
             if (SelectedRole == null)
             {
-                MessageBox.Show("Выберите новую роль для пользователя", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите новую роль для пользователя", "Предупреждение");
 
                 return;
             }
 
-            var result = MessageBox.Show("Вы уверены, что хотите изменить роль у выбранного пользователя", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            var result = HandyControl.Controls.MessageBox.Ask("Вы уверены, что хотите изменить роль у выбранного пользователя?", "Предупреждение");
 
-            if(result == MessageBoxResult.Yes)
+            if(result == MessageBoxResult.OK)
             {
                 SelectedUser.RoleID = SelectedRole.ID;
                 SelectedUser.Role = SelectedRole;
@@ -182,7 +182,7 @@ namespace Otel.ViewModel
                 LoadAllData();
             }
 
-            if (result == MessageBoxResult.No)
+            if (result == MessageBoxResult.Cancel)
             {
                 return;
             }
@@ -192,14 +192,14 @@ namespace Otel.ViewModel
         {
             if (SelectedUser == null)
             {
-                MessageBox.Show("Выберите пользователя", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Выберите пользователя", "Предупреждение");
 
                 return;
             }
 
             if (UserList == null)
             {
-                MessageBox.Show("В базе данных еще нет пользователей", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("В базе данных еще нет пользователей", "Предупреждение");
 
                 return;
             }
