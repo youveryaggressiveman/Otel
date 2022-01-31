@@ -5,16 +5,14 @@
         xmlns:local="clr-namespace:Otel.View.Windows"
         xmlns:converter="clr-namespace:Otel.Converter"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         x:Class="Otel.View.Windows.AddCountryWindow"
         mc:Ignorable="d"
         Title="HotelCity: Добавление новой страны"
-        Height="450"
+        Height="330"
         Width="450"
         FontSize="16"
-        MinHeight="450"
-        MinWidth="450"
-        MaxHeight="450"
-        MaxWidth="450"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.Resources>
@@ -26,9 +24,9 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
@@ -42,12 +40,12 @@
         </StackPanel>
         <TextBlock Text="🗺️"
                    Style="{StaticResource TextBlockBaseStyle}"
-                   FontSize="350"
+                   FontSize="250"
                    RenderTransformOrigin="0.8, 0.3"
-                   Grid.RowSpan="3"
+                   Grid.RowSpan="4"
                    Opacity="0.2"
                    Panel.ZIndex="-1"
-                   Margin="-250">
+                   Margin="48,-44,53,-10">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -75,28 +73,11 @@
                        Text="Введите страну: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="2"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="150"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Страна"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="countryBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="countryBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox x:Name="countryBox"
                      Background="Transparent"
                      Grid.Row="2"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Страна"
+                     Style="{StaticResource TextBoxExtend}"
                      Text="{Binding Country}"
                      Height="34"
                      Grid.Column="1"
@@ -109,6 +90,7 @@
         <Button Grid.Row="3"
                 Style="{StaticResource ButtonPrimary}"
                 Height="40"
+                Width="200"
                 FontSize="16"
                 IsDefault="True"
                 Content="Добавить новую страну"

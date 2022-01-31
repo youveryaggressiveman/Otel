@@ -384,8 +384,8 @@
                         Grid.Column="1"
                         Command="{Binding DeleteRoom}"
                         Content="Удалить" />
-                <ListView Grid.Row="6"
-                          Style="{StaticResource ListViewBaseStyle}"
+                <ListBox Grid.Row="6"
+                          Style="{StaticResource ListBoxBaseStyle}"
                           ItemsSource="{Binding ListRoom}"
                           SelectedItem="{Binding SelectedRoomByDelete}"
                           Grid.Column="0"
@@ -398,10 +398,11 @@
                           FontSize="18"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Center">
-                    <ListView.ItemTemplate>
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
+                                           FontSize="16"
                                            Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">
                             <Run Text="Тип комнаты: " />
@@ -418,14 +419,14 @@
                                 </TextBlock>
                             </StackPanel>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.Resources>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius"
                                     Value="8" />
                         </Style>
-                    </ListView.Resources>
-                </ListView>
+                    </ListBox.Resources>
+                </ListBox>
             </Grid>
         </Grid>
     </Grid>

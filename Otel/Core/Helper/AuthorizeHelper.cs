@@ -23,14 +23,14 @@ namespace Otel.Core.Helper
 
             if (selectedUser == null)
             {
-                MessageBox.Show("Такого пользователя не существует", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+                HandyControl.Controls.MessageBox.Info("Такого пользователя не существует", "Предупреждение");
 
                 return false;
             }
 
             if (selectedUser.Password != password)
             {
-                MessageBox.Show("Введены неверные данные", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                HandyControl.Controls.MessageBox.Info("Введены неверные данные", "Предупреждение");
 
                 return false;
             }

@@ -14,9 +14,15 @@ namespace Otel.ViewModel
 {
     public class AddTypeRoomViewModel : BaseViewModel
     {
+        #region fields
+
         private AddTypeRoomViewModelController controller;
 
         private string typeRoom;
+
+        #endregion
+
+        #region properties
 
         public string TypeRoom
         {
@@ -28,7 +34,13 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand AddNewTypeRoom { get; private set; }
+
+        #endregion
 
         public AddTypeRoomViewModel()
         {

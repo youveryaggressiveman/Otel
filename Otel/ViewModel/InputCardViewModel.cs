@@ -12,6 +12,8 @@ namespace Otel.ViewModel
 {
     public class InputCardViewModel : BaseViewModel
     {
+        #region fields
+
         private InputCardViewModelController controller;
 
         private Card selectedCard;
@@ -25,6 +27,10 @@ namespace Otel.ViewModel
         private string cardYY;
         private string cardMM;
         private string cardCVC;
+
+        #endregion
+
+        #region properties
 
         public Card SelectedCard
         {
@@ -106,10 +112,16 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand Cancel { get; private set; }
         public ICommand InputCard { get; private set; }
         public ICommand CreateNewCard { get; private set; }
         public ICommand SelectCard { get; private set; }
+
+        #endregion
 
         public InputCardViewModel()
         {

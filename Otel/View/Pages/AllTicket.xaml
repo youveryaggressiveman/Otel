@@ -31,18 +31,19 @@
                        Style="{StaticResource TextBlockSubTitle}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
-            <ListView Grid.Row="1"
-                      Style="{StaticResource ListViewBaseStyle}"
+            <ListBox Grid.Row="1"
+                      Style="{StaticResource ListBoxBaseStyle}"
                       Margin="20"
                       SelectedItem="{Binding SelectedOrder}"
                       ItemsSource="{Binding OrderList}"
                       Foreground="#5f6368"
                       FontSize="20"
                       Background="Transparent">
-                <ListView.ItemTemplate>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center"
+                                       FontSize="16"
                                        Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Заказ #" />
@@ -55,14 +56,14 @@
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Resources>
+                </ListBox.ItemTemplate>
+                <ListBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"
                                 Value="8" />
                     </Style>
-                </ListView.Resources>
-            </ListView>
+                </ListBox.Resources>
+            </ListBox>
             <Button Grid.Row="2"
                     FontSize="16"
                     Height="40"
@@ -162,19 +163,20 @@
                 <LineBreak />
                 <Run Text="о комнатах:" />
             </TextBlock>
-            <ListView Grid.Row="4"
+            <ListBox Grid.Row="4"
                       Grid.Column="1"
-                      Style="{StaticResource ListViewBaseStyle}"
+                      Style="{StaticResource ListBoxBaseStyle}"
                       Width="250"
                       Margin="20 20 20 20"
                       ItemsSource="{Binding RoomList}"
                       Foreground="#5f6368"
                       FontSize="18"
                       Background="Transparent">
-                <ListView.ItemTemplate>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center"
+                                       FontSize="16"
                                        Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Ваш номер: " />
@@ -184,14 +186,14 @@
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Resources>
+                </ListBox.ItemTemplate>
+                <ListBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius"
                                 Value="8" />
                     </Style>
-                </ListView.Resources>
-            </ListView>
+                </ListBox.Resources>
+            </ListBox>
             <StackPanel Grid.Row="5"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"

@@ -14,9 +14,15 @@ namespace Otel.ViewModel
 {
     public class AddCurrencyViewModel : BaseViewModel
     {
+        #region fields
+
         private AddCurrencyViewModelController controller;
 
         private string currency;
+
+        #endregion
+
+        #region properties
 
         public string Currency
         {
@@ -28,7 +34,13 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand AddNewCurrency { get; private set; }
+
+        #endregion
 
         public AddCurrencyViewModel()
         {

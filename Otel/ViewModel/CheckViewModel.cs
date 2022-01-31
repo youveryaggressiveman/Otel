@@ -16,10 +16,18 @@ namespace Otel.ViewModel
 {
     public class CheckViewModel : BaseViewModel
     {
+        #region fields
+
         private Hotel hotel;
         private Order order;
 
+        #endregion
+
+        #region command
+
         public ICommand EndPayOrder { get; private set; }
+
+        #endregion
 
         public CheckViewModel(Order order, Hotel hotel)
         {

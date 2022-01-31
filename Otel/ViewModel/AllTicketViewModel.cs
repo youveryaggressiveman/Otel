@@ -15,6 +15,8 @@ namespace Otel.ViewModel
 {
     public class AllTicketViewModel : BaseViewModel
     {
+        #region fields
+
         private AllTicketViewModelController controller;
 
         private Order selectedOrder;
@@ -29,6 +31,10 @@ namespace Otel.ViewModel
 
         private System.DateTime arrivalDate;
         private System.DateTime departureDate;
+
+        #endregion
+
+        #region properties
 
         public Order SelectedOrder
         {
@@ -120,7 +126,13 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand InfoAboutOrder { get; private set; }
+
+        #endregion
 
         public AllTicketViewModel()
         {

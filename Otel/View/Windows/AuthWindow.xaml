@@ -8,23 +8,21 @@
         x:Class="Otel.View.Windows.AuthWindow"
         mc:Ignorable="d"
         Title="Hotel City: Авторизация"
-        Height="700"
-        Width="600"
-        MinHeight="700"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        Height="560"
+        Width="450"
         FontSize="16"
-        MinWidth="600"
-        MaxHeight="700"
-        MaxWidth="600"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Window.DataContext>
         <ViewModel:AuthViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="450" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
@@ -42,7 +40,7 @@
                Grid.RowSpan="3"
                Opacity="0.2"
                Panel.ZIndex="-1"
-               Margin="-250">
+                   Margin="-117,-134,-42,19">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -58,11 +56,11 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -80,42 +78,44 @@
                    VerticalAlignment="Center" />
             <TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
-                      Style="{StaticResource TextBoxBaseStyle}"
+                      Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"
                       Text="{Binding Phone}"
+                      hc:InfoElement.Placeholder="Номер телефона"
                       Grid.Column="1"
-                      Width="250"
                       VerticalContentAlignment="Center"
                       FontSize="15"
-                      HorizontalContentAlignment="Left"
+                      HorizontalContentAlignment="Stretch"
                       Margin="20" />
             <TextBlock Text="Введите пароль:"
                    Grid.Row="2"
+                       
                        Style="{StaticResource TextBlockBaseStyle}"
                    HorizontalAlignment="Left"
                    Margin=" 20 0 0 0"
                    VerticalAlignment="Center" />
             <PasswordBox Grid.Column="1"
-                         Template="{StaticResource PasswordBox}"
+                         FontSize="16"
+                         Background="Transparent"
                          Grid.Row="2"
-                         Style="{StaticResource PasswordBoxBaseStyle}"
+                         hc:InfoElement.Placeholder="Пароль"
+                         Style="{StaticResource PasswordBoxExtend}"
                          x:Name="pswBox"
-                         Width="250"
                          VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Left"
+                         HorizontalContentAlignment="Stretch"
                          Margin="20"
                          PasswordChanged="pswBox_PasswordChanged" />
             <TextBox  Grid.Row="2"
                       x:Name="pswTextBox"
                       Visibility="Collapsed"
-                      Style="{StaticResource TextBoxBaseStyle}"
+                      Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"
                       Text="{Binding Password}"
                       Grid.Column="1"
-                      Width="250"
+                      hc:InfoElement.Placeholder="Пароль"
                       VerticalContentAlignment="Center"
                       FontSize="15"
-                      HorizontalContentAlignment="Left"
+                      HorizontalContentAlignment="Stretch"
                       Margin="20" />
             <CheckBox Content="Показать пароль"
                       Margin="0 0 40 0"
@@ -141,6 +141,7 @@
             <TextBlock Text="Хотите зарегистрироваться в системе"
                    Grid.Row="4"
                        FontSize="20"
+                       Margin="0 50 0 50"
                    Grid.Column="0"
                        Style="{StaticResource TextBlockBaseStyle}"
                    x:Name="registrLabel"

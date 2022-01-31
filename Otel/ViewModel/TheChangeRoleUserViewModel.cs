@@ -16,6 +16,8 @@ namespace Otel.ViewModel
 {
     public class TheChangeRoleUserViewModel : BaseViewModel
     {
+        #region fields
+
         private TheChangeRoleUserViewModelController controller;
 
         private ObservableCollection<User> userList;
@@ -30,6 +32,10 @@ namespace Otel.ViewModel
         private string serialPassport;
         private string phone;
         private string role;
+
+        #endregion
+
+        #region properties
 
         public Role SelectedRole
         {
@@ -131,8 +137,14 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand UpdateRoleBySelectedUser { get; private set; }
         public ICommand ViewSelectedUser { get; private set; }
+
+        #endregion
 
         public TheChangeRoleUserViewModel()
         {

@@ -12,10 +12,14 @@ namespace Otel.ViewModel
 {
     public class AuthViewModel : BaseViewModel
     {
-        private readonly AuthViewModelController controller;
+        #region fields
 
         private string phone;
         private string password;
+
+        #endregion
+
+        #region properties
 
         public string Phone
         {
@@ -37,13 +41,17 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand Cancel { get; private set; }
         public ICommand AuthorizeCommand { get; private set; }
 
+        #endregion
+
         public AuthViewModel()
         {
-            controller = new AuthViewModelController();
-
             Cancel = new DelegateCommand(CancelThisWindow);
             AuthorizeCommand = new DelegateCommand(Authorize);
         }

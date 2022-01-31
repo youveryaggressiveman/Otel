@@ -14,6 +14,8 @@ namespace Otel.ViewModel
 {
     public class TicketPaymentViewModel : BaseViewModel
     {
+        #region fields
+
         private TicketPaymentViewModelController controller;
 
         private ObservableCollection<Room> room;
@@ -34,6 +36,10 @@ namespace Otel.ViewModel
         private Visibility visibility = Visibility.Collapsed;
 
         private int price;
+
+        #endregion
+
+        #region properties
 
         public Visibility Visibility
         {
@@ -144,8 +150,14 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand Cancel { get; private set; }
         public ICommand Pay { get; private set; }
+
+        #endregion
 
         public TicketPaymentViewModel(Order order, Hotel hotel)
         {

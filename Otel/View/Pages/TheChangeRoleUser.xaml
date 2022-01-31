@@ -47,8 +47,8 @@
                            FontSize="42"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
-                <ListView Grid.Row="1"
-                          Style="{StaticResource ListViewBaseStyle}"
+                <ListBox Grid.Row="1"
+                          Style="{StaticResource ListBoxBaseStyle}"
                           Margin="20"
                           SelectedItem="{Binding SelectedUser}"
                           ItemsSource="{Binding UserList}"
@@ -57,10 +57,11 @@
                           Height="410"
                           FontSize="20"
                           Background="Transparent">
-                    <ListView.ItemTemplate>
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
+                                           FontSize="16"
                                            Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">
                             <Run Text="Пользователь(ФИ): " />
@@ -75,14 +76,14 @@
                                 </TextBlock>
                             </StackPanel>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.Resources>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius"
                                     Value="8" />
                         </Style>
-                    </ListView.Resources>
-                </ListView>
+                    </ListBox.Resources>
+                </ListBox>
                 <Button Grid.Row="2"
                         Height="40"
                         FontSize="16"

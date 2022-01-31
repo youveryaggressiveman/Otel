@@ -233,7 +233,7 @@
                         Grid.Row="6"
                         Grid.ColumnSpan="2"
                         Grid.Column="1">
-                <ListView Margin="10"
+                <ListView Margin="20 10 20 10"
                           SelectedItem="{Binding SelectedRoomForDelete}"
                           Height="50"
                           Style="{StaticResource ListBoxBaseStyle}"

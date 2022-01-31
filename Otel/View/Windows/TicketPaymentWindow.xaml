@@ -7,22 +7,19 @@
         xmlns:converter="clr-namespace:Otel.Converter"
         mc:Ignorable="d"
         Title="Hotel City: Оплата"
-        Height="800"
+        Height="650"
         Width="550"
         FontSize="16"
         WindowStartupLocation="CenterScreen"
-        MinHeight="800"
-        MinWidth="550"
-        MaxHeight="800"
-        MaxWidth="550"
+        ResizeMode="NoResize"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.Resources>
         <converter:PriceConverter x:Key="myPriceConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <Grid>
@@ -40,8 +37,7 @@
                    RenderTransformOrigin="0.85,-0.1"
                    Opacity="0.2"
                    Panel.ZIndex="-1"
-                   Margin="-550"
-                   Grid.Row="1"
+                   Margin="-550,-598,-550,-408"
                    Grid.RowSpan="3">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -58,13 +54,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"
                        Grid.Column="0"
@@ -210,6 +206,7 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center" />
             <StackPanel Grid.Row="6"
+                        Margin="0 20 0 20"
                         Grid.Column="1"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"

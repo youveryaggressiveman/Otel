@@ -14,6 +14,8 @@ namespace Otel.ViewModel
 {
     public class RegistrViewModel : BaseViewModel
     {
+        #region fields
+
         private readonly RegistrViewModelController controller;
 
         private ObservableCollection<Country> countries;
@@ -29,6 +31,10 @@ namespace Otel.ViewModel
         private string phone;
 
         private Visibility visibility = Visibility.Collapsed;
+
+        #endregion
+
+        #region properties
 
         public Visibility Visibility
         {
@@ -130,8 +136,14 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand Cancel { get; private set; }
         public ICommand RegistrCommand { get; private set; }
+
+        #endregion
 
         public RegistrViewModel()
         {

@@ -15,6 +15,8 @@ namespace Otel.ViewModel
 {
     public class AdminViewModel : BaseViewModel
     {
+        #region fields
+
         private AdminViewModelController controller;
 
         private Room selectedRoomByDelete;
@@ -36,6 +38,10 @@ namespace Otel.ViewModel
         private string description;
         private string numberOfRoom;
         private string numberOfPrice;
+
+        #endregion
+
+        #region properties
 
         public Country SelectedCountry
         {
@@ -197,6 +203,10 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand PostNewCurrency { get; private set; }
         public ICommand PostNewTypeRoom { get; private set; }
         public ICommand PostNewCountry { get; private set; }
@@ -204,6 +214,8 @@ namespace Otel.ViewModel
         public ICommand PutInNewOtel { get; private set; }
         public ICommand PutInNewImage { get; private set; }
         public ICommand DeleteRoom { get; private set; }
+
+        #endregion
 
         public AdminViewModel()
         {

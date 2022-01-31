@@ -19,6 +19,7 @@ namespace Otel.ViewModel
     public class TicketViewModel : BaseViewModel
     {
         #region fields
+
         private readonly TicketViewModelController controller;
 
         private Room selectedRoomForDelete;
@@ -379,6 +380,7 @@ namespace Otel.ViewModel
         public ICommand NextImage { get; private set; }
         public ICommand PreviousImage { get; private set; }
         #endregion
+
         public TicketViewModel()
         {
             controller = new TicketViewModelController();

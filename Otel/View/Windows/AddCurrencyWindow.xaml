@@ -6,15 +6,13 @@
         xmlns:converter="clr-namespace:Otel.Converter"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
         x:Class="Otel.View.Windows.AddCurrencyWindow"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="HotelCity: Добавление новой страны"
-        Height="450"
+        Height="330"
         Width="450"
-        MinHeight="450"
-        MinWidth="450"
+        ResizeMode="NoResize"
         FontSize="16"
-        MaxHeight="450"
-        MaxWidth="450"
         WindowStartupLocation="CenterScreen"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.Resources>
@@ -26,9 +24,9 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
@@ -42,12 +40,12 @@
         </StackPanel>
         <TextBlock Text="💵"
                    Style="{StaticResource TextBlockBaseStyle}"
-                   FontSize="350"
+                   FontSize="250"
                    RenderTransformOrigin="0.8, 0.3"
-                   Grid.RowSpan="3"
+                   Grid.RowSpan="4"
                    Opacity="0.2"
                    Panel.ZIndex="-1"
-                   Margin="-250">
+                   Margin="47,-18,54,-40">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -75,28 +73,11 @@
                        Text="Введите валюту: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="2"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="150"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Валюта"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="currencyBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="currencyBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox x:Name="currencyBox"
                      Background="Transparent"
                      Grid.Row="2"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Валюта"
+                     Style="{StaticResource TextBoxExtend}"
                      Text="{Binding Currency}"
                      Height="34"
                      Grid.Column="1"
@@ -109,6 +90,7 @@
         <Button Grid.Row="3"
                 Height="40"
                 FontSize="16"
+                Width="200"
                 IsDefault="True"
                 Style="{StaticResource ButtonPrimary}"
                 Content="Добавить новую валюту"

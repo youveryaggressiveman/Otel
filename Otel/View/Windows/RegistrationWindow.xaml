@@ -6,16 +6,14 @@
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
         xmlns:converter="clr-namespace:Otel.Converter"
         x:Class="Otel.View.Windows.RegistrationWindow"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="Hotel City: Регистрация"
         WindowStartupLocation="CenterScreen"
-        Height="875"
+        Height="750"
         Width="640"
-        MinHeight="875"
-        MinWidth="640"
+        ResizeMode="NoResize"
         FontSize="16"
-        MaxHeight="875"
-        MaxWidth="640"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
     <Window.DataContext>
         <ViewModel:RegistrViewModel />
@@ -26,13 +24,13 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
             <RowDefinition Height="auto" />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
@@ -78,13 +76,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="Введите имя:"
@@ -93,26 +91,9 @@
                        Style="{StaticResource TextBlockBaseStyle}"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="0"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Имя"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="nameTextbox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="nameTextbox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox Grid.Column="1"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     Style="{StaticResource TextBoxExtend}"
+                     hc:InfoElement.Placeholder="Имя"
                      Text="{Binding FirstName}"
                      x:Name="nameTextbox"
                      Background="Transparent"
@@ -126,26 +107,9 @@
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Фамилия"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="secondNameTextBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="secondNameTextBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox Grid.Column="1"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Фамилия"
+                     Style="{StaticResource TextBoxExtend}"
                      Background="Transparent"
                      x:Name="secondNameTextBox"
                      Text="{Binding SecondName}"
@@ -160,27 +124,10 @@
                        Margin=" 20 0 0 0"
                        Style="{StaticResource TextBlockBaseStyle}"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Отчество"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="lastNameTextBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="lastNameTextBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox Grid.Column="1"
                      Background="Transparent"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Отчество"
+                     Style="{StaticResource TextBoxExtend}"
                      x:Name="lastNameTextBox"
                      Text="{Binding LastName}"
                      Width="250"
@@ -218,27 +165,10 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
                            Margin=" 20 0 0 0" />
-                <TextBlock Grid.Column="1"
-                           Margin="5 20 0 20"
-                           Width="120"
-                           Padding="2"
-                           Style="{StaticResource TextBlockBaseStyle}"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Серия"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="serialTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="serialTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
                 <TextBox  Width="120"
                           Margin="0 20 0 20"
-                          Style="{StaticResource TextBoxBaseStyle}"
+                          hc:InfoElement.Placeholder="Серия"
+                          Style="{StaticResource TextBoxExtend}"
                           Background="Transparent"
                           x:Name="serialTextBox"
                           Grid.Column="1"
@@ -248,26 +178,9 @@
                            Style="{StaticResource TextBlockBaseStyle}"
                            VerticalAlignment="Center"
                            Grid.Column="2" />
-                <TextBlock Grid.Column="3"
-                           Style="{StaticResource TextBlockBaseStyle}"
-                           Margin="5 20 0 20"
-                           Width="100"
-                           Padding="2"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Номер"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="numberTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="numberTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
                 <TextBox Width="100"
-                         Style="{StaticResource TextBoxBaseStyle}"
+                         hc:InfoElement.Placeholder="Номер"
+                         Style="{StaticResource TextBoxExtend}"
                          Grid.Column="3"
                          Background="Transparent"
                          x:Name="numberTextBox"
@@ -285,26 +198,9 @@
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="5"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       Grid.Column="1"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Телефон"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="phoneTextBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="phoneTextBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox Grid.Column="1"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Телефон"
+                     Style="{StaticResource TextBoxExtend}"
                      Text="{Binding Phone}"
                      Background="Transparent"
                      x:Name="phoneTextBox"
@@ -322,26 +218,9 @@
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <TextBlock Grid.Row="6"
-                       Grid.Column="1"
-                       Style="{StaticResource TextBlockBaseStyle}"
-                       Margin="25 20 20 20"
-                       Width="250"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Text="Пароль"
-                       Foreground="{StaticResource WatermarkBrushForeground}">
-                <TextBlock.Visibility>
-                    <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                        <Binding ElementName="pswTextBox"
-                                 Path="Text.IsEmpty" />
-                        <Binding ElementName="pswTextBox"
-                                 Path="IsFocused" />
-                    </MultiBinding>
-                </TextBlock.Visibility>
-            </TextBlock>
             <TextBox Grid.Column="1"
-                     Style="{StaticResource TextBoxBaseStyle}"
+                     hc:InfoElement.Placeholder="Пароль"
+                     Style="{StaticResource TextBoxExtend}"
                      x:Name="pswTextBox"
                      Background="Transparent"
                      Width="250"

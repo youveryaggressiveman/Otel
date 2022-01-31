@@ -14,9 +14,15 @@ namespace Otel.ViewModel
 {
     public class AddCountryViewModel : BaseViewModel
     {
+        #region fields
+
         private AddCountryViewModelController controller;
 
         private string country;
+
+        #endregion
+
+        #region properties
 
         public string Country
         {
@@ -28,7 +34,13 @@ namespace Otel.ViewModel
             }
         }
 
+        #endregion
+
+        #region command
+
         public ICommand AddNewCountry { get; private set; }
+
+        #endregion
 
         public AddCountryViewModel()
         {
