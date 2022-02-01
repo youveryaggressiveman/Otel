@@ -59,7 +59,7 @@ namespace Otel.ViewModel
         private Visibility visibilityTheChangeRole = Visibility.Collapsed;
         private Visibility visibilityExitInAccount = Visibility.Collapsed;
         private Visibility visibilityAdminButton = Visibility.Collapsed;
-        private Visibility visibilityHomeButton = Visibility.Collapsed;
+        private Visibility visibilityHomeButton = Visibility.Visible;
         private Visibility visibilityAllTicketButton = Visibility.Visible;
 
         private bool isEnabledButton = false;
@@ -451,58 +451,22 @@ namespace Otel.ViewModel
 
         private void TheChangeRole(object obj)
         {
-            VisibilityTheChangeRole = Visibility.Collapsed;
-            VisibilityAllTicketButton = Visibility.Collapsed;
-            VisibilityHomeButton = Visibility.Visible;
-            VisibilityAdminButton = Visibility.Visible;
+            LoadClient();
         }
 
         private void PageAdminMode(object obj)
         {
-            VisibilityAdminButton = Visibility.Collapsed;
-            VisibilityAllTicketButton = Visibility.Collapsed;
-            VisibilityHomeButton = Visibility.Visible;
-
-            if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
-            {
-                VisibilityTheChangeRole = Visibility.Visible;
-            }
-            
-            if (UserSingltone.User.RoleID == 2)
-            {
-                VisibilityTheChangeRole = Visibility.Collapsed;
-            }
+            LoadClient();
         }
 
         private void PageHome(object obj)
         {
-            VisibilityAllTicketButton = Visibility.Visible;
-            VisibilityHomeButton = Visibility.Collapsed;
-
-            if (UserSingltone.User.RoleID == 2)
-            {
-                VisibilityAdminButton = Visibility.Visible;
-            }
-
-            if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
-            {
-                VisibilityAdminButton = Visibility.Visible;
-                VisibilityTheChangeRole = Visibility.Collapsed;
-            }
-
-            if (UserSingltone.User.RoleID == 1)
-            {
-                VisibilityAdminButton = Visibility.Collapsed;
-                VisibilityTheChangeRole = Visibility.Collapsed;
-            }
+            LoadClient();
         }
 
         private void PageAllTicket(object obj)
         {
-            VisibilityTheChangeRole = Visibility.Collapsed;
-            VisibilityAllTicketButton = Visibility.Collapsed;
-            VisibilityAdminButton = Visibility.Collapsed;
-            VisibilityHomeButton = Visibility.Visible;
+            LoadClient();
         }
 
         private void SetPreviousImage(object obj)
@@ -668,7 +632,7 @@ namespace Otel.ViewModel
                 if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)
                 {
                     VisibilityAdminButton = Visibility.Visible;
-                    VisibilityTheChangeRole = Visibility.Collapsed;
+                    VisibilityTheChangeRole = Visibility.Visible;
                 }
 
                 if (UserSingltone.User.RoleID == 1)
@@ -683,7 +647,7 @@ namespace Otel.ViewModel
                 VisibilityLabel = Visibility.Collapsed;
                 VisibilityButton = Visibility.Visible;
                 VisibilityAdminButton = Visibility.Collapsed;
-                VisibilityHomeButton = Visibility.Collapsed;
+                VisibilityHomeButton = Visibility.Visible;
                 VisibilityTheChangeRole = Visibility.Collapsed;
                 VisibilityAllTicketButton = Visibility.Visible;
                 VisibilityExitInAccount = Visibility.Collapsed;

@@ -126,6 +126,7 @@
                          Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding FIO}"
                          Width="250"
+                         HorizontalScrollBarVisibility="Auto"
                          Background="Transparent"
                          IsEnabled="False"
                          FontSize="18"
@@ -142,6 +143,7 @@
                 <TextBox Grid.Row="2"
                          Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Phone}"
+                         HorizontalScrollBarVisibility="Auto"
                          Width="250"
                          Background="Transparent"
                          IsEnabled="False"
@@ -160,6 +162,7 @@
                          Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Country}"
                          Width="250"
+                         HorizontalScrollBarVisibility="Auto"
                          Background="Transparent"
                          IsEnabled="False"
                          FontSize="18"
@@ -177,6 +180,7 @@
                          Style="{StaticResource TextBoxBaseStyle}"
                          Text="{Binding Role}"
                          Width="250"
+                         HorizontalScrollBarVisibility="Auto"
                          Background="Transparent"
                          IsEnabled="False"
                          FontSize="18"
@@ -203,13 +207,14 @@
                                VerticalAlignment="Center" />
                     <TextBox Background="Transparent"
                              Width="100"
+                             HorizontalScrollBarVisibility="Auto"
                              IsEnabled="False"
                              Style="{StaticResource TextBoxBaseStyle}"
                              Text="{Binding SerialPassport}"
                              FontSize="15"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"
-                             Margin="0,23" />
+                             Margin="10,23 0 22" />
                     <TextBlock Grid.Row="3"
                                Text=" и номер "
                                FontSize="15"
@@ -218,17 +223,19 @@
                                VerticalAlignment="Center" />
                     <TextBox Background="Transparent"
                              Width="100"
+                             Margin="10,23 0 22"
                              Style="{StaticResource TextBoxBaseStyle}"
                              IsEnabled="False"
+                             HorizontalScrollBarVisibility="Auto"
                              Text="{Binding NumberPassport}"
                              FontSize="15"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Center"
-                             Margin="0,23" />
+                             VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="3"
                                Text=" паспорта "
                                Style="{StaticResource TextBlockBaseStyle}"
                                FontSize="15"
+                               Margin="10,23 0 23"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center" />
                 </StackPanel>

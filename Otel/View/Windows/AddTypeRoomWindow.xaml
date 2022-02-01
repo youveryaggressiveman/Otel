@@ -30,17 +30,25 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <TextBlock Text="🌴 | Hotel City "
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Hotel City"
+                           Margin="0 5 0 0"
                            Style="{StaticResource TextBlockDefaultPrimary}"
-                           FontSize="50"
                            FontWeight="Bold"
+                           FontSize="45"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
+                <hc:Divider  LineStrokeThickness="2"
+                             LineStroke="{DynamicResource PrimaryBrush}"
+                             Margin="0 2 0 0"
+                             HorizontalAlignment="Center"
+                             Height="2"
+                             VerticalAlignment="Top"
+                             Width="230" />
             </StackPanel>
             <TextBlock Text="🏠"
                        FontSize="250"
+                       Foreground="#a6b5b3"
                        RenderTransformOrigin="0.7, -0.15"
                        Grid.RowSpan="3"
                        Opacity="0.2"
@@ -76,6 +84,7 @@
                 <TextBox x:Name="typeRoomBox"
                          Background="Transparent"
                          Grid.Row="2"
+                         HorizontalScrollBarVisibility="Auto"
                          hc:InfoElement.Placeholder="Тип комнаты"
                          Style="{StaticResource TextBoxExtend}"
                          Text="{Binding TypeRoom}"

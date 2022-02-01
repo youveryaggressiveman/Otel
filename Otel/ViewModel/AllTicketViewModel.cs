@@ -149,7 +149,6 @@ namespace Otel.ViewModel
         private async void ShowInfo(object obj)
         {
 
-
             if (SelectedOrder == null)
             {
                 HandyControl.Controls.MessageBox.Info("Выберите билет", "Предупреждение");
@@ -183,6 +182,7 @@ namespace Otel.ViewModel
 
         private async void LoadAllTicket()
         {
+
             var allOrders = await controller.GetOrderListByUserId(UserSingltone.User.ID);
 
             foreach (var item in allOrders)

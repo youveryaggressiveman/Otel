@@ -5,6 +5,7 @@ using Otel.Model;
 using Otel.View.Windows;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 

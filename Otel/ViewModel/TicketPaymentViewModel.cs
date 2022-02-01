@@ -29,6 +29,7 @@ namespace Otel.ViewModel
         private string numberOfHotel;
         private string addressOfOtel;
         private string valueOfPrice;
+        private string discount;
 
         private System.DateTime arrivalDate;
         private System.DateTime departureDate;
@@ -40,6 +41,16 @@ namespace Otel.ViewModel
         #endregion
 
         #region properties
+
+        public string Discount
+        {
+            get => discount;
+            set
+            {
+                discount = value;
+                OnPropertyChanged(nameof(Discount));
+            }
+        }
 
         public Visibility Visibility
         {
@@ -267,6 +278,7 @@ namespace Otel.ViewModel
             ArrivalDate = order.ArrivalDate;
             DepartureDate = order.DepartureDate;
             Country = hotel.AddressOfOtel.Country.Name;
+            Discount = Convert.ToString(UserSingltone.User.Role.Discount) + "%";
 
             foreach (var item in order.Room)
             {

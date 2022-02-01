@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Otel.View.Windows"
         xmlns:ViewModel="clr-namespace:Otel.ViewModel"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         x:Class="Otel.View.Windows.CheckWindow"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -19,15 +20,21 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock Text="🌴 | Hotel City "
-                   Style="{StaticResource TextBlockDefaultPrimary}"
-                   FontSize="50"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Hotel City"
+                       Margin="0 5 0 0"
+                       Style="{StaticResource TextBlockDefaultPrimary}"
+                       FontWeight="Bold"
+                       FontSize="45"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <hc:Divider  LineStrokeThickness="2"
+                         LineStroke="{DynamicResource PrimaryBrush}"
+                         Margin="0 2 0 0"
+                         HorizontalAlignment="Center"
+                         Height="2"
+                         VerticalAlignment="Top"
+                         Width="230" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

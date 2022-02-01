@@ -28,21 +28,28 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource TextBlockDefaultPrimary}"
-                       Text="🌴 | Hotel City"
-                       FontSize="50"
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Hotel City"
+                       Margin="0 5 0 0"
+                       Style="{StaticResource TextBlockDefaultPrimary}"
                        FontWeight="Bold"
+                       FontSize="45"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
+            <hc:Divider  LineStrokeThickness="2"
+                         LineStroke="{DynamicResource PrimaryBrush}"
+                         Margin="0 2 0 0"
+                         HorizontalAlignment="Center"
+                         Height="2"
+                         VerticalAlignment="Top"
+                         Width="230" />
         </StackPanel>
         <TextBlock Text="💳"
                    FontSize="420"
                    RenderTransformOrigin="0.5,0.2"
                    Grid.RowSpan="3"
                    Opacity="0.2"
+                   Foreground="#a6b5b3"
                    Panel.ZIndex="-1"
                    Margin="-16,-2,94,-127">
             <TextBlock.RenderTransform>

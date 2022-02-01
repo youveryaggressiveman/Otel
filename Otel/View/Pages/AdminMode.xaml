@@ -88,26 +88,11 @@
                            Style="{StaticResource TextBlockBaseStyle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                <TextBlock Grid.Row="2"
-                           Grid.Column="1"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Название "
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="nameOtelTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="nameOtelTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
                 <TextBox Text="{Binding NameOtel}"
-                         Style="{StaticResource TextBoxExtendBaseStyle}"
+                         Style="{StaticResource TextBoxExtend}"
+                         hc:InfoElement.Placeholder="Название"
                          x:Name="nameOtelTextBox"
+                         HorizontalScrollBarVisibility="Auto"
                          Background="Transparent"
                          Grid.Row="2"
                          Grid.Column="1"
@@ -131,27 +116,12 @@
                                Style="{StaticResource TextBlockBaseStyle}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="1"
-                               Margin="25 20 20 20"
-                               Width="110"
-                               VerticalAlignment="Center"
-                               FontSize="15"
-                               Text="Адрес "
-                               Style="{StaticResource TextBlockBaseStyle}"
-                               Foreground="{StaticResource WatermarkBrushForeground}">
-                        <TextBlock.Visibility>
-                            <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                                <Binding ElementName="nameStreetTextBox"
-                                         Path="Text.IsEmpty" />
-                                <Binding ElementName="nameStreetTextBox"
-                                         Path="IsFocused" />
-                            </MultiBinding>
-                        </TextBlock.Visibility>
-                    </TextBlock>
                     <TextBox Background="Transparent"
                              Grid.Column="1"
+                             HorizontalScrollBarVisibility="Auto"
                              x:Name="nameStreetTextBox"
-                             Style="{StaticResource TextBoxBaseStyle}"
+                             Style="{StaticResource TextBoxExtend}"
+                             hc:InfoElement.Placeholder="Название"
                              Text="{Binding NameStreet}"
                              Width="130"
                              VerticalContentAlignment="Center"
@@ -163,28 +133,13 @@
                                Style="{StaticResource TextBlockBaseStyle}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="3"
-                               Margin="25 20 20 20"
-                               Width="50"
-                               VerticalAlignment="Center"
-                               FontSize="15"
-                               Text="Номер "
-                               Style="{StaticResource TextBlockBaseStyle}"
-                               Foreground="{StaticResource WatermarkBrushForeground}">
-                        <TextBlock.Visibility>
-                            <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                                <Binding ElementName="numberStreetTextBox"
-                                         Path="Text.IsEmpty" />
-                                <Binding ElementName="numberStreetTextBox"
-                                         Path="IsFocused" />
-                            </MultiBinding>
-                        </TextBlock.Visibility>
-                    </TextBlock>
                     <TextBox Background="Transparent"
                              x:Name="numberStreetTextBox"
                              Grid.Column="3"
-                             Style="{StaticResource TextBoxBaseStyle}"
+                             HorizontalScrollBarVisibility="Auto"
+                             Style="{StaticResource TextBoxExtend}"
                              Text="{Binding NumberStreet}"
+                             hc:InfoElement.Placeholder="Номер"
                              Width="60"
                              VerticalContentAlignment="Center"
                              FontSize="15"
@@ -282,27 +237,11 @@
                            Style="{StaticResource TextBlockBaseStyle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                <TextBlock Grid.Row="2"
-                           Grid.Column="1"
-                           Style="{StaticResource TextBlockBaseStyle}"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Номер комнаты"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="numberRoomTextBox"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="numberRoomTextBox"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
                 <TextBox Background="Transparent"
+                         HorizontalScrollBarVisibility="Auto"
+                         hc:InfoElement.Placeholder="Номер комнаты"
                          x:Name="numberRoomTextBox"
-                         Style="{StaticResource TextBoxBaseStyle}"
+                         Style="{StaticResource TextBoxExtend}"
                          Text="{Binding NumberOfRoom}"
                          Grid.Row="2"
                          Grid.Column="1"
@@ -316,27 +255,11 @@
                            Text=" Цена: "
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                <TextBlock Grid.Row="3"
-                           Grid.Column="1"
-                           Style="{StaticResource TextBlockBaseStyle}"
-                           Margin="25 20 20 20"
-                           Width="170"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           Text="Цена за команту"
-                           Foreground="{StaticResource WatermarkBrushForeground}">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource TextWaterMarkConverter}">
-                            <Binding ElementName="priceByRoom"
-                                     Path="Text.IsEmpty" />
-                            <Binding ElementName="priceByRoom"
-                                     Path="IsFocused" />
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
                 <TextBox Background="Transparent"
+                         HorizontalScrollBarVisibility="Auto"
                          x:Name="priceByRoom"
-                         Style="{StaticResource TextBoxBaseStyle}"
+                         hc:InfoElement.Placeholder="Цена за комнату"
+                         Style="{StaticResource TextBoxExtend}"
                          Text="{Binding NumberOfPrice}"
                          Grid.Row="3"
                          Grid.Column="1"
@@ -372,18 +295,25 @@
                             Content="✚"
                             ToolTip="Добавить в список новую валюту" />
                 </StackPanel>
-                <Button Grid.Row="5"
-                        Grid.Column="0"
-                        Style="{StaticResource ButtonPrimary}"
-                        Width="130"
-                        Command="{Binding PutInNewRoom}"
-                        Content="Занести" />
-                <Button Grid.Row="5"
-                        Width="130"
-                        Style="{StaticResource ButtonPrimary}"
-                        Grid.Column="1"
-                        Command="{Binding DeleteRoom}"
-                        Content="Удалить" />
+                <StackPanel Grid.Row="5"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2">
+                    <Button
+                            Style="{StaticResource ButtonPrimary}"
+                            Width="130"
+                            Margin="40 0 40 0"
+                            Command="{Binding PutInNewRoom}"
+                            Content="Занести" />
+                    <Button 
+                            Width="130"
+                            Margin="40 0 40 0"
+                            Style="{StaticResource ButtonPrimary}"
+                            Command="{Binding DeleteRoom}"
+                            Content="Удалить" />
+                </StackPanel>
+                
                 <ListBox Grid.Row="6"
                           Style="{StaticResource ListBoxBaseStyle}"
                           ItemsSource="{Binding ListRoom}"
@@ -393,10 +323,10 @@
                           Height="140"
                           Margin=" 20 0 20 0"
                           Foreground="#5f6368"
-                          Width="360"
+                          Width="365"
                           Background="Transparent"
                           FontSize="18"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Center"
                           VerticalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

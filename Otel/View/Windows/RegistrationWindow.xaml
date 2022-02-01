@@ -33,19 +33,26 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <TextBlock Text="🌴 | Hotel City"
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Hotel City"
+                           Margin="0 5 0 0"
                            Style="{StaticResource TextBlockDefaultPrimary}"
-                           FontSize="50"
                            FontWeight="Bold"
+                           FontSize="45"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
+                <hc:Divider  LineStrokeThickness="2"
+                             LineStroke="{DynamicResource PrimaryBrush}"
+                             Margin="0 2 0 0"
+                             HorizontalAlignment="Center"
+                             Height="2"
+                             VerticalAlignment="Top"
+                             Width="230" />
             </StackPanel>
             <TextBlock Text="🌊"
                        FontSize="450"
                        RenderTransformOrigin="1,-0.3"
+                       Foreground="#a6b5b3"
                        Opacity="0.2"
                        Panel.ZIndex="-1"
                        Margin="-550"
@@ -96,6 +103,7 @@
                      hc:InfoElement.Placeholder="Имя"
                      Text="{Binding FirstName}"
                      x:Name="nameTextbox"
+                     HorizontalScrollBarVisibility="Auto"
                      Background="Transparent"
                      Width="250"
                      VerticalContentAlignment="Center"
@@ -114,6 +122,7 @@
                      x:Name="secondNameTextBox"
                      Text="{Binding SecondName}"
                      Grid.Row="1"
+                     HorizontalScrollBarVisibility="Auto"
                      Width="250"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
@@ -132,6 +141,7 @@
                      Text="{Binding LastName}"
                      Width="250"
                      Grid.Row="2"
+                     HorizontalScrollBarVisibility="Auto"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
@@ -166,6 +176,7 @@
                            HorizontalAlignment="Left"
                            Margin=" 20 0 0 0" />
                 <TextBox  Width="120"
+                          HorizontalScrollBarVisibility="Auto"
                           Margin="0 20 0 20"
                           hc:InfoElement.Placeholder="Серия"
                           Style="{StaticResource TextBoxExtend}"
@@ -179,6 +190,7 @@
                            VerticalAlignment="Center"
                            Grid.Column="2" />
                 <TextBox Width="100"
+                         HorizontalScrollBarVisibility="Auto"
                          hc:InfoElement.Placeholder="Номер"
                          Style="{StaticResource TextBoxExtend}"
                          Grid.Column="3"
@@ -204,6 +216,7 @@
                      Text="{Binding Phone}"
                      Background="Transparent"
                      x:Name="phoneTextBox"
+                     HorizontalScrollBarVisibility="Auto"
                      MaxLength="11"
                      PreviewTextInput="phoneTextBox_PreviewTextInput"
                      Width="250"
@@ -224,6 +237,7 @@
                      x:Name="pswTextBox"
                      Background="Transparent"
                      Width="250"
+                     HorizontalScrollBarVisibility="Auto"
                      Text="{Binding Password}"
                      Grid.Row="6"
                      VerticalContentAlignment="Center"

@@ -24,21 +24,22 @@ namespace Otel.Windows
         private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             string errorMessage = string.Format("Непредвиденная ошибка: {0}", e.Exception.Message);
-            MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            HandyControl.Controls.MessageBox.Error(errorMessage, "Ошибка");
             e.Handled = true;
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
         }
 
-        private void AdminButtom_Click(object sender, RoutedEventArgs e)
+        private void AdminRadioButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new AdminMode());
         }
 
-        private void AllTicketButton_Click(object sender, RoutedEventArgs e)
+        private void AllTicketRadioButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new AllTicket());
         }
@@ -46,9 +47,11 @@ namespace Otel.Windows
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new NewTicket(DataContext as TicketViewModel));
+
+            homeRadioButton.IsChecked = true;
         }
 
-        private void TheChangeRole_Click(object sender, RoutedEventArgs e)
+        private void TheChangeRoleRadioButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new TheChangeRoleUser());
         }

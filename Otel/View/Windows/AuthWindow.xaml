@@ -26,18 +26,29 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <TextBlock Text="🌴 | Hotel City "
-                   Style="{StaticResource TextBlockDefaultPrimary}"
-                   FontSize="50"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Hotel City"
+                           Margin="0 5 0 0"
+                           Style="{StaticResource TextBlockDefaultPrimary}"
+                           FontWeight="Bold"
+                           FontSize="45"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <hc:Divider  LineStrokeThickness="2"
+                             LineStroke="{DynamicResource PrimaryBrush}"
+                             Margin="0 2 0 0"
+                             HorizontalAlignment="Center"
+                             Height="2"
+                             VerticalAlignment="Top"
+                             Width="230" />
+            </StackPanel>
         </StackPanel>
         <TextBlock Text="🌊"
                FontSize="450"
                    Style="{StaticResource TextBlockBaseStyle}"
                RenderTransformOrigin="1, 0.3"
                Grid.RowSpan="3"
+                   Foreground="#a6b5b3"
                Opacity="0.2"
                Panel.ZIndex="-1"
                    Margin="-117,-134,-42,19">
@@ -80,6 +91,7 @@
                       x:Name="phoneTextBox"
                       Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"
+                      HorizontalScrollBarVisibility="Auto"
                       Text="{Binding Phone}"
                       hc:InfoElement.Placeholder="Номер телефона"
                       Grid.Column="1"
@@ -96,6 +108,7 @@
                    VerticalAlignment="Center" />
             <PasswordBox Grid.Column="1"
                          FontSize="16"
+                         Height="36"
                          Background="Transparent"
                          Grid.Row="2"
                          hc:InfoElement.Placeholder="Пароль"
@@ -108,6 +121,7 @@
             <TextBox  Grid.Row="2"
                       x:Name="pswTextBox"
                       Visibility="Collapsed"
+                      Height="36"
                       Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"
                       Text="{Binding Password}"
