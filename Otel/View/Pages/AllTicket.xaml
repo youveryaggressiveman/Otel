@@ -20,9 +20,9 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="Все заказы"
                        Grid.Column="0"
@@ -32,13 +32,15 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
             <ListBox Grid.Row="1"
-                      Style="{StaticResource ListBoxBaseStyle}"
-                      Margin="20"
-                      SelectedItem="{Binding SelectedOrder}"
-                      ItemsSource="{Binding OrderList}"
-                      Foreground="#5f6368"
-                      FontSize="20"
-                      Background="Transparent">
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     Margin="20"
+                     Height="550"
+                     Width="430"
+                     SelectedItem="{Binding SelectedOrder}"
+                     ItemsSource="{Binding OrderList}"
+                     Foreground="#5f6368"
+                     FontSize="20"
+                     Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -67,6 +69,7 @@
             <Button Grid.Row="2"
                     FontSize="16"
                     Height="40"
+                    Margin="15"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding InfoAboutOrder}"
                     Content="Посмотреть информацию о выбранном билете" />
@@ -86,13 +89,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="Информация о заказе"
                        Grid.Column="0"
@@ -109,6 +112,7 @@
                      HorizontalScrollBarVisibility="Auto"
                      Background="Transparent"
                      FontSize="18"
+                     Margin="20"
                      Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
@@ -123,6 +127,7 @@
                      Style="{StaticResource TextBoxBaseStyle}"
                      Text="{Binding NameOtel}"
                      Width="250"
+                     Margin="20"
                      IsReadOnly="True"
                      HorizontalScrollBarVisibility="Auto"
                      FontSize="18"
@@ -142,6 +147,7 @@
                      Text="{Binding Address}"
                      Style="{StaticResource TextBoxBaseStyle}"
                      Width="250"
+                     Margin="20"
                      IsReadOnly="True"
                      Background="Transparent"
                      FontSize="18"
@@ -166,14 +172,14 @@
                 <Run Text="о комнатах:" />
             </TextBlock>
             <ListBox Grid.Row="4"
-                      Grid.Column="1"
-                      Style="{StaticResource ListBoxBaseStyle}"
-                      Width="250"
-                      Margin="20 20 20 20"
-                      ItemsSource="{Binding RoomList}"
-                      Foreground="#5f6368"
-                      FontSize="18"
-                      Background="Transparent">
+                     Grid.Column="1"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     Width="250"
+                     Margin="40"
+                     ItemsSource="{Binding RoomList}"
+                     Foreground="#5f6368"
+                     FontSize="18"
+                     Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -198,6 +204,7 @@
             </ListBox>
             <StackPanel Grid.Row="5"
                         Grid.Column="0"
+                        Margin="0 20 0 20"
                         Grid.ColumnSpan="2"
                         Orientation="Horizontal">
                 <TextBlock Text="Дата заезда:"
@@ -213,7 +220,7 @@
                          Style="{StaticResource TextBoxBaseStyle}"
                          Width="auto"
                          Text="{Binding ArrivalDate, StringFormat='{}{0:dd.MM.yyyy}'}"
-                         Margin="15 0 0 0"
+                         Margin="10 0 0 0"
                          FontSize="18" />
                 <TextBlock Text="Дата выезда:"
                            Style="{StaticResource TextBlockBaseStyle}"
@@ -228,7 +235,7 @@
                          Background="Transparent"
                          Text="{Binding DepartureDate, StringFormat='{}{0:dd.MM.yyyy}'}"
                          IsReadOnly="True"
-                         Margin="15 0 0 0"
+                         Margin="10 0 0 0"
                          FontSize="18" />
             </StackPanel>
         </Grid>

@@ -2,11 +2,6 @@
 using Otel.Controllers;
 using Otel.Model;
 using Otel.View.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,7 +11,7 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private AddCountryViewModelController controller;
+        private readonly UniversalController<Country> universalControllerCreateCountry;
 
         private string country;
 
@@ -44,7 +39,7 @@ namespace Otel.ViewModel
 
         public AddCountryViewModel()
         {
-            controller = new AddCountryViewModelController();
+            universalControllerCreateCountry = new UniversalController<Country>();
 
             AddNewCountry = new DelegateCommand(NewCuntry);
         }
@@ -63,7 +58,7 @@ namespace Otel.ViewModel
                 Name = Country
             };
 
-           var newCountry = await controller.CreateCountry(country);
+           var newCountry = await universalControllerCreateCountry.CreateAnother(country, "");
 
             if (newCountry.ID == 0)
             {

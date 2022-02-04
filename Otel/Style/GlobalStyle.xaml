@@ -1,10 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    <!--Секция для Кистей-->
+
+    <!--Стиль для редактирования профиля-->
+    <Style TargetType="Ellipse"
+           x:Key="elipseAvatar">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <BlurEffect Radius="5"
+                                    RenderingBias="Performance" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Секция для кистей-->
     <SolidColorBrush x:Key="WatermarkBrushForeground"
-                     Color="#C0C0C0"/>
-    
+                     Color="#C0C0C0" />
+
     <!--Секция для ImageButton-->
     <Style TargetType="{x:Type Button}"
            x:Key="imageButton">
@@ -23,7 +39,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Секция для кнопок -->
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background"
@@ -76,7 +92,7 @@
                 <Setter Property="BorderThickness"
                         Value="0.5" />
             </Style>
-                   
+
         </Style.Resources>
     </Style>
 
@@ -327,7 +343,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Секция для TicketButton-->
     <Style x:Key="ticketButton"
            TargetType="{x:Type Button}">
@@ -365,7 +381,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Секция для NumberOfCardTextBox-->
     <Style TargetType="TextBox"
            x:Key="numberOfCardTextBox"
@@ -382,7 +398,7 @@
                 <VisualBrush.Visual>
                     <Label Content="XXXX XXXX XXXX XXXX"
                            Foreground="#C0C0C0"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" />
                 </VisualBrush.Visual>
             </VisualBrush>
         </Style.Resources>

@@ -10,7 +10,7 @@ namespace Otel.Core.Helper
 {
     public class AuthorizeHelper
     {
-        private AuthViewModelController controller;
+        private readonly AuthViewModelController controller;
 
         public AuthorizeHelper()
         {

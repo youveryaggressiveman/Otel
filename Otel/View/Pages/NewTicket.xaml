@@ -12,9 +12,7 @@
       Title="NewTicket"
       FontSize="16"
       FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
-    <ScrollViewer HorizontalScrollBarVisibility="Visible"
-        VerticalScrollBarVisibility="Visible">
-        <Grid>
+    <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="100" />
@@ -23,8 +21,8 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -35,15 +33,17 @@
                            Style="{StaticResource TextBlockSubTitle}"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"
-                           FontSize="42"
+                           FontSize="36"
                            HorizontalAlignment="Center" />
                 <TextBlock Grid.Row="1"
                            Style="{StaticResource TextBlockBaseStyle}"
-                           Text=" Выберите страну: "
+                           Text="Выберите страну:"
+                           Margin="20 0 0 0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
                 <TextBlock Style="{StaticResource TextBlockBaseStyle}"
-                           Text=" Выберите отель: "
+                           Text="Выберите отель:"
+                           Margin="20 0 0 0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Grid.Row="2" />
@@ -60,6 +60,7 @@
                 </ComboBox>
                 <ComboBox Grid.Row="2"
                           x:Name="NameOtelBox"
+                          SelectionChanged="NameOtelBox_OnSelectionChanged"
                           Style="{StaticResource ComboBoxExtend}"
                           Margin="20"
                           ItemsSource="{Binding HotelList}"
@@ -68,49 +69,42 @@
                           DisplayMemberPath="Name"
                           SelectedItem="{Binding SelectedHotel}"
                           Grid.Column="1" />
-                <StackPanel Grid.Row="3"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2">
-                    <Image Width="420"
-                           Height="350"
-                           Grid.ColumnSpan="2"
-                           Margin="20">
-                        <Image.Source>
-                            <Binding Path="ImageByOtel">
-                                <Binding.TargetNullValue>
-                                    <ImageSource>
-                                        /Resources/Image/SD-default-image.png
-                                    </ImageSource>
-                                </Binding.TargetNullValue>
-                            </Binding>
-                        </Image.Source>
-                    </Image>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Назад"
-                                Width="200"
-                                Margin="20 0 20 0"
-                                Style="{StaticResource ButtonPrimary}"
-                                Command="{Binding PreviousImage}" />
-                        <Button Content="Вперед"
-                                Margin="20 0 20 0"
-                                Style="{StaticResource ButtonPrimary}"
-                                Width="200"
-                                Command="{Binding NextImage}" />
-                    </StackPanel>
-                </StackPanel>
-
+                <hc:Carousel AutoRun="True"
+                             Grid.Row="3"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Top"
+                             Margin="20 25 0 0"
+                             Grid.Column="0"
+                             Name="Carousel"
+                             Grid.ColumnSpan="2"
+                             Width="420"
+                             Height="400">
+                    <hc:Carousel.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding}"
+                                   Width="420">
+                                <Image.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius"
+                                                Value="5"/>
+                                    </Style>
+                                </Image.Resources>
+                            </Image>
+                        </DataTemplate>
+                    </hc:Carousel.ItemTemplate>
+                </hc:Carousel>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="150" />
-                    <RowDefinition Height="75" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -121,7 +115,7 @@
                            Grid.ColumnSpan="3"
                            Style="{StaticResource TextBlockSubTitle}"
                            Text="Информация о заказе"
-                           FontSize="42"
+                           FontSize="36"
                            HorizontalAlignment="Center" />
                 <TextBlock Grid.Row="1"
                            Margin="15"
@@ -267,6 +261,7 @@
                 <ScrollViewer Style="{StaticResource ScrollViewerUpDown}"
                               Grid.Row="7"
                               Height="125"
+                              Margin="0 20 0 20"
                               Width="260"
                               Grid.Column="1"
                               Grid.ColumnSpan="2"
@@ -283,7 +278,7 @@
                 <Button Grid.Row="8"
                         FontSize="16"
                         HorizontalAlignment="Right"
-                        Margin="0 30 20 0"
+                        Margin="0 40 20 0"
                         Width="250"
                         IsDefault="True"
                         Height="40"
@@ -304,6 +299,4 @@
                         Width="1"
                         Margin="50,0,0,0" />
         </Grid>
-    </ScrollViewer>
-    
 </Page>

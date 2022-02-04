@@ -8,11 +8,12 @@ using Otel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Otel.Core.Services;
+using Otel.Core.Utils;
 
 namespace Otel.ViewModel
 {
@@ -20,6 +21,11 @@ namespace Otel.ViewModel
     {
         #region fields
 
+        private readonly IImageService imageService;
+
+        private readonly UniversalController<TypeRoom> universalControllerTypeRoomListByOtelID;
+        private readonly UniversalController<Hotel> universalControllerOtelListByCountryID;
+        private readonly UniversalController<Country> universalControllerCountry;
         private readonly TicketViewModelController controller;
 
         private Room selectedRoomForDelete;
@@ -34,7 +40,7 @@ namespace Otel.ViewModel
         private int imageIndex = 0;
         private int selectedHotelIndex = 0;
 
-        private List<BitmapSource> bitmapImages;
+        public List<BitmapSource> bitmapImages;
         private ObservableCollection<Room> roomNumber;
         private ObservableCollection<Country> countryOfOtelList;
         private ObservableCollection<Hotel> hotelList;
@@ -379,10 +385,16 @@ namespace Otel.ViewModel
         public ICommand DeleteRoom { get; private set; }
         public ICommand NextImage { get; private set; }
         public ICommand PreviousImage { get; private set; }
+        public ICommand ShowProfile { get; private set; }
         #endregion
 
         public TicketViewModel()
         {
+            imageService = new ImageService();
+
+            universalControllerTypeRoomListByOtelID = new UniversalController<TypeRoom>();
+            universalControllerOtelListByCountryID = new UniversalController<Hotel>();
+            universalControllerCountry = new UniversalController<Country>();
             controller = new TicketViewModelController();
 
             CountryOfOtelList = new ObservableCollection<Country>();
@@ -394,6 +406,7 @@ namespace Otel.ViewModel
 
             bitmapImages = new List<BitmapSource>();
 
+            ShowProfile = new DelegateCommand(Profile);
             Authorization = new DelegateCommand(Auth);
             Registration = new DelegateCommand(Registr);
             ViewTheChangeRole = new DelegateCommand(TheChangeRole);
@@ -409,6 +422,20 @@ namespace Otel.ViewModel
 
             LoadOtel();
             LoadClient();
+        }
+
+        private void Profile(object obj)
+        {
+            SetSplash(true);
+
+            AccountChangeWindow accountChangeWindow = new AccountChangeWindow();
+
+            accountChangeWindow.ShowDialog();
+
+            UpdateInfo();
+
+            SetSplash(false);
+
         }
 
         private void Auth(object obj)
@@ -505,7 +532,7 @@ namespace Otel.ViewModel
                 imageIndex = 0;
             }
 
-            if(bitmapImages.Count == 0)
+            if (bitmapImages.Count == 0)
             {
                 return;
             }
@@ -621,6 +648,8 @@ namespace Otel.ViewModel
 
                 IsEnabledButton = true;
 
+                ConvertByteToImage();
+
                 Phone = UserSingltone.User.Phone;
                 FirstName = UserSingltone.User.FirstName;
 
@@ -656,7 +685,7 @@ namespace Otel.ViewModel
             }
         }
 
-        private void SetSplash(bool isEnabled)
+        public void SetSplash(bool isEnabled)
         {
             if (isEnabled)
             {
@@ -724,7 +753,7 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if  (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
+            if (ArrivalDate < DateTime.Now && DeparatureDate < DateTime.Now)
             {
                 HandyControl.Controls.MessageBox.Info("Нельзя заказывать комнату на уже прошедшее число", "Предупреждение");
 
@@ -749,7 +778,7 @@ namespace Otel.ViewModel
             {
                 for (int i = 1; i < RoomList.Count; i++)
                 {
-                    if (RoomList[i].OtelID == RoomList[i-1].OtelID && RoomList[i].Number == RoomList[i - 1].Number)
+                    if (RoomList[i].OtelID == RoomList[i - 1].OtelID && RoomList[i].Number == RoomList[i - 1].Number)
                     {
                         HandyControl.Controls.MessageBox.Info("В вашем списке присутствуют две одинаковые комнаты.\nПожалуйста, оставьте только один экземпляр данной комнаты",
                            "Предупреждение");
@@ -811,7 +840,7 @@ namespace Otel.ViewModel
 
             bitmapImages = new List<BitmapSource>();
 
-            if(SelectedHotel == null)
+            if (SelectedHotel == null)
             {
                 ImageByOtel = null;
 
@@ -831,7 +860,9 @@ namespace Otel.ViewModel
 
                 return;
             }
-      
+
+            SaveImages();
+
             ImageByOtel = bitmapImages[0];
         }
 
@@ -842,7 +873,7 @@ namespace Otel.ViewModel
             try
             {
 
-                var hotelCountryList = await controller.GetOtelByCountry(SelectedCountry.ID);
+                var hotelCountryList = await universalControllerOtelListByCountryID.GetListInfoFromAnotherTableById("Otels", "country", SelectedCountry.ID);
 
                 HotelList = new ObservableCollection<Hotel>();
 
@@ -867,7 +898,7 @@ namespace Otel.ViewModel
 
             try
             {
-                var countryOfOtel = await controller.GetCountryData();
+                var countryOfOtel = await universalControllerCountry.GetAllInfo("Countries");
 
                 foreach (var item in countryOfOtel)
                 {
@@ -894,12 +925,40 @@ namespace Otel.ViewModel
                 return;
             }
 
-            var typeRoom = await controller.GetTypeRoomDataBySelectedOtel(SelectedHotel.ID);
+            var typeRoom = await universalControllerTypeRoomListByOtelID.GetListInfoFromAnotherTableById("TypeRooms", "otel", SelectedHotel.ID);
 
             foreach (var item in typeRoom)
             {
                 TypeRoomList.Add(item);
             }
+        }
+
+        private void ConvertByteToImage()
+        {
+            if (UserSingltone.User.Avatar == null)
+            {
+                Avatar = new BitmapImage(new Uri("pack://application:,,,/Otel;component/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png"));
+
+                return;
+            }
+
+            var bitmap = (BitmapSource)new ImageSourceConverter().ConvertFrom(UserSingltone.User.Avatar);
+
+            Avatar = bitmap;
+        }
+
+        private async void SaveImages()
+        {
+            await imageService.Save(bitmapImages, SelectedHotel.Name);
+        }
+
+        private void UpdateInfo()
+        {
+            Avatar = null;
+            Phone = null;
+            FirstName = null;
+
+            LoadClient();
         }
     }
 }

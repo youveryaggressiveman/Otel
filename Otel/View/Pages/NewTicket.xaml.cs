@@ -1,5 +1,11 @@
-﻿using Otel.ViewModel;
+﻿using System;
+using System.Windows;
+using Otel.ViewModel;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
+using Otel.Core.Services;
+using Otel.Core.Utils;
 
 namespace Otel.View.Pages
 {
@@ -13,6 +19,13 @@ namespace Otel.View.Pages
         {
             InitializeComponent();
             DataContext = viewModel;
+        }
+
+        private void NameOtelBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IImageService imageService = new ImageService();
+
+            Carousel.ItemsSource = imageService.FindImage((DataContext as TicketViewModel)?.SelectedHotel.Name);
         }
     }
 }

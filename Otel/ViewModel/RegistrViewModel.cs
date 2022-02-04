@@ -4,9 +4,7 @@ using Otel.Core;
 using Otel.Model;
 using Otel.View.Windows;
 using Otel.Windows;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,6 +14,8 @@ namespace Otel.ViewModel
     {
         #region fields
 
+        private readonly UniversalController<User> universalControllerCreateUser;
+        private readonly UniversalController<Country> universalControllerCountry;
         private readonly RegistrViewModelController controller;
 
         private ObservableCollection<Country> countries;
@@ -147,6 +147,8 @@ namespace Otel.ViewModel
 
         public RegistrViewModel()
         {
+            universalControllerCreateUser = new UniversalController<User>();
+            universalControllerCountry = new UniversalController<Country>();
             controller = new RegistrViewModelController();
 
             Cancel = new DelegateCommand(CancelThisWindow);
@@ -240,7 +242,7 @@ namespace Otel.ViewModel
                 },
             };
 
-            UserSingltone.User = await controller.CreateClient(user);
+            UserSingltone.User = await universalControllerCreateUser.CreateAnother(user, "Users");
 
             SetSplash(false);
 
@@ -267,7 +269,7 @@ namespace Otel.ViewModel
         {
             SetSplash(true);
 
-            var countryList = await controller.GetCountryData();
+            var countryList = await universalControllerCountry.GetAllInfo("Countries");
 
             foreach (var item in countryList)
             {

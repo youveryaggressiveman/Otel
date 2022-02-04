@@ -26,6 +26,8 @@ namespace Otel.Controllers
 
             var parsedResult = JsonSerializer.Deserialize<TypeRoom>(await result.Content.ReadAsStringAsync());
 
+            client.Dispose();
+
             return parsedResult;
         }
     }

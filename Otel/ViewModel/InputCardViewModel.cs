@@ -5,7 +5,6 @@ using Otel.Model;
 using Otel.View.Windows;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,7 +14,8 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private InputCardViewModelController controller;
+        private readonly UniversalController<Card> universalControllerCreateCard;
+        private readonly UniversalController<Card> universalControllerCardListByUserID;
 
         private Card selectedCard;
 
@@ -126,7 +126,8 @@ namespace Otel.ViewModel
 
         public InputCardViewModel()
         {
-            controller = new InputCardViewModelController();
+            universalControllerCreateCard = new UniversalController<Card>();
+            universalControllerCardListByUserID = new UniversalController<Card>();
 
             CardList = new ObservableCollection<Card>();
 
@@ -208,7 +209,7 @@ namespace Otel.ViewModel
 
         private async void LoadAllCard()
         {
-            var newCardList = await controller.GetListCardByClientId(UserSingltone.User.ID);
+            var newCardList = await universalControllerCardListByUserID.GetListInfoFromAnotherTableById("Cards", "client", UserSingltone.User.ID);
 
             foreach (var item in newCardList)
             {
@@ -255,7 +256,7 @@ namespace Otel.ViewModel
                 LastFourDigits = Convert.ToInt32(lastFourDigits)
             };
 
-            var hashcode = await controller.CreateCard(card);
+            var hashcode = await universalControllerCreateCard.CreateAnother(card, "Cards");
 
             CardSingltone.Card = hashcode;
 

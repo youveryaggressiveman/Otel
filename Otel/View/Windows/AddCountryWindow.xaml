@@ -81,7 +81,7 @@
                        Text="Введите страну: "
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
-            <TextBox x:Name="countryBox"
+            <hc:TextBox x:Name="countryBox"
                      Background="Transparent"
                      Grid.Row="2"
                      HorizontalScrollBarVisibility="Auto"

@@ -26,6 +26,8 @@ namespace Otel.Controllers
 
             var parsedResult = JsonSerializer.Deserialize<Hotel>(await result.Content.ReadAsStringAsync());
 
+            client.Dispose();
+
             return parsedResult;
         }
 

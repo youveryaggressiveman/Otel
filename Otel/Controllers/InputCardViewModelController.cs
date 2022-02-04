@@ -38,6 +38,8 @@ namespace Otel.Controllers
 
             var parsedResult = JsonSerializer.Deserialize<Card>(await result.Content.ReadAsStringAsync());
 
+            client.Dispose();
+
             return parsedResult;
         }
     }

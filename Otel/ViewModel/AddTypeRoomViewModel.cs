@@ -2,11 +2,6 @@
 using Otel.Controllers;
 using Otel.Model;
 using Otel.View.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,7 +11,7 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private AddTypeRoomViewModelController controller;
+        private readonly UniversalController<TypeRoom> universalControllerCreateTypeRoom;
 
         private string typeRoom;
 
@@ -44,7 +39,7 @@ namespace Otel.ViewModel
 
         public AddTypeRoomViewModel()
         {
-            controller = new AddTypeRoomViewModelController();
+            universalControllerCreateTypeRoom = new UniversalController<TypeRoom>();
 
             AddNewTypeRoom = new DelegateCommand(NewTypeRoom);
         }
@@ -63,7 +58,7 @@ namespace Otel.ViewModel
                 Name = TypeRoom
             };
 
-            var newTypeRoom = await controller.CreateTypeRoom(typeRoom);
+            var newTypeRoom = await universalControllerCreateTypeRoom.CreateAnother(typeRoom, "TypeRooms");
 
             if (newTypeRoom.ID == 0)
             {

@@ -3,12 +3,8 @@ using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Net.WebSockets;
 using System.Windows.Input;
 
 namespace Otel.ViewModel
@@ -17,7 +13,8 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private AllTicketViewModelController controller;
+        private readonly UniversalController<Order> universalControllerOrderListByUserID;
+        private readonly UniversalController<Hotel> universalControllerHotelBySelectedOrderID;
 
         private Order selectedOrder;
 
@@ -136,7 +133,8 @@ namespace Otel.ViewModel
 
         public AllTicketViewModel()
         {
-            controller = new AllTicketViewModelController();
+            universalControllerOrderListByUserID = new UniversalController<Order>();
+            universalControllerHotelBySelectedOrderID = new UniversalController<Hotel>();
 
             OrderList = new ObservableCollection<Order>();
             RoomList = new ObservableCollection<Room>();
@@ -166,7 +164,8 @@ namespace Otel.ViewModel
                 NameOtel = null;
             }
 
-            var hotel = await controller.GetHotelBySelectedOrderId(SelectedOrder.ID);
+            var hotel = await universalControllerHotelBySelectedOrderID.GetInfoFromAnotherTableById("Otels", "order",
+                SelectedOrder.ID);
 
             DepartureDate = SelectedOrder.DepartureDate;
             Address = hotel.AddressOfOtel.Name + ", " + hotel.AddressOfOtel.Number;
@@ -183,7 +182,7 @@ namespace Otel.ViewModel
         private async void LoadAllTicket()
         {
 
-            var allOrders = await controller.GetOrderListByUserId(UserSingltone.User.ID);
+            var allOrders = await universalControllerOrderListByUserID.GetListInfoFromAnotherTableById("Orders", "user", UserSingltone.User.ID);
 
             foreach (var item in allOrders)
             {

@@ -33,7 +33,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="100" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
@@ -41,23 +41,24 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="150" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="100" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Общая информация об отеле"
                            Grid.Column="0"
                            Style="{StaticResource TextBlockSubTitle}"
                            Grid.ColumnSpan="2"
-                           FontSize="42"
+                           FontSize="36"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
                 <TextBlock Grid.Row="1"
                            Text=" Страна отеля: "
+                           Margin="20 0 0 0"
                            Style="{StaticResource TextBlockSubTitle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
@@ -85,6 +86,7 @@
                 </StackPanel>
                 <TextBlock Grid.Row="2"
                            Text=" Название отеля: "
+                           Margin="20 0 0 0"
                            Style="{StaticResource TextBlockBaseStyle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
@@ -113,6 +115,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
                                Text=" Введите адрес"
+                               Margin="20 0 0 0"
                                Style="{StaticResource TextBlockBaseStyle}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center" />
@@ -127,15 +130,16 @@
                              VerticalContentAlignment="Center"
                              FontSize="15"
                              HorizontalContentAlignment="Left"
-                             Margin="20" />
+                             Margin="15 20 15 20" />
                     <TextBlock Grid.Column="2"
                                Text="и номер"
                                Style="{StaticResource TextBlockBaseStyle}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
-                    <TextBox Background="Transparent"
+                    <hc:TextBox Background="Transparent"
                              x:Name="numberStreetTextBox"
                              Grid.Column="3"
+                             TextType="Int"
                              HorizontalScrollBarVisibility="Auto"
                              Style="{StaticResource TextBoxExtend}"
                              Text="{Binding NumberStreet}"
@@ -144,7 +148,7 @@
                              VerticalContentAlignment="Center"
                              FontSize="15"
                              HorizontalContentAlignment="Left"
-                             Margin="20" />
+                             Margin="15 20 15 20" />
                     <TextBlock Text="улицы"
                                Style="{StaticResource TextBlockBaseStyle}"
                                Grid.Column="4"
@@ -154,6 +158,7 @@
                 <TextBlock Grid.Row="4"
                            Style="{StaticResource TextBlockBaseStyle}"
                            Text=" Введите описание: "
+                           Margin="20 0 0 0 "
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
                 <TextBox VerticalScrollBarVisibility="Visible"
@@ -166,8 +171,76 @@
                          Height="100"
                          TextWrapping="Wrap"
                          FontSize="15" />
+                <TextBlock Grid.Row="5"
+                           TextWrapping="Wrap"
+                           Margin="20 0 0 0"
+                           Style="{StaticResource TextBlockBaseStyle}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center">
+                    <Run Text="Загрузите"/>
+                    <LineBreak />
+                    <Run Text="изображения"/>
+                    <LineBreak/>
+                    <Run Text="отеля:"/>
+                </TextBlock>
+                <UniformGrid Columns="3"
+                             Grid.Column="2"
+                             Grid.Row="5"
+                             Margin="16">
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Name="ImageSelector1"
+                                      Margin="16"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}"  />
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Name="ImageSelector2"
+                                      Margin="16"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}"  />
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Margin="16"
+                                      Name="ImageSelector3"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}"  />
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Margin="16"
+                                      Name="ImageSelector4"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}"  />
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Name="ImageSelector5"
+                                      Margin="16"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}"  />
+                    <hc:ImageSelector Width="50"
+                                      Height="50"
+                                      Name="ImageSelector6"
+                                      Margin="16"
+                                      hc:BorderElement.CornerRadius="10"
+                                      StrokeThickness="2"
+                                      BorderThickness="2"
+                                      BorderBrush="{DynamicResource PrimaryBrush}" />
+                </UniformGrid>
                 <Button Grid.Row="6"
+                        Name="createButton"
+                        Click="ButtonBase_OnClick"
                         Grid.Column="0"
+                        Margin="10"
                         FontSize="16"
                         Height="40"
                         Grid.ColumnSpan="2"
@@ -190,19 +263,19 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="85" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Комнаты в отеле"
                            Grid.Column="0"
                            Style="{StaticResource TextBlockSubTitle}"
                            Grid.ColumnSpan="2"
-                           FontSize="42"
+                           FontSize="36"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
                 <TextBlock Grid.Row="1"
@@ -237,10 +310,11 @@
                            Style="{StaticResource TextBlockBaseStyle}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                <TextBox Background="Transparent"
+                <hc:TextBox Background="Transparent"
                          HorizontalScrollBarVisibility="Auto"
                          hc:InfoElement.Placeholder="Номер комнаты"
                          x:Name="numberRoomTextBox"
+                         TextType="Int"
                          Style="{StaticResource TextBoxExtend}"
                          Text="{Binding NumberOfRoom}"
                          Grid.Row="2"
@@ -255,9 +329,10 @@
                            Text=" Цена: "
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center" />
-                <TextBox Background="Transparent"
+                <hc:TextBox Background="Transparent"
                          HorizontalScrollBarVisibility="Auto"
                          x:Name="priceByRoom"
+                         TextType="Int"
                          hc:InfoElement.Placeholder="Цена за комнату"
                          Style="{StaticResource TextBoxExtend}"
                          Text="{Binding NumberOfPrice}"
@@ -300,34 +375,33 @@
                             Orientation="Horizontal"
                             Grid.Column="0"
                             Grid.ColumnSpan="2">
-                    <Button
-                            Style="{StaticResource ButtonPrimary}"
+                    <Button Style="{StaticResource ButtonPrimary}"
                             Width="130"
-                            Margin="40 0 40 0"
+                            Margin="40 20 40 20"
                             Command="{Binding PutInNewRoom}"
                             Content="Занести" />
-                    <Button 
-                            Width="130"
-                            Margin="40 0 40 0"
+                    <Button Width="130"
+                            Margin="40 20 40 20"
                             Style="{StaticResource ButtonPrimary}"
                             Command="{Binding DeleteRoom}"
                             Content="Удалить" />
                 </StackPanel>
-                
+
                 <ListBox Grid.Row="6"
-                          Style="{StaticResource ListBoxBaseStyle}"
-                          ItemsSource="{Binding ListRoom}"
-                          SelectedItem="{Binding SelectedRoomByDelete}"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="2"
-                          Height="140"
-                          Margin=" 20 0 20 0"
-                          Foreground="#5f6368"
-                          Width="365"
-                          Background="Transparent"
-                          FontSize="18"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
+                         Style="{StaticResource ListBoxBaseStyle}"
+                         ItemsSource="{Binding ListRoom}"
+                         SelectedItem="{Binding SelectedRoomByDelete}"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Height="140"
+                         Margin=" 20 0 20 0"
+                         Foreground="#5f6368"
+                         Width="365"
+                         
+                         Background="Transparent"
+                         FontSize="18"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">

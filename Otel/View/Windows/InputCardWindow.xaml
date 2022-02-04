@@ -25,7 +25,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Center">
@@ -75,18 +75,18 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <ListBox Grid.Row="0"
-                      Grid.RowSpan="4"
-                      Margin="20 110 20 20"
-                      x:Name="allCardListView"
-                      Foreground="#5f6368"
-                      FontSize="20"
-                      Style="{StaticResource ListBoxBaseStyle}"
-                      SelectedItem="{Binding SelectedCard}"
-                      ItemsSource="{Binding CardList}"
-                      Background="Transparent"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="2"
-                      Visibility="{Binding ListViewVisibility}">
+                     Grid.RowSpan="4"
+                     Margin="20 110 20 20"
+                     x:Name="allCardListView"
+                     Foreground="#5f6368"
+                     FontSize="20"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     SelectedItem="{Binding SelectedCard}"
+                     ItemsSource="{Binding CardList}"
+                     Background="Transparent"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Visibility="{Binding ListViewVisibility}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

@@ -1,8 +1,13 @@
-﻿using Otel.Core;
+﻿using System;
+using System.Net.Mime;
+using Otel.Core;
 using Otel.View.Pages;
 using Otel.View.Windows;
 using Otel.ViewModel;
 using System.Windows;
+using System.Windows.Input;
+using Otel.Command;
+using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace Otel.Windows
 {
@@ -54,6 +59,11 @@ namespace Otel.Windows
         private void TheChangeRoleRadioButton_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.SetSource(new TheChangeRoleUser());
+        }
+
+        private void AvatarElipse_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as TicketViewModel).ShowProfile.Execute(sender);
         }
     }
 }

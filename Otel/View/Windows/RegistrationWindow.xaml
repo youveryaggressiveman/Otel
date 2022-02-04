@@ -26,7 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.RowDefinitions>
@@ -201,8 +201,8 @@
                          VerticalContentAlignment="Center" />
                 <TextBlock Text=" паспорта"
                            Style="{StaticResource TextBlockBaseStyle}"
-                       VerticalAlignment="Center"
-                       Grid.Column="4" />
+                           VerticalAlignment="Center"
+                           Grid.Column="4" />
             </Grid>
             <TextBlock Text="Введите номер телефона:"
                        Grid.Row="5"
@@ -210,12 +210,13 @@
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <TextBox Grid.Column="1"
+            <hc:TextBox Grid.Column="1"
                      hc:InfoElement.Placeholder="Телефон"
                      Style="{StaticResource TextBoxExtend}"
                      Text="{Binding Phone}"
                      Background="Transparent"
                      x:Name="phoneTextBox"
+                     TextType="Phone"
                      HorizontalScrollBarVisibility="Auto"
                      MaxLength="11"
                      PreviewTextInput="phoneTextBox_PreviewTextInput"

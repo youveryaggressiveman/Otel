@@ -6,9 +6,6 @@ using Otel.View.Windows;
 using Otel.Windows;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,8 +15,8 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private Hotel hotel;
-        private Order order;
+        private readonly Hotel hotel;
+        private readonly Order order;
 
         #endregion
 

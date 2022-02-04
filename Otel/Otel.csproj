@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
@@ -10,6 +10,13 @@
     <ApplicationIcon>hotel-sign.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Image\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Resources\Files\check_template.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -18,15 +25,7 @@
     <Resource Include="Resources\Fonts\ZenKakuGothicNew-Light.ttf" />
     <Resource Include="Resources\Fonts\ZenKakuGothicNew-Medium.ttf" />
     <Resource Include="Resources\Fonts\ZenKakuGothicNew-Regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Image\baseline_luggage_black_48dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Image\reload.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Image\outline_local_activity_white_48dp.png" />
+    <Resource Include="Resources\Image\Exit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Image\Programmyi-dlya-sozdaniya-avatarok.png" />
@@ -58,6 +57,10 @@
     <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Net.Http" />
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

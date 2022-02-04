@@ -1,10 +1,8 @@
 ﻿using Otel.Command;
-using Otel.Controllers;
 using Otel.Core;
 using Otel.Core.Helper;
 using Otel.View.Windows;
 using Otel.Windows;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 

@@ -2,13 +2,7 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
-using Otel.Windows;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,7 +12,9 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private TheChangeRoleUserViewModelController controller;
+        private readonly UniversalController<User> universalControllerPutUser;
+        private readonly UniversalController<Role> universalControllerRole;
+        private readonly UniversalController<User> universalControllerUser;
 
         private ObservableCollection<User> userList;
         private ObservableCollection<Role> roleList;
@@ -148,7 +144,9 @@ namespace Otel.ViewModel
 
         public TheChangeRoleUserViewModel()
         {
-            controller = new TheChangeRoleUserViewModelController();
+            universalControllerPutUser = new UniversalController<User>();
+            universalControllerRole = new UniversalController<Role>();
+            universalControllerUser = new UniversalController<User>();
 
             RoleList = new ObservableCollection<Role>();
             UserList = new ObservableCollection<User>();
@@ -182,7 +180,7 @@ namespace Otel.ViewModel
                 SelectedUser.RoleID = SelectedRole.ID;
                 SelectedUser.Role = SelectedRole;
 
-                var newUser = await controller.RefreshUserRole(SelectedUser);
+                var newUser = await universalControllerPutUser.PutAnother(SelectedUser, "Users", SelectedUser.ID);
 
                 if (UserSingltone.User.ID == newUser.ID)
                 {
@@ -233,7 +231,7 @@ namespace Otel.ViewModel
                 RoleList = new ObservableCollection<Role>();
             }
 
-            var listRole = await controller.GetRoleList();
+            var listRole = await universalControllerRole.GetAllInfo("Roles");
 
             foreach (var item in listRole)
             {
@@ -243,7 +241,7 @@ namespace Otel.ViewModel
 
         private async void LoadUsers()
         {
-            var listUser = await controller.GetUserList();
+            var listUser = await universalControllerUser.GetAllInfo("Users");
 
             foreach (var item in listUser)
             {

@@ -5,11 +5,10 @@ using Otel.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Otel.ViewModel
 {
@@ -17,15 +16,18 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private AdminViewModelController controller;
+        private readonly UniversalController<Hotel> universalControllerCreateHotel;
+        private readonly UniversalController<TypeRoom> universalControllerTypeRoom;
+        private readonly UniversalController<Currency> universalControllerCurrency;
+        private readonly UniversalController<Country> universalControllerCountry;
 
         private Room selectedRoomByDelete;
         private TypeRoom selectedTypeRoom;
         private Currency selectedCurrency;
         private Country selectedCountry;
 
+        private ObservableCollection<Uri> listUriImage;
         private ObservableCollection<Room> listRoom;
-        private ObservableCollection<ImageOfOtel> listImage;
         private ObservableCollection<TypeRoom> listTypeRoom;
         private ObservableCollection<Currency> listCurrency;
         private ObservableCollection<Country> listCountry;
@@ -42,6 +44,16 @@ namespace Otel.ViewModel
         #endregion
 
         #region properties
+
+        public ObservableCollection<Uri> ListUriImage
+        {
+            get => listUriImage;
+            set
+            {
+                listUriImage = value;
+                OnPropertyChanged(nameof(ListUriImage));
+            }
+        }
 
         public Country SelectedCountry
         {
@@ -110,16 +122,6 @@ namespace Otel.ViewModel
             {
                 selectedRoomByDelete = value;
                 OnPropertyChanged(nameof(SelectedRoomByDelete));
-            }
-        }
-
-        public ObservableCollection<ImageOfOtel> ListImage
-        {
-            get => listImage;
-            set
-            {
-                listImage = value;
-                OnPropertyChanged(nameof(ListImage));
             }
         }
 
@@ -212,26 +214,27 @@ namespace Otel.ViewModel
         public ICommand PostNewCountry { get; private set; }
         public ICommand PutInNewRoom { get; private set; }
         public ICommand PutInNewOtel { get; private set; }
-        public ICommand PutInNewImage { get; private set; }
         public ICommand DeleteRoom { get; private set; }
 
         #endregion
 
         public AdminViewModel()
         {
-            controller = new AdminViewModelController();
+            universalControllerCreateHotel = new UniversalController<Hotel>();
+            universalControllerTypeRoom = new UniversalController<TypeRoom>();
+            universalControllerCurrency = new UniversalController<Currency>();
+            universalControllerCountry = new UniversalController<Country>();
 
+            listUriImage = new ObservableCollection<Uri>();
             ListCountry = new ObservableCollection<Country>();
             ListCurrency = new ObservableCollection<Currency>();
             ListTypeRoom = new ObservableCollection<TypeRoom>();
-            ListImage = new ObservableCollection<ImageOfOtel>();
             ListRoom = new ObservableCollection<Room>();
 
             PostNewCurrency = new DelegateCommand(NewCurrency);
             PostNewTypeRoom = new DelegateCommand(NewTypeRoom);
             PostNewCountry = new DelegateCommand(NewCountry);
             DeleteRoom = new DelegateCommand(DeleteSelectedRoom);
-            PutInNewImage = new DelegateCommand(NewImage);
             PutInNewRoom = new DelegateCommand(LoadnewRoomList);
             PutInNewOtel = new DelegateCommand(NewOtel);
 
@@ -287,11 +290,6 @@ namespace Otel.ViewModel
             }
         }
 
-        private void NewImage(object obj)
-        {
-            
-        }
-
         private async void NewOtel(object obj)
         {
             if (SelectedCountry == null)
@@ -326,7 +324,7 @@ namespace Otel.ViewModel
             {
                 HandyControl.Controls.MessageBox.Info("Добавьте описание для отеля", "Предупреждение");
 
-               return;
+                return;
             }
 
             if (ListRoom.Count == 0)
@@ -336,11 +334,41 @@ namespace Otel.ViewModel
                 return;
             }
 
-            if (ListImage.Count == 0)
+            if (ListUriImage.Count == 0)
             {
                 HandyControl.Controls.MessageBox.Info("Добавьте хотя бы одно изображение в альбом", "Предупреждение");
 
                 return;
+            }
+
+            List<ImageOfOtel> imageOfOtel = new List<ImageOfOtel>();
+
+
+
+            foreach (var item in ListUriImage)
+            {
+                if (item == null)
+                {
+                    continue;
+                }
+
+                byte[] byteImage;
+
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(new BitmapImage(item)));
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    encoder.Save(memoryStream);
+
+                    byteImage = memoryStream.ToArray();
+                }
+
+                imageOfOtel.Add(new ImageOfOtel()
+                {
+                    Image = byteImage,
+
+                });
             }
 
             var discription = new Discription()
@@ -352,7 +380,7 @@ namespace Otel.ViewModel
             {
                 Name = NameStreet,
                 Number = Convert.ToInt32(NumberStreet),
-                Country = SelectedCountry,        
+                Country = SelectedCountry,
             };
 
             var otel = new Hotel()
@@ -361,14 +389,14 @@ namespace Otel.ViewModel
                 Name = NameOtel,
                 AddressOfOtel = addressOfOtel,
                 Room = ListRoom,
-                ImageOfOtel = ListImage
+                ImageOfOtel = imageOfOtel
             };
 
             var result = HandyControl.Controls.MessageBox.Ask("Вы уверены что хотите занести отель " + NameOtel + " в базу данных", "Предупреждение");
 
             if (result == MessageBoxResult.OK)
             {
-                await controller.CreateHotel(otel);
+                await universalControllerCreateHotel.CreateAnother(otel, "Otels");
 
                 HandyControl.Controls.MessageBox.Success("Отель успешно занесен в базу данных", "Информация");
             }
@@ -376,7 +404,7 @@ namespace Otel.ViewModel
             if (result == MessageBoxResult.Cancel)
             {
                 return;
-            } 
+            }
         }
 
         private void LoadnewRoomList(object obj)
@@ -431,9 +459,9 @@ namespace Otel.ViewModel
             ListTypeRoom = new ObservableCollection<TypeRoom>();
             ListCountry = new ObservableCollection<Country>();
 
-            var listTypeRoom = await controller.GetAllTypeRoomList();
-            var listCurrency = await controller.GetAllCurrencyList();
-            var listCountry = await controller.GetAllCountryList();
+            var listTypeRoom = await universalControllerTypeRoom.GetAllInfo("TypeRooms");
+            var listCurrency = await universalControllerCurrency.GetAllInfo("Currencies");
+            var listCountry = await universalControllerCountry.GetAllInfo("Countries");
 
             foreach (var item in listCountry)
             {

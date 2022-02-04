@@ -22,7 +22,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
@@ -44,13 +44,13 @@
             </StackPanel>
         </StackPanel>
         <TextBlock Text="🌊"
-               FontSize="450"
+                   FontSize="450"
                    Style="{StaticResource TextBlockBaseStyle}"
-               RenderTransformOrigin="1, 0.3"
-               Grid.RowSpan="3"
+                   RenderTransformOrigin="1, 0.3"
+                   Grid.RowSpan="3"
                    Foreground="#a6b5b3"
-               Opacity="0.2"
-               Panel.ZIndex="-1"
+                   Opacity="0.2"
+                   Panel.ZIndex="-1"
                    Margin="-117,-134,-42,19">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -74,21 +74,22 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Text="Авторизация"
+                       Grid.ColumnSpan="2"
+                       Text="Авторизация"
                        Style="{StaticResource TextBlockTitle}"
-                   Margin="20 0 0 0"
-                   FontSize="40"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" />
+                       Margin="20 0 0 0"
+                       FontSize="40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBlock Text="Введите номер телефона:"
-                   Grid.Row="1"
-                   HorizontalAlignment="Left"
+                       Grid.Row="1"
+                       HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockBaseStyle}"
-                   Margin=" 20 0 0 0"
-                   VerticalAlignment="Center" />
-            <TextBox  Grid.Row="1"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
+            <hc:TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
+                      TextType="Phone"
                       Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"
                       HorizontalScrollBarVisibility="Auto"
@@ -100,12 +101,11 @@
                       HorizontalContentAlignment="Stretch"
                       Margin="20" />
             <TextBlock Text="Введите пароль:"
-                   Grid.Row="2"
-                       
+                       Grid.Row="2"
                        Style="{StaticResource TextBlockBaseStyle}"
-                   HorizontalAlignment="Left"
-                   Margin=" 20 0 0 0"
-                   VerticalAlignment="Center" />
+                       HorizontalAlignment="Left"
+                       Margin=" 20 0 0 0"
+                       VerticalAlignment="Center" />
             <PasswordBox Grid.Column="1"
                          FontSize="16"
                          Height="36"
@@ -143,26 +143,26 @@
                       VerticalAlignment="Center"
                       Click="ShowPswCheckBox_Click" />
             <TextBlock Grid.Row="3"
-                   HorizontalAlignment="Center"
-                   FontSize="17"
+                       HorizontalAlignment="Center"
+                       FontSize="17"
                        Style="{StaticResource TextBlockBaseStyle}"
-                   Margin="0 0 10 0"
-                   VerticalAlignment="Center">
+                       Margin="0 0 10 0"
+                       VerticalAlignment="Center">
                 <Hyperlink>
                     <Run Text="Забыли пароль" />
                 </Hyperlink>
             </TextBlock>
             <TextBlock Text="Хотите зарегистрироваться в системе"
-                   Grid.Row="4"
+                       Grid.Row="4"
                        FontSize="20"
                        Margin="0 50 0 50"
-                   Grid.Column="0"
+                       Grid.Column="0"
                        Style="{StaticResource TextBlockBaseStyle}"
-                   x:Name="registrLabel"
-                   MouseLeftButtonDown="registrLabel_MouseDoubleClick"
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+                       x:Name="registrLabel"
+                       MouseLeftButtonDown="registrLabel_MouseDoubleClick"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
         </Grid>
 
         <Grid Grid.Row="2">

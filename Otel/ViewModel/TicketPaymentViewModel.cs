@@ -5,7 +5,6 @@ using Otel.Model;
 using Otel.View.Windows;
 using Otel.Windows;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -16,12 +15,12 @@ namespace Otel.ViewModel
     {
         #region fields
 
-        private TicketPaymentViewModelController controller;
+        private readonly UniversalController<Order> universalControllerCreateOrder;
 
         private ObservableCollection<Room> room;
 
-        private Hotel hotel;
-        private Order order;
+        private readonly Hotel hotel;
+        private readonly Order order;
 
         private string country;
         private string nameHotel;
@@ -172,7 +171,7 @@ namespace Otel.ViewModel
 
         public TicketPaymentViewModel(Order order, Hotel hotel)
         {
-            controller = new TicketPaymentViewModelController();
+            universalControllerCreateOrder = new UniversalController<Order>();
 
             this.hotel = hotel;
             this.order = order;
@@ -264,7 +263,7 @@ namespace Otel.ViewModel
                 OtelID = hotel.ID
             };
 
-            await controller.CreateOrder(newOrder);
+            await universalControllerCreateOrder.CreateAnother(newOrder, "Orders");
 
             SetSplash(false);
         }

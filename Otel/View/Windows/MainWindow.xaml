@@ -34,170 +34,181 @@
     <Window.DataContext>
         <ViewModel:TicketViewModel />
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              Background="#f5f5f5"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="160" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <StackPanel>
-                <TextBlock Text="Hotel City"
-                           Margin="20 5 0 0"
-                           Style="{StaticResource TextBlockDefaultPrimary}"
-                           FontWeight="Bold"
-                           FontSize="45"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
-                <hc:Divider  LineStrokeThickness="2"
-                             LineStroke="{DynamicResource PrimaryBrush}"
-                             Margin="20 2 140 0"
-                             HorizontalAlignment="Left"
-                             Height="2"
-                             VerticalAlignment="Top"
-                             Width="230" />
-                <TextBlock Text="У НАС - КАК ДОМА"
-                           Margin="0 3 110 0"
-                           Style="{StaticResource TextBlockDefaultPrimary}"
-                           FontSize="15"
-                           Padding="130 0 0 5"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"/>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Background="#f5f5f5"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Hotel City"
+                               Margin="20 5 0 0"
+                               Style="{StaticResource TextBlockDefaultPrimary}"
+                               FontWeight="Bold"
+                               FontSize="45"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                    <hc:Divider  LineStrokeThickness="2"
+                                 LineStroke="{DynamicResource PrimaryBrush}"
+                                 Margin="20 2 140 0"
+                                 HorizontalAlignment="Left"
+                                 Height="2"
+                                 VerticalAlignment="Top"
+                                 Width="230" />
+                    <TextBlock Text="У НАС - КАК ДОМА"
+                               Margin="0 3 110 0"
+                               Style="{StaticResource TextBlockDefaultPrimary}"
+                               FontSize="15"
+                               Padding="130 0 0 5"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <Ellipse Width="80"
+                         Height="80"
+                         Cursor="Cross"
+                         Name="avatarElipse"
+                         MouseLeftButtonDown="AvatarElipse_OnMouseLeftButtonDown"
+                         Grid.Column="3"
+                         Visibility="{Binding VisibilityLabel}"
+                         HorizontalAlignment="Right"
+                         Style="{StaticResource elipseAvatar}"
+                         VerticalAlignment="Center"
+                         Margin="10">
+                    <Ellipse.Fill>
+                        <ImageBrush Stretch="UniformToFill"
+                                    ImageSource="{Binding Avatar}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Button x:Name="RegistrButton"
+                        Height="40"
+                        FontSize="16"
+                        Style="{StaticResource ButtonPrimary}"
+                        Visibility="{Binding VisibilityButton}"
+                        Grid.Column="3"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 60 0"
+                        Padding="10 0 10 0"
+                        Content="Зарегистрироваться"
+                        Command="{Binding Registration}">
+                </Button>
+                <StackPanel Grid.Column="4"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding VisibilityLabel}">
+                    <TextBlock FontSize="25"
+                               FontWeight="Bold"
+                               Text="{Binding FirstName}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom"
+                               Height="50"
+                               Margin="5" />
+                    <TextBlock Text="{Binding Phone}"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               FontSize="15"
+                               Height="40"
+                               Margin="5" />
+                </StackPanel>
+                <Button Height="40"
+                        FontSize="16"
+                        x:Name="ComeButton"
+                        Margin="0 0 20 0"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource ButtonPrimary}"
+                        Visibility="{Binding VisibilityButton}"
+                        Grid.Column="4"
+                        Grid.ColumnSpan="2"
+                        Padding="25 0 25 0"
+                        Content="Войти"
+                        Command="{Binding Authorization}">
+                </Button>
+                <Button Grid.Column="5"
+                        x:Name="exitButton"
+                        Click="ExitButton_Click"
+                        Padding="6 5 6 5"
+                        Margin="0 10 10 0"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Visibility="{Binding VisibilityExitInAccount}"
+                        Command="{Binding ExitIsAccount}"
+                        ToolTip="Выход из аккаунта">
+                    <Image Source="../../Resources/Image/Exit.png"
+                           Margin="0"/>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <hc:ButtonGroup Margin="0,16,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ButtonGroupSolid}">
+                    <RadioButton Content="Главное меню"
+                                 IsChecked="True"
+                                 FontSize="16"
+                                 Command="{Binding ViewPageHome}"
+                                 Click="HomeRadioButton_Click"
+                                 Name="homeRadioButton"
+                                 Visibility="{Binding VisibilityHomeButton}" />
+                    <RadioButton Content="Ваши билеты"
+                                 Click="AllTicketRadioButton_Click"
+                                 x:Name="allTicketRadioButton"
+                                 FontSize="16"
+                                 Visibility="{Binding VisibilityAllTicketButton}"
+                                 IsEnabled="{Binding IsEnabledButton}"
+                                 Command="{Binding ViewPageAllTicket}" />
+                    <RadioButton Content="Режим администратора"
+                                 Click="AdminRadioButton_Click"
+                                 Name="adminRadioButton"
+                                 FontSize="16"
+                                 Command="{Binding ViewPageAdminMode}"
+                                 Visibility="{Binding VisibilityAdminButton}" />
+                    <RadioButton Content="Изменение ролей"
+                                 Click="TheChangeRoleRadioButton_Click"
+                                 Name="theChangeRoleRadioButton"
+                                 FontSize="16"
+                                 Visibility="{Binding VisibilityTheChangeRole}"
+                                 Command="{Binding ViewTheChangeRole}" />
+                </hc:ButtonGroup>
+                <Frame Style="{StaticResource FrameBaseStyle}"
+                       NavigationUIVisibility="Hidden"
+                       VerticalAlignment="Center"
+                       Height="750"
+                       Width="1050"
+                       HorizontalAlignment="Center"
+                       x:Name="Main" />
             </StackPanel>
-           
-            <Ellipse Width="80"
-                     Height="80"
-                     Grid.Column="3"
-                     Visibility="{Binding VisibilityLabel}"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Margin="10">
-                <Ellipse.Fill>
-                    <ImageBrush Stretch="UniformToFill"
-                                ImageSource="/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png" />
-                </Ellipse.Fill>
-            </Ellipse>
-            <Button x:Name="RegistrButton"
-                    Height="40"
-                    FontSize="16"
-                    Style="{StaticResource ButtonPrimary}"
-                    Visibility="{Binding VisibilityButton}"
-                    Grid.Column="3"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 60 0"
-                    Padding="10 0 10 0"
-                    Content="Зарегистрироваться"
-                    Command="{Binding Registration}">
-            </Button>
-            <StackPanel Grid.Column="4"
-                        VerticalAlignment="Center"
-                        Visibility="{Binding VisibilityLabel}">
-                <TextBlock FontSize="25"
-                           FontWeight="Bold"
-                           Text="{Binding FirstName}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Bottom"
-                           Height="50"
-                           Margin="5" />
-                <TextBlock Text="{Binding Phone}"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           FontSize="15"
-                           Height="40"
-                           Margin="5" />
-            </StackPanel>
-            <Button Height="40"
-                    FontSize="16"
-                    x:Name="ComeButton"
-                    Margin="0 0 20 0"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource ButtonPrimary}"
-                    Visibility="{Binding VisibilityButton}"
-                    Grid.Column="4"
-                    Grid.ColumnSpan="2"
-                    Padding="25 0 25 0"
-                    Content="Войти"
-                    Command="{Binding Authorization}">
-            </Button>
-            <Button Grid.Column="6"
-                    x:Name="exitButton"
-                    Click="ExitButton_Click"
-                    Content=""
-                    HorizontalAlignment="Right"
-                    Visibility="{Binding VisibilityExitInAccount}"
-                    Command="{Binding ExitIsAccount}"
-                    FontSize="30"
-                    hc:IconElement.Geometry="{StaticResource FatalGeometry}"
-                    ToolTip="Выход из аккаунта" />
-        </Grid>
-        <Grid Grid.Row="1">
-            <hc:ButtonGroup Margin="0,16,0,0"
-                            
-                            HorizontalAlignment="Center"
-                            Style="{StaticResource ButtonGroupSolid}">
-                <RadioButton Content="Главное меню"
-                             IsChecked="True"
-                             FontSize="16"
-                             Command="{Binding ViewPageHome}"
-                             Click="HomeRadioButton_Click"
-                             Name="homeRadioButton"
-                             Visibility="{Binding VisibilityHomeButton}"
-                             />
-                <RadioButton Content="Ваши билеты"
-                             Click="AllTicketRadioButton_Click"
-                             x:Name="allTicketRadioButton"
-                             FontSize="16"
-                             Visibility="{Binding VisibilityAllTicketButton}"
-                             IsEnabled="{Binding IsEnabledButton}"
-                             Command="{Binding ViewPageAllTicket}"/>
-                <RadioButton
-                             Content="Режим администратора"
-                             Click="AdminRadioButton_Click"
-                             Name="adminRadioButton"
-                             FontSize="16"
-                             Command="{Binding ViewPageAdminMode}"
-                             Visibility="{Binding VisibilityAdminButton}" />
-                <RadioButton Content="Изменение ролей"
-                             Click="TheChangeRoleRadioButton_Click"
-                             Name="theChangeRoleRadioButton"
-                             FontSize="16"
-                             Visibility="{Binding VisibilityTheChangeRole}"
-                             Command="{Binding ViewTheChangeRole}" />
-            </hc:ButtonGroup>
-        </Grid>
-        <Frame Style="{StaticResource FrameBaseStyle}"
-               Grid.Row="2"
-               NavigationUIVisibility="Hidden"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center"
-               x:Name="Main" />
-        <Border x:Name="Splash"
-                Visibility="{Binding Visibility}"
-                Grid.Row="0"
-                Grid.RowSpan="3"
-                Opacity=".35"
-                Background="Black" />
-        <Border Grid.Row="1"
-                Visibility="{Binding Visibility}"
-                Grid.RowSpan="2"
-                Background="White"
-                Height="150"
-                Width="400">
-            <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Center">
+            <Border x:Name="Splash"
+                    Visibility="{Binding Visibility}"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Opacity=".35"
+                    Background="Black" />
+            <Border Grid.Row="1"
+                    Visibility="{Binding Visibility}"
+                    Grid.RowSpan="2"
+                    Background="White"
+                    Height="150"
+                    Width="400">
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse x:Name="Ellipse"
                              Width="50"
@@ -223,7 +234,8 @@
                            VerticalAlignment="Center"
                            Margin="5,0,0,0" />
                 </StackPanel>
-            </TextBlock>
-        </Border>
-    </Grid>
+                </TextBlock>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </Window>
