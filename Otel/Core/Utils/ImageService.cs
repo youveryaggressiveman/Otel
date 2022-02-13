@@ -63,7 +63,7 @@ namespace Otel.Core.Utils
 
             foreach (var item in fileList)
             {
-                if (item.Name.Contains(nameHotel.Replace(" ", "_")))
+                if (item.Name.Contains(nameHotel?.Replace(" ", "_")))
                 {
                     listUri.Add(new Uri(item.FullName));
                 }

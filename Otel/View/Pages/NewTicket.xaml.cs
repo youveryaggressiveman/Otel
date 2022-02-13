@@ -25,7 +25,17 @@ namespace Otel.View.Pages
         {
             IImageService imageService = new ImageService();
 
-            Carousel.ItemsSource = imageService.FindImage((DataContext as TicketViewModel)?.SelectedHotel.Name);
+            if ((DataContext as TicketViewModel).SelectedHotel == null)
+            {
+                Carousel.ItemsSource = new BitmapImage[]
+                {
+                   new BitmapImage( new Uri(@"pack://application:,,,/Otel;component/Resources/Image/SD-default-image.png"))
+                }; 
+
+                return;
+            }
+
+            Carousel.ItemsSource = imageService.FindImage((DataContext as TicketViewModel)?.SelectedHotel?.Name);
         }
     }
 }

@@ -145,10 +145,12 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         HorizontalAlignment="Right"
+                        Style="{StaticResource ButtonDashedDanger}"
                         VerticalAlignment="Top"
                         Visibility="{Binding VisibilityExitInAccount}"
                         Command="{Binding ExitIsAccount}"
-                        ToolTip="Выход из аккаунта">
+                        ToolTip="Выход из аккаунта"
+                        Cursor="Hand">
                     <Image Source="../../Resources/Image/Exit.png"
                            Margin="0"/>
                 </Button>

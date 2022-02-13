@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace Otel.Core.Helper
@@ -58,7 +59,15 @@ namespace Otel.Core.Helper
 
             try
             {
-                app.ActiveDocument.SaveAs(newFilePath, Word.WdSaveFormat.wdFormatPDF);
+                SaveFileDialog saveFile = new SaveFileDialog();
+
+                saveFile.Filter = "Текстовый файл (*.pdf)|*.pdf";
+
+                if (saveFile.ShowDialog() == true)
+                {
+                    app.ActiveDocument.SaveAs(saveFile.FileName, Word.WdSaveFormat.wdFormatPDF);
+                }
+
             }
             catch (Exception ex)
             {
