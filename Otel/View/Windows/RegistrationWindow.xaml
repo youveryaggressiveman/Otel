@@ -28,10 +28,9 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Background="#f5f5f5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock Text="Hotel City"
@@ -67,15 +66,6 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock Grid.Row="1"
-                       Background="Transparent"
-                       Text="Регистрация"
-                       Style="{StaticResource TextBlockTitle}"
-                       Margin="20 0 0 0"
-                       FontSize="40"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
-
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -90,15 +80,25 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Background="Transparent"
+                       Text="Регистрация"
+                       Style="{StaticResource TextBlockTitle}"
+                       Margin="20 0 0 0"
+                       FontSize="40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
             <TextBlock Text="Введите имя:"
-                       Grid.Row="0"
+                       Grid.Row="1"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockBaseStyle}"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
             <TextBox Grid.Column="1"
+                     Grid.Row="1"
                      Style="{StaticResource TextBoxExtend}"
                      hc:InfoElement.Placeholder="Имя"
                      Text="{Binding FirstName}"
@@ -111,7 +111,7 @@
                      Margin="20" />
             <TextBlock Text="Введите фамилию:"
                        Style="{StaticResource TextBlockBaseStyle}"
-                       Grid.Row="1"
+                       Grid.Row="2"
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
@@ -121,14 +121,14 @@
                      Background="Transparent"
                      x:Name="secondNameTextBox"
                      Text="{Binding SecondName}"
-                     Grid.Row="1"
+                     Grid.Row="2"
                      HorizontalScrollBarVisibility="Auto"
                      Width="250"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
             <TextBlock Text="Введите отчество:"
-                       Grid.Row="2"
+                       Grid.Row="3"
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        Style="{StaticResource TextBlockBaseStyle}"
@@ -140,17 +140,17 @@
                      x:Name="lastNameTextBox"
                      Text="{Binding LastName}"
                      Width="250"
-                     Grid.Row="2"
+                     Grid.Row="3"
                      HorizontalScrollBarVisibility="Auto"
                      VerticalContentAlignment="Center"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
             <TextBlock Text="Выберите страну:"
-                       Grid.Row="3"
+                       Grid.Row="4"
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
                        VerticalAlignment="Center" />
-            <ComboBox Grid.Row="3"
+            <ComboBox Grid.Row="4"
                       Grid.Column="1"
                       Background="Transparent"
                       Style="{StaticResource ComboBoxExtend}"
@@ -159,7 +159,7 @@
                       ItemsSource="{Binding Countries}"
                       DisplayMemberPath="Name"
                       SelectedIndex="0" />
-            <Grid Grid.Row="4"
+            <Grid Grid.Row="5"
                   Grid.Column="0"
                   Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
@@ -205,7 +205,7 @@
                            Grid.Column="4" />
             </Grid>
             <TextBlock Text="Введите номер телефона:"
-                       Grid.Row="5"
+                       Grid.Row="6"
                        Style="{StaticResource TextBlockBaseStyle}"
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
@@ -221,13 +221,13 @@
                      MaxLength="11"
                      PreviewTextInput="phoneTextBox_PreviewTextInput"
                      Width="250"
-                     Grid.Row="5"
+                     Grid.Row="6"
                      VerticalContentAlignment="Center"
                      FontSize="15"
                      HorizontalContentAlignment="Left"
                      Margin="20" />
             <TextBlock Text="Введите пароль:"
-                       Grid.Row="6"
+                       Grid.Row="7"
                        Style="{StaticResource TextBlockBaseStyle}"
                        HorizontalAlignment="Left"
                        Margin=" 20 0 0 0"
@@ -240,7 +240,7 @@
                      Width="250"
                      HorizontalScrollBarVisibility="Auto"
                      Text="{Binding Password}"
-                     Grid.Row="6"
+                     Grid.Row="7"
                      VerticalContentAlignment="Center"
                      FontSize="15"
                      HorizontalContentAlignment="Left"

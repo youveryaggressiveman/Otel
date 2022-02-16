@@ -14,7 +14,6 @@
         MinWidth="1115"
         Height="750"
         Width="1150"
-        Background="White"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="Storyboard">

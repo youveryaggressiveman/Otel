@@ -50,6 +50,7 @@
                 <ListBox Grid.Row="1"
                          Style="{StaticResource ListBoxBaseStyle}"
                          Margin="20"
+                         Template="{DynamicResource ArrowedItemsControl}"
                          SelectedItem="{Binding SelectedUser}"
                          ItemsSource="{Binding UserList}"
                          Foreground="#5f6368"

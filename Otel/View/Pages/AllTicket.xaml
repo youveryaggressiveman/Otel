@@ -35,6 +35,7 @@
                      Style="{StaticResource ListBoxBaseStyle}"
                      Margin="20"
                      Height="550"
+                     Template="{DynamicResource ArrowedItemsControl}"
                      Width="430"
                      SelectedItem="{Binding SelectedOrder}"
                      ItemsSource="{Binding OrderList}"

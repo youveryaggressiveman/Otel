@@ -217,7 +217,7 @@ namespace Otel.ViewModel
             {
                 CreateTicket();
 
-                HandyControl.Controls.MessageBox.Success(UserSingltone.User.FirstName + ", оплата прошла успешно. Билет был добавлен в ваш список. Хорошего отдыха!", "Информация");
+                HandyControl.Controls.MessageBox.Success(UserSingltone.User.FirstName + ", оплата прошла успешно. Заказ был добавлен в ваш список. Хорошего отдыха!", "Информация");
 
                 CheckWindow checkWindow = new CheckWindow(order, hotel);
                 checkWindow.Show();
@@ -226,7 +226,7 @@ namespace Otel.ViewModel
                 {
                     if (item is TicketPaymentWindow)
                     {
-                        item.Hide();
+                        item.Close();
                     }
                 }
 

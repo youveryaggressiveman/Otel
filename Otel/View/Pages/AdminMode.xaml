@@ -292,9 +292,7 @@
                               SelectedItem="{Binding SelectedTypeRoom}"
                               Width="180"
                               DisplayMemberPath="Name"
-                              Grid.Row="1"
                               SelectedIndex="0"
-                              Grid.Column="1"
                               x:Name="TypeRoomBox" />
                     <Button Width="45"
                             Style="{StaticResource ButtonPrimary.Small}"
@@ -358,9 +356,7 @@
                               SelectedItem="{Binding SelectedCurrency}"
                               Width="180"
                               DisplayMemberPath="Name"
-                              Grid.Row="4"
                               SelectedIndex="0"
-                              Grid.Column="1"
                               x:Name="CurrencyBox" />
                     <Button Width="45"
                             Style="{StaticResource ButtonPrimary.Small}"
@@ -386,7 +382,6 @@
                             Command="{Binding DeleteRoom}"
                             Content="Удалить" />
                 </StackPanel>
-
                 <ListBox Grid.Row="6"
                          Style="{StaticResource ListBoxBaseStyle}"
                          ItemsSource="{Binding ListRoom}"
@@ -397,7 +392,7 @@
                          Margin=" 20 0 20 0"
                          Foreground="#5f6368"
                          Width="365"
-                         
+                         Template="{DynamicResource ArrowedItemsControl}"
                          Background="Transparent"
                          FontSize="18"
                          HorizontalAlignment="Center"
