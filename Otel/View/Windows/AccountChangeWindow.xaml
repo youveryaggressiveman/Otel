@@ -14,6 +14,21 @@
         Title="Hotel City: Профиль"
         Height="500"
         Width="600">
+    <Window.Resources>
+        <Storyboard x:Key="Storyboard">
+            <DoubleAnimation RepeatBehavior="Forever"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
+                             Storyboard.TargetName="Ellipse"
+                             From="0"
+                             To="360"
+                             Duration="0:0:5" />
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard}" />
+        </EventTrigger>
+    </Window.Triggers>
     <Window.DataContext>
         <ViewModel:AccountChangeViewModel />
     </Window.DataContext>
@@ -43,33 +58,54 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0"
                        Background="Transparent"
                        Grid.Column="0"
-                       Grid.ColumnSpan="2"
                        Style="{StaticResource TextBlockTitle}"
                        Text="Профиль"
                        FontSize="40"
-                       Margin="20 0 0 0"
+                       Margin="20 0 50 0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           FontSize="17"
+                           Style="{StaticResource TextBlockBoldBaseStyle}"
+                           TextWrapping="Wrap"
+                           Text="{Binding CardHashCode}"
+                           Margin="0 0 10 0"/>
+                <Button Grid.Column="1"
+                        Content="Изменить"
+                        Command="{Binding AddCard}"
+                        Cursor="Hand" />
+            </Grid>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Ellipse Grid.Column="0"
@@ -81,7 +117,7 @@
                          Height="150"
                          Grid.ColumnSpan="2">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Image}"/>
+                        <ImageBrush ImageSource="{Binding Image}" />
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Grid.Row="1"
@@ -90,7 +126,7 @@
                            FontSize="25"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Margin="0 15 0 0"/>
+                           Margin="0 15 0 0" />
                 <Button Content="Удалить"
                         Grid.Row="3"
                         VerticalAlignment="Center"
@@ -118,16 +154,16 @@
                         HorizontalAlignment="Center"
                         Height="290"
                         VerticalAlignment="Top"
-                        Width="1"/>
+                        Width="1" />
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="0 10 0 0">
                     <TextBlock Text="Ваше ФИО"
@@ -155,14 +191,16 @@
                                FontWeight="Heavy" />
                     <hc:TextBox Grid.Row="1"
                                 TextType="Phone"
-                             Text="{Binding ThisUser.Phone}"
-                             Width="250"
+                                Name="phoneTextBox"
+                                PreviewTextInput="PhoneTextBox_OnPreviewTextInput"
+                                Text="{Binding ThisUser.Phone}"
+                                Width="250"
                                 MaxLength="11"
-                             Style="{StaticResource TextBoxExtend}"
-                             hc:InfoElement.Placeholder="Телефон"
-                             FontSize="16"
-                             HorizontalScrollBarVisibility="Auto"
-                             Margin="5" />
+                                Style="{StaticResource TextBoxExtend}"
+                                hc:InfoElement.Placeholder="Телефон"
+                                FontSize="16"
+                                HorizontalScrollBarVisibility="Auto"
+                                Margin="5" />
                 </StackPanel>
                 <StackPanel Grid.Row="2"
                             Margin="0 10 0 0">
@@ -181,13 +219,54 @@
                              HorizontalScrollBarVisibility="Auto"
                              Margin="5" />
                 </StackPanel>
-               <Button Grid.Row="4"
-                       Style="{StaticResource ButtonPrimary}"
-                       Content="Сохранить изменения"
-                       Command="{Binding Put}"
-                       HorizontalAlignment="Center"
-                       Margin="0 20 0 20"/>
+                <Button Grid.Row="4"
+                        Style="{StaticResource ButtonPrimary}"
+                        Content="Сохранить изменения"
+                        Command="{Binding Put}"
+                        HorizontalAlignment="Center"
+                        Margin="0 20 0 20" />
             </Grid>
         </Grid>
+        <Border x:Name="Splash"
+                Visibility="{Binding Visibility}"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Opacity=".35"
+                Background="Black" />
+        <Border Grid.Row="1"
+                Visibility="{Binding Visibility}"
+                Grid.RowSpan="2"
+                Background="White"
+                Height="150"
+                Width="400">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse x:Name="Ellipse"
+                             Width="50"
+                             Height="50"
+                             StrokeThickness="5"
+                             StrokeDashArray="1,2"
+                             Stroke="#DBE4EB"
+                             StrokeDashCap="Round"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                    <Label x:Name="label"
+                           Content="Подождите..."
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0" />
+                </StackPanel>
+            </TextBlock>
+        </Border>
     </Grid>
 </Window>

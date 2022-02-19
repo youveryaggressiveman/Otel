@@ -232,14 +232,17 @@
                     <ListView Margin="20 10 20 10"
                               SelectedItem="{Binding SelectedRoomForDelete}"
                               Height="50"
-                              Template="{DynamicResource ArrowedItemsControl}"
+                              Background="Transparent"
+                          ItemContainerStyle="{StaticResource listStyle}"
+                          Template="{DynamicResource ArrowedItemsControl}"
                               Style="{StaticResource ListBoxBaseStyle}"
                               ItemsSource="{Binding RoomList}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel Background="Transparent">
                                     <TextBlock Text="{Binding Number}"
-                                               Style="{StaticResource TextBlockBaseStyle}"
+                                               Background="Transparent"
+                                           Style="{StaticResource TextBlockBaseStyle}"
                                                FontSize="12" />
                                 </StackPanel>
                             </DataTemplate>

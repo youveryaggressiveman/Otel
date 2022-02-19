@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Title="Hotel City: Чек"
         Height="400"
-        Width="450"
+        Width="400"
         ResizeMode="NoResize"
         FontSize="16"
         FontFamily="/Otel;component/Resources/Fonts/#Zen Kaku Gothic New">
@@ -45,25 +45,26 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0"
                        Grid.ColumnSpan="2"
-                       Text="Чек"
+                       Text="Бронирование завершено"
                        Style="{StaticResource TextBlockTitle}"
                        Margin="20 0 0 0"
-                       FontSize="40"
+                       FontSize="31"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
             <TextBlock Grid.Row="1"
                        Style="{StaticResource TextBlockBaseStyle}"
                        HorizontalAlignment="Left"
-                       Margin="5 0 0 0"
+                       Margin="10 0 5 0"
                        TextWrapping="Wrap"
                        Foreground="#5f6368"
-                       FontSize="22"
-                       Text="Ваш чек был сохранен в папке ресурсов приложения, не забудьте распечатать его. Приятного отдыха!" />
+                       FontSize="21"
+                       Text="Поздравляем, с успешным оформлением заказа. Приятного отдыха!" />
         </Grid>
         <Grid Grid.Row="2">
             <Button Content="Завершить бронирование"
                     Height="40"
                     FontSize="16"
+                    HorizontalAlignment="Center"
                     IsDefault="True"
                     Style="{StaticResource ButtonPrimary}"
                     Command="{Binding EndPayOrder}" />

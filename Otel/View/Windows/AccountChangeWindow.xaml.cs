@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,18 @@ namespace Otel.View.Windows
             InitializeComponent();
 
             
+        }
+
+        private void PhoneTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string input = e.Text.ToString();
+            Regex inputRegex = new Regex(@"^[0-9]*$");
+            Match match = inputRegex.Match(input);
+
+            if (!match.Success)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Otel.ViewModel;
+﻿using System.Text.RegularExpressions;
+using Otel.ViewModel;
 using Otel.Windows;
 using System.Windows;
 using System.Windows.Input;
@@ -47,6 +48,18 @@ namespace Otel.View.Windows
                 {
                     item.Close();
                 }
+            }
+        }
+
+        private void PhoneTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string input = e.Text.ToString();
+            Regex inputRegex = new Regex(@"^[0-9]*$");
+            Match match = inputRegex.Match(input);
+
+            if (!match.Success)
+            {
+                e.Handled = true;
             }
         }
     }

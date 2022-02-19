@@ -50,6 +50,7 @@
                 <ListBox Grid.Row="1"
                          Style="{StaticResource ListBoxBaseStyle}"
                          Margin="20"
+                         ItemContainerStyle="{StaticResource listStyle}"
                          Template="{DynamicResource ArrowedItemsControl}"
                          SelectedItem="{Binding SelectedUser}"
                          ItemsSource="{Binding UserList}"
@@ -60,8 +61,10 @@
                          Background="Transparent">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock HorizontalAlignment="Center"
+                            <StackPanel Orientation="Vertical"
+                                        Background="Transparent">
+                                <TextBlock HorizontalAlignment="Stretch"
+                                           Background="Transparent"
                                            FontSize="16"
                                            Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">

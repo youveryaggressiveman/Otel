@@ -386,6 +386,7 @@
                          Style="{StaticResource ListBoxBaseStyle}"
                          ItemsSource="{Binding ListRoom}"
                          SelectedItem="{Binding SelectedRoomByDelete}"
+                         ItemContainerStyle="{StaticResource listStyle}"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Height="140"
@@ -399,9 +400,11 @@
                          VerticalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock HorizontalAlignment="Center"
+                            <StackPanel Orientation="Vertical"
+                                        Background="Transparent">
+                                <TextBlock HorizontalAlignment="Stretch"
                                            FontSize="16"
+                                           Background="Transparent"
                                            Style="{StaticResource TextBlockBaseStyle}"
                                            VerticalAlignment="Center">
                             <Run Text="Тип комнаты: " />

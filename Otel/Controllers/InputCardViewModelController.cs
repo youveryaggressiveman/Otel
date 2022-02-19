@@ -1,5 +1,7 @@
-﻿using Otel.Model;
+﻿using System;
+using Otel.Model;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -22,6 +24,23 @@ namespace Otel.Controllers
 
             return result;
 
+        }
+
+        public async Task<Card> DeleteCardAsync(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var stringTask = await client.DeleteAsync("http://localhost:63262/api/Cards/" + id);
+
+                if (stringTask.StatusCode == HttpStatusCode.NotImplemented)
+                {
+                    throw new ArgumentNullException();
+                }
+
+                var result = JsonSerializer.DeserializeAsync<Card>(await stringTask.Content.ReadAsStreamAsync());
+
+                return result.Result;
+            }
         }
 
         public async Task<Card> CreateCard(Card card)

@@ -149,7 +149,8 @@
                       ItemsSource="{Binding Room}"
                       Grid.Column="1"
                       Height="60"
-                      Name="roomListBox"
+                      ItemContainerStyle="{StaticResource listStyle}"
+                     Name="roomListBox"
                       Foreground="#5f6368"
                       Width="340"
                       Template="{DynamicResource ArrowedItemsControl}"
@@ -159,9 +160,11 @@
                       VerticalAlignment="Center">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock HorizontalAlignment="Center"
+                        <StackPanel Orientation="Vertical"
+                                    Background="Transparent">
+                            <TextBlock HorizontalAlignment="Stretch"
                                        Foreground="#5f6368"
+                                       Background="Transparent"
                                        FontSize="15"
                                        Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">

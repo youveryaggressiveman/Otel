@@ -76,49 +76,64 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Row="0"
-                     Grid.RowSpan="4"
-                     Margin="20 110 20 20"
-                     x:Name="allCardListView"
-                     Foreground="#5f6368"
-                     FontSize="20"
-                     Template="{DynamicResource ArrowedItemsControl}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     SelectedItem="{Binding SelectedCard}"
-                     ItemsSource="{Binding CardList}"
-                     Background="Transparent"
-                     Grid.Column="0"
-                     Grid.ColumnSpan="2"
-                     Visibility="{Binding ListViewVisibility}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock HorizontalAlignment="Center"
-                                       FontSize="16"
-                                       Style="{StaticResource TextBlockBaseStyle}"
-                                       VerticalAlignment="Center">
-                            <Run Text="Карта #" />
-                            <Run Text="{Binding ID}" />
-                            <Run Text="," />
-                                <LineBreak />
-                                <Run Text="Последние 4 цифры:" />
-                                <Run Text="{Binding LastFourDigits}" />
-                                <Run Text=";" />
-                            </TextBlock>
-                            <Button Command="{Binding ElementName=allCardListView, Path=DataContext.SelectCard}"
-                                    Content="Выбрать "
-                                    Style="{StaticResource ButtonPrimary.Small}">
-                            </Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius"
-                                Value="8" />
-                    </Style>
-                </ListBox.Resources>
-            </ListBox>
+            <ScrollViewer Grid.Row="0"
+                          HorizontalScrollBarVisibility="Visible"
+                          VerticalScrollBarVisibility="Visible"
+                          Grid.RowSpan="4"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2">
+                <StackPanel>
+                    <ListBox Margin="20 110 20 20"
+                             Height="180"
+                             x:Name="allCardListView"
+                             Foreground="#5f6368"
+                             FontSize="20"
+                             Template="{DynamicResource ArrowedItemsControl}"
+                             Style="{StaticResource ListBoxBaseStyle}"
+                             SelectedItem="{Binding SelectedCard}"
+                             ItemsSource="{Binding CardList}"
+                             ItemContainerStyle="{StaticResource listStyle}"
+                             Background="Transparent"
+                             Visibility="{Binding ListViewVisibility}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Background="Transparent">
+                                    <TextBlock HorizontalAlignment="Stretch"
+                                               FontSize="16"
+                                               Background="Transparent"
+                                               Style="{StaticResource TextBlockBaseStyle}"
+                                               VerticalAlignment="Center">
+                                    <Run Text="Карта #" />
+                                    <Run Text="{Binding ID}" />
+                                    <Run Text="," />
+                                    <LineBreak />
+                                    <Run Text="Последние 4 цифры:" />
+                                    <Run Text="{Binding LastFourDigits}" />
+                                    <Run Text=";" />
+                                    </TextBlock>
+                                    <Button Command="{Binding ElementName=allCardListView, Path=DataContext.SelectCard}"
+                                            Content="Выбрать "
+                                            Margin="5 0 5 0"
+                                            Style="{StaticResource ButtonDashedPrimary.Small}">
+                                    </Button>
+                                    <Button Command="{Binding ElementName=allCardListView, Path=DataContext.DeleteCard}"
+                                            Content="Удалить "
+                                            Margin="5 0 5 0"
+                                            Style="{StaticResource ButtonDashedDanger.Small}">
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius"
+                                        Value="8" />
+                            </Style>
+                        </ListBox.Resources>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
             <TextBlock Grid.Row="0"
                        Background="Transparent"
                        Grid.Column="0"
@@ -126,9 +141,9 @@
                        Style="{StaticResource TextBlockTitle}"
                        Text="Платежные реквизиты"
                        FontSize="40"
-                       Margin="20 0 0 0"
+                       Margin="20 5 0 0"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Top" />
             <TextBlock Grid.Row="1"
                        Margin="10 0 0 0"
                        Style="{StaticResource TextBlockBaseStyle}"
@@ -185,7 +200,7 @@
                          FontSize="20"
                          MaxLength="2"
                          HorizontalContentAlignment="Left"
-                         Width="40" />
+                         Width="47" />
                 <TextBlock Text="/"
                            Style="{StaticResource TextBlockBaseStyle}"
                            Visibility="{Binding TextBoxAndLabelVisibility}"
@@ -202,7 +217,7 @@
                          MaxLength="2"
                          Text="{Binding CardYY}"
                          HorizontalContentAlignment="Left"
-                         Width="40" />
+                         Width="47" />
             </StackPanel>
             <TextBlock Grid.Row="3"
                        Text="CVC/CVV:"

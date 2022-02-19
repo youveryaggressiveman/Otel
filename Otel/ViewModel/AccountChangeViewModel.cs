@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
@@ -7,6 +8,7 @@ using Otel.Command;
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.View.Windows;
 
 namespace Otel.ViewModel
 {
@@ -18,15 +20,38 @@ namespace Otel.ViewModel
 
         private OpenFileDialog dlg;
 
+        private Visibility visibility = Visibility.Collapsed;
+
         private BitmapImage image;
         private User thisUser;
 
+        private string cardHashCode = "Карта для оплаты отсутствует";
         private string regexFullName;
         private string fullName;
 
         #endregion
 
         #region properties
+
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged(nameof(Visibility));
+            }
+        }
+
+        public string CardHashCode
+        {
+            get => cardHashCode;
+            set
+            {
+                cardHashCode = value;
+                OnPropertyChanged(nameof(CardHashCode));
+            }
+        }
 
         public BitmapImage Image
         {
@@ -72,7 +97,7 @@ namespace Otel.ViewModel
 
         #region command
 
-        public ICommand Exit { get; private set; }
+        public ICommand AddCard { get; private set; }
         public ICommand Put { get; private set; }
         public ICommand Delete { get; private set; }
         public ICommand Add { get; private set; }
@@ -85,15 +110,44 @@ namespace Otel.ViewModel
 
             dlg = new OpenFileDialog();
 
+            AddCard = new DelegateCommand(LoadCard);
             Put = new DelegateCommand(PutUser);
             Add = new DelegateCommand(AddAvatar);
             Delete = new DelegateCommand(DeleteAvatar);
 
             LoadInfo();
+            
+        }
+
+        public void SetSplash(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                Visibility = Visibility.Visible;
+            }
+
+            if (!isEnabled)
+            {
+                Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void LoadCard(object obj)
+        {
+            SetSplash(true);
+
+            InputCardWindow inputCardWindow = new InputCardWindow();
+            inputCardWindow.ShowDialog();
+
+            UpdateCard();
+
+            SetSplash(false);
         }
 
         private async void PutUser(object obj)
         {
+            SetSplash(true);
+
             var splitName = FullName.Split(' ');
 
             if (splitName.Length != 3)
@@ -136,6 +190,8 @@ namespace Otel.ViewModel
             HandyControl.Controls.MessageBox.Success("Обновление пользователя прошло успешно", "Информация");
 
             LoadInfo();
+
+            SetSplash(false);
         }
 
         private void AddAvatar(object obj)
@@ -208,6 +264,18 @@ namespace Otel.ViewModel
 
                 Image = image;
             }
+        }
+
+        private void UpdateCard()
+        {
+            if (CardSingltone.Card == null)
+            {
+                CardHashCode = "Карта для оплаты отсутствует";
+
+                return;
+            }
+
+            CardHashCode = "Карта для оплаты: " + "**** " +CardSingltone.Card.LastFourDigits.ToString();
         }
     }
 }

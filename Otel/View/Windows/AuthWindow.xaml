@@ -92,6 +92,7 @@
             <hc:TextBox  Grid.Row="1"
                       x:Name="phoneTextBox"
                       TextType="Phone"
+                      PreviewTextInput="PhoneTextBox_OnPreviewTextInput"
                       MaxLength="11"
                          Style="{StaticResource TextBoxExtend}"
                       Background="Transparent"

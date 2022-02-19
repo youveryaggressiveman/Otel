@@ -14,6 +14,7 @@ namespace Otel.ViewModel
     {
         #region fields
 
+        private readonly InputCardViewModelController controller;
         private readonly UniversalController<Card> universalControllerCreateCard;
         private readonly UniversalController<Card> universalControllerCardListByUserID;
 
@@ -117,6 +118,7 @@ namespace Otel.ViewModel
 
         #region command
 
+        public ICommand DeleteCard { get; private set; }
         public ICommand Cancel { get; private set; }
         public ICommand InputCard { get; private set; }
         public ICommand CreateNewCard { get; private set; }
@@ -126,11 +128,13 @@ namespace Otel.ViewModel
 
         public InputCardViewModel()
         {
+            controller = new InputCardViewModelController();
             universalControllerCreateCard = new UniversalController<Card>();
             universalControllerCardListByUserID = new UniversalController<Card>();
 
             CardList = new ObservableCollection<Card>();
 
+            DeleteCard = new DelegateCommand(Delete);
             Cancel = new DelegateCommand(CancelThisWindow);
             InputCard = new DelegateCommand(CreateHashCode);
             SelectCard = new DelegateCommand(SelectedByPayCard);
@@ -159,15 +163,37 @@ namespace Otel.ViewModel
             }
         }
 
+        private async void Delete(object obj)
+        {
+            Card card;
+
+            try
+            {
+                card = await controller.DeleteCardAsync(SelectedCard.ID);
+
+            }
+            catch (Exception e)
+            {
+                HandyControl.Controls.MessageBox.Info("Произошла ошибка при удалении карты. Поворите попытку позже",
+                    "Информация");
+                return;;
+            }
+
+            if (CardSingltone.Card?.ID == card.ID)
+            {
+                CardSingltone.Card = null;
+            }
+
+            HandyControl.Controls.MessageBox.Info($"Карта **** {card.LastFourDigits} была успешна удалена из системы.",
+                "Информация");
+
+            UpdateCard();
+        }
+
         private void CancelThisWindow(object obj)
         {
             foreach (Window item in Application.Current.Windows)
             {
-                if (item is TicketPaymentWindow)
-                {
-                    item.Show();
-                }
-
                 if (item is InputCardWindow)
                 {
                     item.Close();
@@ -192,11 +218,6 @@ namespace Otel.ViewModel
                 if (item is InputCardWindow)
                 {
                     item.Close();
-                }
-
-                if (item is TicketPaymentWindow)
-                {
-                    item.Show();
                 }
             }
         }
@@ -266,12 +287,14 @@ namespace Otel.ViewModel
                 {
                     item.Close();
                 }
-
-                if (item is TicketPaymentWindow)
-                {
-                    item.Show();
-                }
             }
+        }
+
+        private void UpdateCard()
+        {
+            CardList = new ObservableCollection<Card>();
+
+            LoadAllCard();
         }
     }
 }

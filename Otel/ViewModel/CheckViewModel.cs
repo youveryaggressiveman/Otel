@@ -54,9 +54,9 @@ namespace Otel.ViewModel
         {
             var helper = new WordHelper(@"Resources\Files\check_template.docx");
 
-
             string roomInfo = string.Empty;
             int price = 0;
+            int fullPrice = 0;
 
             foreach (var item in order.Room)
             {
@@ -74,8 +74,13 @@ namespace Otel.ViewModel
                 }
             }
 
+            fullPrice = price / (100 - UserSingltone.User.Role.Discount) * 100;
+
             var items = new Dictionary<string, string>()
             {
+                {"{full_price}", fullPrice.ToString()},
+                {"{discount}", (fullPrice - price).ToString()},
+                {"{prescient}", UserSingltone.User.Role.Discount.ToString() + "%"},
                 { "{check_number}", order.ID.ToString() },
                 { "{date}", DateTime.Now.ToString() },
                 { "{name_otel}", hotel.Name },

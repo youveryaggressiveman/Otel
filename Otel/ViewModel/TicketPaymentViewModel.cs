@@ -20,7 +20,7 @@ namespace Otel.ViewModel
         private ObservableCollection<Room> room;
 
         private readonly Hotel hotel;
-        private readonly Order order;
+        private Order order;
 
         private string country;
         private string nameHotel;
@@ -213,6 +213,8 @@ namespace Otel.ViewModel
 
         private void PayTicket(object obj)
         {
+            SetSplash(true);
+
             if (CardSingltone.Card != null)
             {
                 CreateTicket();
@@ -230,29 +232,23 @@ namespace Otel.ViewModel
                     }
                 }
 
+                SetSplash(false);
+
                 return;
             }
 
             if (CardSingltone.Card == null)
             {
                 InputCardWindow inputCardWindow = new InputCardWindow();
-                inputCardWindow.Show();
+                inputCardWindow.ShowDialog();
 
-                foreach (Window item in Application.Current.Windows)
-                {
-                    if (item is TicketPaymentWindow)
-                    {
-                        item.Hide();
-                    }
-                }
-
-                return;
+                SetSplash(false);
             }
         }
 
         private async void CreateTicket()
         {
-            SetSplash(true);
+            
 
             Order newOrder = new Order()
             {
@@ -263,9 +259,7 @@ namespace Otel.ViewModel
                 OtelID = hotel.ID
             };
 
-            await universalControllerCreateOrder.CreateAnother(newOrder, "Orders");
-
-            SetSplash(false);
+            order = await universalControllerCreateOrder.CreateAnother(newOrder, "Orders");
         }
 
         private void LoadAllData(Order order, Hotel hotel)

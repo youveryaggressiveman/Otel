@@ -34,6 +34,7 @@
             <ListBox Grid.Row="1"
                      Style="{StaticResource ListBoxBaseStyle}"
                      Margin="20"
+                     ItemContainerStyle="{StaticResource listStyle}"
                      Height="550"
                      Template="{DynamicResource ArrowedItemsControl}"
                      Width="430"
@@ -44,9 +45,11 @@
                      Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock HorizontalAlignment="Center"
+                        <StackPanel Orientation="Vertical"
+                                    >
+                            <TextBlock HorizontalAlignment="Stretch"
                                        FontSize="16"
+                                        
                                        Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
                             <Run Text="Заказ #" />
@@ -174,9 +177,14 @@
             </TextBlock>
             <ListBox Grid.Row="4"
                      Grid.Column="1"
-                     Style="{StaticResource ListBoxBaseStyle}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     ItemContainerStyle="{StaticResource listStyle}"
+                     Style="{StaticResource  ListBoxBaseStyle}"
                      Width="250"
-                     Margin="40"
+                     Height="40"
+                     Template="{DynamicResource ArrowedItemsControl}"
+                     Margin="20"
                      ItemsSource="{Binding RoomList}"
                      Foreground="#5f6368"
                      FontSize="18"
@@ -184,7 +192,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock HorizontalAlignment="Center"
+                            <TextBlock HorizontalAlignment="Stretch"
                                        FontSize="16"
                                        Style="{StaticResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center">
