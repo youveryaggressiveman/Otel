@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AuthWindow
+    /// </summary>
     public class AuthViewModel : BaseViewModel
     {
         #region fields
@@ -54,6 +57,10 @@ namespace Otel.ViewModel
             AuthorizeCommand = new DelegateCommand(Authorize);
         }
 
+        /// <summary>
+        /// Метод, который закрывает данное окно
+        /// </summary>
+        /// <param name="obj"></param>
         private void CancelThisWindow(object obj)
         {
             MainWindow mainWindow = new MainWindow();
@@ -68,6 +75,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который производит фунцию авторизации в интерфейсе
+        /// </summary>
+        /// <param name="obj"></param>
         public async void Authorize(object obj)
         {
             if (string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Password))
@@ -98,6 +109,6 @@ namespace Otel.ViewModel
             }
         }
 
-        
+
     }
 }

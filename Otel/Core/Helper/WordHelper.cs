@@ -9,6 +9,9 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace Otel.Core.Helper
 {
+    /// <summary>
+    /// Класс, который реализует возможность создания нового чека
+    /// </summary>
     public class WordHelper
     {
         private FileInfo fileInfo;
@@ -22,6 +25,10 @@ namespace Otel.Core.Helper
             fileInfo = new FileInfo(filePath);
         }
 
+        /// <summary>
+        /// Метод, который создает новый чек пользователю
+        /// </summary>
+        /// <param name="informationPairs"></param>
         public void CreateCheck(Dictionary<string, string> informationPairs)
         {
 
@@ -71,14 +78,14 @@ namespace Otel.Core.Helper
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
                 app.ActiveDocument.Close();
                 app.Quit();
             }
-           
+
 
         }
     }

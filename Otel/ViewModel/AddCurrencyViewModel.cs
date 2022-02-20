@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AddCurrencyWindow
+    /// </summary>
     public class AddCurrencyViewModel : BaseViewModel
     {
         #region fields
@@ -44,6 +47,10 @@ namespace Otel.ViewModel
             AddNewCurrency = new DelegateCommand(NewCurrency);
         }
 
+        /// <summary>
+        /// Метод, который позволяет интерфейсу добавлять новую валюту
+        /// </summary>
+        /// <param name="obj"></param>
         private async void NewCurrency(object obj)
         {
             if (Currency == null)

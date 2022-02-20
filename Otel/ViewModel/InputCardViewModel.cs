@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику InputCardWindow
+    /// </summary>
     public class InputCardViewModel : BaseViewModel
     {
         #region fields
@@ -163,6 +166,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который удаляет карту из интерфейса
+        /// </summary>
+        /// <param name="obj"></param>
         private async void Delete(object obj)
         {
             Card card;
@@ -176,7 +183,7 @@ namespace Otel.ViewModel
             {
                 HandyControl.Controls.MessageBox.Info("Произошла ошибка при удалении карты. Поворите попытку позже",
                     "Информация");
-                return;;
+                return; ;
             }
 
             if (CardSingltone.Card?.ID == card.ID)
@@ -190,6 +197,10 @@ namespace Otel.ViewModel
             UpdateCard();
         }
 
+        /// <summary>
+        /// Метод, который закрывает данное окно приложения
+        /// </summary>
+        /// <param name="obj"></param>
         private void CancelThisWindow(object obj)
         {
             foreach (Window item in Application.Current.Windows)
@@ -201,6 +212,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который заносит выбранную карту, для дальнейшей работе в приложение
+        /// </summary>
+        /// <param name="obj"></param>
         private void SelectedByPayCard(object obj)
         {
 
@@ -222,12 +237,19 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который отбражает поля для создания новой карты
+        /// </summary>
+        /// <param name="obj"></param>
         private void CreateCard(object obj)
         {
             TextBoxAndLabelVisibility = Visibility.Visible;
             ListViewVisibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Метод, который загружает список карт пользователя в интерфейс
+        /// </summary>
         private async void LoadAllCard()
         {
             var newCardList = await universalControllerCardListByUserID.GetListInfoFromAnotherTableById("Cards", "client", UserSingltone.User.ID);
@@ -238,6 +260,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который создает новую карту пользователя
+        /// </summary>
+        /// <param name="obj"></param>
         private async void CreateHashCode(object obj)
         {
             if (CardNumber.Length == 0)
@@ -290,6 +316,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, для обновления списка карт пользователя
+        /// </summary>
         private void UpdateCard()
         {
             CardList = new ObservableCollection<Card>();

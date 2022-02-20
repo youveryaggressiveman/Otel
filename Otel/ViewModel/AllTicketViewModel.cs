@@ -9,6 +9,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AllTicketWindow
+    /// </summary>
     public class AllTicketViewModel : BaseViewModel
     {
         #region fields
@@ -144,6 +147,10 @@ namespace Otel.ViewModel
             LoadAllTicket();
         }
 
+        /// <summary>
+        /// Метод, который загружает информацию о выбранном заказе
+        /// </summary>
+        /// <param name="obj"></param>
         private async void ShowInfo(object obj)
         {
 
@@ -179,6 +186,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который загружает в интерфейс список заказов пользователя
+        /// </summary>
         private async void LoadAllTicket()
         {
 

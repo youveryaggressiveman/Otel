@@ -2,6 +2,9 @@
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель Order
+    /// </summary>
     public class Order
     {
         public int ID { get; set; }

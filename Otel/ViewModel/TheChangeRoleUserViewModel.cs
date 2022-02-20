@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику TheChangeRoleUserPage
+    /// </summary>
     public class TheChangeRoleUserViewModel : BaseViewModel
     {
         #region fields
@@ -157,6 +160,10 @@ namespace Otel.ViewModel
             LoadUsers();
         }
 
+        /// <summary>
+        /// Метод, который обновляет информацию о пользователе в интерфейсе
+        /// </summary>
+        /// <param name="obj"></param>
         private async void UpdateRole(object obj)
         {
             if (SelectedUser == null)
@@ -175,7 +182,7 @@ namespace Otel.ViewModel
 
             var result = HandyControl.Controls.MessageBox.Ask("Вы уверены, что хотите изменить роль у выбранного пользователя?", "Предупреждение");
 
-            if(result == MessageBoxResult.OK)
+            if (result == MessageBoxResult.OK)
             {
                 SelectedUser.RoleID = SelectedRole.ID;
                 SelectedUser.Role = SelectedRole;
@@ -198,6 +205,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который отобращает информацию о выбранном пользователе
+        /// </summary>
+        /// <param name="obj"></param>
         private void SelectUser(object obj)
         {
             if (SelectedUser == null)
@@ -224,6 +235,9 @@ namespace Otel.ViewModel
             LoadRole();
         }
 
+        /// <summary>
+        /// Метод, который загружает список ролей в интерфейс
+        /// </summary>
         private async void LoadRole()
         {
             if (RoleList != null)
@@ -239,6 +253,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который загружает список пользователей в интерфейс
+        /// </summary>
         private async void LoadUsers()
         {
             var listUser = await universalControllerUser.GetAllInfo("Users");
@@ -249,6 +266,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который обновляет информацию в интерфейсе
+        /// </summary>
         private void LoadAllData()
         {
             UserList = new ObservableCollection<User>();
@@ -262,7 +282,7 @@ namespace Otel.ViewModel
             Phone = null;
 
             LoadRole();
-            LoadUsers();  
+            LoadUsers();
         }
     }
 }

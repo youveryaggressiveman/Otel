@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AddTypeRoomWindow
+    /// </summary>
     public class AddTypeRoomViewModel : BaseViewModel
     {
         #region fields
@@ -44,6 +47,10 @@ namespace Otel.ViewModel
             AddNewTypeRoom = new DelegateCommand(NewTypeRoom);
         }
 
+        /// <summary>
+        /// Метод, который позволяет интерфейсу добавлять новый тип комнаты
+        /// </summary>
+        /// <param name="obj"></param>
         private async void NewTypeRoom(object obj)
         {
             if (TypeRoom == null)

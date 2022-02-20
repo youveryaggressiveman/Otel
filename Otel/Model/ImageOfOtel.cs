@@ -2,6 +2,9 @@
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель ImageOfOtel
+    /// </summary>
     public class ImageOfOtel
     {
         public int ID { get; set; }

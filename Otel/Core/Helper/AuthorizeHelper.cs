@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace Otel.Core.Helper
 {
+    /// <summary>
+    /// Класс, который помогает AuthViewModel при авторизации
+    /// </summary>
     public class AuthorizeHelper
     {
         private readonly AuthViewModelController controller;
@@ -17,6 +20,12 @@ namespace Otel.Core.Helper
             controller = new AuthViewModelController();
         }
 
+        /// <summary>
+        /// Метод, еоторый определяет при введеных логина и пароля определить, существует такой аккаут или нет
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> Auth(string phone, string password)
         {
             var selectedUser = await controller.GetClientByPhone(phone);

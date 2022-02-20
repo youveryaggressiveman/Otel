@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель Hotel
+    /// </summary>
     public class Hotel
     {
         public int ID { get; set; }

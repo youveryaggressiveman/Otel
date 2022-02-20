@@ -12,6 +12,9 @@ using System.Windows.Media.Imaging;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AdminPage
+    /// </summary>
     public class AdminViewModel : BaseViewModel
     {
         #region fields
@@ -241,6 +244,10 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        /// <summary>
+        /// Метод, который открывает окно для добавления новой вылюты
+        /// </summary>
+        /// <param name="obj"></param>
         private void NewCurrency(object obj)
         {
             AddCurrencyWindow addCurrencyWindow = new AddCurrencyWindow();
@@ -249,6 +256,10 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        /// <summary>
+        /// Метод, который открывает окно для добавления нового типа комнаты
+        /// </summary>
+        /// <param name="obj"></param>
         private void NewTypeRoom(object obj)
         {
             AddTypeRoomWindow addTypeRoomWindow = new AddTypeRoomWindow();
@@ -257,6 +268,10 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        /// <summary>
+        /// Метод, который открывает окно для добавления новый страны
+        /// </summary>
+        /// <param name="obj"></param>
         private void NewCountry(object obj)
         {
             AddCountryWindow addCountryWindow = new AddCountryWindow();
@@ -265,6 +280,10 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        /// <summary>
+        /// Метод, который удалет выбраную комнату из интерфейса
+        /// </summary>
+        /// <param name="obj"></param>
         private void DeleteSelectedRoom(object obj)
         {
             if (ListRoom.Count == 0)
@@ -290,6 +309,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который создает новый отель
+        /// </summary>
+        /// <param name="obj"></param>
         private async void NewOtel(object obj)
         {
             if (SelectedCountry == null)
@@ -407,6 +430,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который загружает в список новую комнату
+        /// </summary>
+        /// <param name="obj"></param>
         private void LoadnewRoomList(object obj)
         {
             if (SelectedTypeRoom == null)
@@ -453,6 +480,9 @@ namespace Otel.ViewModel
             ListRoom.Add(newRoom);
         }
 
+        /// <summary>
+        /// Метод, который загружает в интерфейс всю информацию
+        /// </summary>
         private async void LoadAllData()
         {
             ListCurrency = new ObservableCollection<Currency>();

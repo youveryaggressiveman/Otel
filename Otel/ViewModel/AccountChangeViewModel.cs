@@ -12,6 +12,9 @@ using Otel.View.Windows;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AccountChangeWindow
+    /// </summary>
     public class AccountChangeViewModel : BaseViewModel
     {
         #region fields
@@ -116,9 +119,13 @@ namespace Otel.ViewModel
             Delete = new DelegateCommand(DeleteAvatar);
 
             LoadInfo();
-            
+
         }
 
+        /// <summary>
+        /// Метод, который управлет видимостью окна загрузки в интерфейсе
+        /// </summary>
+        /// <param name="isEnabled"></param>
         public void SetSplash(bool isEnabled)
         {
             if (isEnabled)
@@ -132,6 +139,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который открывает окно со списком карт
+        /// </summary>
+        /// <param name="obj"></param>
         private void LoadCard(object obj)
         {
             SetSplash(true);
@@ -144,6 +155,10 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
+        /// <summary>
+        /// Метод, который обновляет информацию пользователя
+        /// </summary>
+        /// <param name="obj"></param>
         private async void PutUser(object obj)
         {
             SetSplash(true);
@@ -194,22 +209,30 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
+        /// <summary>
+        /// Метод, который позволяет загрузить изображение в интерфейс 
+        /// </summary>
+        /// <param name="obj"></param>
         private void AddAvatar(object obj)
         {
-            dlg.FileName = ""; 
-            dlg.DefaultExt = ".jpg"; 
+            dlg.FileName = "";
+            dlg.DefaultExt = ".jpg";
             dlg.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
                          "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-                         "Portable Network Graphic (*.png)|*.png"; 
+                         "Portable Network Graphic (*.png)|*.png";
 
             bool? result = dlg.ShowDialog();
 
             if (result == true)
             {
-                Image = new BitmapImage( new Uri(dlg.FileName));
+                Image = new BitmapImage(new Uri(dlg.FileName));
             }
         }
 
+        /// <summary>
+        /// Метод, который удаляет картинку из интерфейса
+        /// </summary>
+        /// <param name="obj"></param>
         private void DeleteAvatar(object obj)
         {
             Image = new BitmapImage(new Uri("pack://application:,,,/Otel;component/Resources/Image/Programmyi-dlya-sozdaniya-avatarok.png"));
@@ -217,6 +240,9 @@ namespace Otel.ViewModel
             HandyControl.Controls.MessageBox.Success("Удаление прошло успешно!", "Информация");
         }
 
+        /// <summary>
+        /// Метод, который загружает всю информацию о пользователе в интерфейс 
+        /// </summary>
         private void LoadInfo()
         {
             ThisUser = UserSingltone.User;
@@ -224,10 +250,15 @@ namespace Otel.ViewModel
                             UserSingltone.User.LastName[0] + ".";
             FullName = UserSingltone.User.SecondName + " " + UserSingltone.User.FirstName + " " +
                        UserSingltone.User.LastName;
-            
+
             ConvertByteToImage();
         }
 
+        /// <summary>
+        /// Метод, который преобразует картинку в массив битов
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         private byte[] ImageConBytes(BitmapImage image)
         {
             byte[] data;
@@ -245,6 +276,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который преврщает массив битов в картинку
+        /// </summary>
         private void ConvertByteToImage()
         {
             if (UserSingltone.User.Avatar == null)
@@ -266,6 +300,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который обновляет информацию о выбранной карте пользователя
+        /// </summary>
         private void UpdateCard()
         {
             if (CardSingltone.Card == null)
@@ -275,7 +312,7 @@ namespace Otel.ViewModel
                 return;
             }
 
-            CardHashCode = "Карта для оплаты: " + "**** " +CardSingltone.Card.LastFourDigits.ToString();
+            CardHashCode = "Карта для оплаты: " + "**** " + CardSingltone.Card.LastFourDigits.ToString();
         }
     }
 }

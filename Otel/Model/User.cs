@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель User
+    /// </summary>
     public class User
     {
         public int ID { get; set; }

@@ -2,6 +2,9 @@
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель Card
+    /// </summary>
     public class Card
     {
         public int ID { get; set; }

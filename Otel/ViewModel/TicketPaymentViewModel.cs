@@ -11,6 +11,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику TicketPaymentWindow
+    /// </summary>
     public class TicketPaymentViewModel : BaseViewModel
     {
         #region fields
@@ -184,6 +187,10 @@ namespace Otel.ViewModel
             LoadAllData(order, hotel);
         }
 
+        /// <summary>
+        /// Метод, который закрывает данное окно приложения
+        /// </summary>
+        /// <param name="obj"></param>
         private void CancelThisWindow(object obj)
         {
             MainWindow mainWindow = new MainWindow();
@@ -198,6 +205,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который управлет видимостью окна загрузки в интерфейсе
+        /// </summary>
+        /// <param name="isEnabled"></param>
         private void SetSplash(bool isEnabled)
         {
             if (isEnabled)
@@ -211,6 +222,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который начинает процедуру оплаты в приложении
+        /// </summary>
+        /// <param name="obj"></param>
         private void PayTicket(object obj)
         {
             SetSplash(true);
@@ -246,10 +261,11 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который создает новый заказ
+        /// </summary>
         private async void CreateTicket()
         {
-            
-
             Order newOrder = new Order()
             {
                 DepartureDate = DepartureDate,
@@ -262,9 +278,16 @@ namespace Otel.ViewModel
             order = await universalControllerCreateOrder.CreateAnother(newOrder, "Orders");
         }
 
+        /// <summary>
+        /// Метод, который закгружает всю информацию о заказе в интерфейс
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="hotel"></param>
         private void LoadAllData(Order order, Hotel hotel)
         {
             SetSplash(true);
+
+            Room = new ObservableCollection<Room>();
 
             NameHotel = hotel.Name;
             AddressOfHotel = hotel.AddressOfOtel.Name + ", " + hotel.AddressOfOtel.Number;
@@ -282,7 +305,7 @@ namespace Otel.ViewModel
                 {
                     Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);
                 }
-                
+
                 if (DepartureDate.Year > ArrivalDate.Year)
                 {
                     Price = (Price + item.Price.Number) * (DepartureDate.DayOfYear + 365 - ArrivalDate.DayOfYear) / 100 * (100 - UserSingltone.User.Role.Discount);

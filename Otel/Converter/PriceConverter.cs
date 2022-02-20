@@ -7,6 +7,9 @@ using System.Windows.Data;
 
 namespace Otel.Converter
 {
+    /// <summary>
+    /// Класс, реализующий интерфейс IValueConverter
+    /// </summary>
     public class PriceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

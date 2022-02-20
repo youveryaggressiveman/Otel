@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель TypeRoom
+    /// </summary>
     public class TypeRoom
     {
         public int ID { get; set; }

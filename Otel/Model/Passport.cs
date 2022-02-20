@@ -1,5 +1,8 @@
 ﻿namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель Passport
+    /// </summary>
     public class Passport
     {
         public int ID { get; set; }

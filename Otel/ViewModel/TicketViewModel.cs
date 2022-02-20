@@ -17,6 +17,9 @@ using Otel.Core.Utils;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику TicketWindow
+    /// </summary>
     public class TicketViewModel : BaseViewModel
     {
         #region fields
@@ -414,8 +417,6 @@ namespace Otel.ViewModel
             ViewPageAdminMode = new DelegateCommand(PageAdminMode);
             ViewPageHome = new DelegateCommand(PageHome);
             ViewPageAllTicket = new DelegateCommand(PageAllTicket);
-            PreviousImage = new DelegateCommand(SetPreviousImage);
-            NextImage = new DelegateCommand(SetNextImage);
             AddRoom = new DelegateCommand(AddRoomToRoomList);
             FormalizationCommand = new DelegateCommand(Formaliztion);
             DeleteRoom = new DelegateCommand(DeleteRoomFromList);
@@ -424,6 +425,10 @@ namespace Otel.ViewModel
             LoadClient();
         }
 
+        /// <summary>
+        /// Метод, который открывет диалоговое окно профиля пользователя
+        /// </summary>
+        /// <param name="obj"></param>
         private void Profile(object obj)
         {
             SetSplash(true);
@@ -438,6 +443,10 @@ namespace Otel.ViewModel
 
         }
 
+        /// <summary>
+        /// Метод, который открывает окно авторизации 
+        /// </summary>
+        /// <param name="obj"></param>
         private void Auth(object obj)
         {
             AuthWindow authWindow = new AuthWindow();
@@ -452,6 +461,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который открывает окно регистрации
+        /// </summary>
+        /// <param name="obj"></param>
         private void Registr(object obj)
         {
             RegistrationWindow registrationWindow = new RegistrationWindow();
@@ -466,6 +479,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который реализует функцию выхода из аккаунта
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExitAccount(object obj)
         {
             UserSingltone.User = null;
@@ -476,69 +493,43 @@ namespace Otel.ViewModel
             LoadClient();
         }
 
+        /// <summary>
+        /// Метод, который открывает страницу TheChangeRole
+        /// </summary>
+        /// <param name="obj"></param>
         private void TheChangeRole(object obj)
         {
             LoadClient();
         }
 
+        /// <summary>
+        /// Метод, который открывает страницу PageAdminMode
+        /// </summary>
+        /// <param name="obj"></param>
         private void PageAdminMode(object obj)
         {
             LoadClient();
         }
 
+        /// <summary>
+        /// Метод, который открывает страницу PageHome
+        /// </summary>
+        /// <param name="obj"></param>
         private void PageHome(object obj)
         {
             LoadClient();
         }
 
+        /// <summary>
+        /// Метод, который открывает страницу PageAllTicket
+        /// </summary>
+        /// <param name="obj"></param>
         private void PageAllTicket(object obj)
         {
             LoadClient();
         }
 
-        private void SetPreviousImage(object obj)
-        {
-            var imageCount = bitmapImages.Count - 1;
-
-            if (imageIndex <= imageCount)
-            {
-                imageIndex--;
-            }
-
-            if (imageIndex < 0)
-            {
-                imageIndex = imageCount;
-            }
-
-            if (bitmapImages.Count == 0)
-            {
-                return;
-            }
-
-            ImageByOtel = bitmapImages[imageIndex];
-        }
-
-        private void SetNextImage(object obj)
-        {
-            var imageCount = bitmapImages.Count - 1;
-
-            if (imageIndex <= imageCount)
-            {
-                imageIndex++;
-            }
-
-            if (imageIndex > imageCount)
-            {
-                imageIndex = 0;
-            }
-
-            if (bitmapImages.Count == 0)
-            {
-                return;
-            }
-
-            ImageByOtel = bitmapImages[imageIndex];
-        }
+       
 
         private async void LoadNumber()
         {

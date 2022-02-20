@@ -9,6 +9,9 @@ using Otel.Core.Services;
 
 namespace Otel.Core.Utils
 {
+    /// <summary>
+    /// Класс, реализуюший интерфейс IImageService
+    /// </summary>
     public class ImageService : IImageService
     {
         private readonly DirectoryInfo dsInfo;
@@ -18,6 +21,12 @@ namespace Otel.Core.Utils
             dsInfo = new DirectoryInfo(@"Resources\Images");
         }
 
+        /// <summary>
+        /// Метод, который сохраняет при необходимости новую картинку отеля в файловых ресурсах приложения
+        /// </summary>
+        /// <param name="sources"></param>
+        /// <param name="nameHotel"></param>
+        /// <returns></returns>
         public Task Save(IEnumerable<BitmapSource> sources, string nameHotel)
         {
             BitmapEncoder bitmapEncoder = new BmpBitmapEncoder();
@@ -55,6 +64,11 @@ namespace Otel.Core.Utils
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Метод, который находит соответствующие картинки в файлах приложения
+        /// </summary>
+        /// <param name="nameHotel"></param>
+        /// <returns></returns>
         public IEnumerable<Uri> FindImage(string nameHotel)
         {
             var fileList = dsInfo.GetFiles();

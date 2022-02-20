@@ -11,6 +11,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику CheckWindow
+    /// </summary>
     public class CheckViewModel : BaseViewModel
     {
         #region fields
@@ -36,6 +39,10 @@ namespace Otel.ViewModel
             CreateCheckFileToPdf();
         }
 
+        /// <summary>
+        /// Метод, который открывает главное окно приложения
+        /// </summary>
+        /// <param name="obj"></param>
         private void ShowMainWindow(object obj)
         {
             MainWindow mainWindow = new MainWindow();
@@ -50,6 +57,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, заносит всю информацию о заказе, для создания чека
+        /// </summary>
+        /// <param name="obj"></param>
         private void CreateCheckFileToPdf()
         {
             var helper = new WordHelper(@"Resources\Files\check_template.docx");

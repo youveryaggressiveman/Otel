@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику AddCountryWindow
+    /// </summary>
     public class AddCountryViewModel : BaseViewModel
     {
         #region fields
@@ -44,6 +47,10 @@ namespace Otel.ViewModel
             AddNewCountry = new DelegateCommand(NewCuntry);
         }
 
+        /// <summary>
+        /// Метод, который позволяет интерфейсу добавлять новую страну
+        /// </summary>
+        /// <param name="obj"></param>
         private async void NewCuntry(object obj)
         {
             if (Country == null)
@@ -58,7 +65,7 @@ namespace Otel.ViewModel
                 Name = Country
             };
 
-           var newCountry = await universalControllerCreateCountry.CreateAnother(country, "");
+            var newCountry = await universalControllerCreateCountry.CreateAnother(country, "");
 
             if (newCountry.ID == 0)
             {

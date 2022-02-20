@@ -1,5 +1,8 @@
 ﻿namespace Otel.Model
 {
+    /// <summary>
+    /// Класс, реализующий модель AddressOfOtel
+    /// </summary>
     public class AddressOfOtel
     {
         public int ID { get; set; }

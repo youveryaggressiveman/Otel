@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Otel.Controllers
 {
+    /// <summary>
+    /// Класс, для работы AuthViewModel с сервером
+    /// </summary>
     public class AuthViewModelController
     {
+        /// <summary>
+        /// Метод, который получает пользователя из сервера по номеру телефона
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public async Task<User> GetClientByPhone(string phone)
         {
             HttpClient client = new HttpClient();

@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace Otel.Command
 {
+    /// <summary>
+    /// Класс, реализующий интерфейс ICommand
+    /// </summary>
     public class DelegateCommand : ICommand
     {
         private readonly Action<object> execute;
@@ -21,6 +24,7 @@ namespace Otel.Command
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }
+
         public bool CanExecute(object parameter)
         {
             if (canExecute != null)

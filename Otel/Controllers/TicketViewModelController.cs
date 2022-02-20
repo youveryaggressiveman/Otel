@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace Otel.Controllers
 {
+    /// <summary>
+    /// Класс, для работы TicketViewModel с сервером
+    /// </summary>
     public class TicketViewModelController
     {
+        /// <summary>
+        /// Метод, который отправляет запрос на сервер для проверки доступности номера по выбранным критериям
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="arrivalDate"></param>
+        /// <param name="typeRoomId"></param>
+        /// <returns></returns>
         public async Task<List<Room>> GetNumerByOtel(int id, System.DateTime arrivalDate, int typeRoomId)
         {
             HttpClient client = new HttpClient();
             try
-            {  
+            {
                 var stringTask = await client.GetAsync("http://localhost:63262/api/Rooms/otel?id=" + id + "&date=" + arrivalDate.ToString("yyyy-MM-dd") + "&typeRoom=" + typeRoomId);
 
                 if (stringTask.IsSuccessStatusCode)
@@ -30,44 +40,7 @@ namespace Otel.Controllers
             {
                 throw;
             }
-      
+
         }
-
-        public async Task<List<Hotel>> GetOtelByCountry(int id)
-        {
-            HttpClient client = new HttpClient();
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Otels/country?id=" + id);
-
-            var result = JsonSerializer.Deserialize<List<Hotel>>(stringTask);
-
-            client.Dispose();
-
-            return result;
-        }
-
-        public async Task<List<Country>> GetCountryData()
-        {
-            HttpClient client = new HttpClient();
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Countries");
-
-            var result = JsonSerializer.Deserialize<List<Country>>(stringTask);
-
-            client.Dispose();
-
-            return result;
-        }
-
-        public async Task<List<TypeRoom>> GetTypeRoomDataBySelectedOtel(int id)
-        {
-            HttpClient client = new HttpClient();
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/TypeRooms/otel?id=" + id);
-
-            var result = JsonSerializer.Deserialize<List<TypeRoom>>(stringTask);
-
-            client.Dispose();
-
-            return result;
-        }
-
     }
 }

@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace Otel.Converter
 {
+    /// <summary>
+    /// Класс, реализующий интерфейс IMultiValueConverter
+    /// </summary>
     public class TextWaterMarkConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

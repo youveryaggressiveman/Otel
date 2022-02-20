@@ -8,39 +8,17 @@ using System.Threading.Tasks;
 
 namespace Otel.Controllers
 {
+    /// <summary>
+    /// Класс, для работы RegistrViewModel с сервером
+    /// </summary>
     public class RegistrViewModelController
     {
-        public async Task<User> CreateClient(User newUser)
-        {
-            var JsonObject = JsonSerializer.Serialize<User>(newUser);
-            var url = "http://localhost:63262/api/Users";
-            HttpClient client = new HttpClient();
-
-            var content = new StringContent(JsonObject, Encoding.UTF8, "application/json");
-
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            var result = await client.PostAsync(url, content);
-
-            var parsedResult = JsonSerializer.Deserialize<User>(await result.Content.ReadAsStringAsync());
-
-            client.Dispose();
-
-            return parsedResult;
-        }
-
-        public async Task<List<Country>> GetCountryData()
-        {
-            HttpClient client = new HttpClient();
-            var stringTask = await client.GetStringAsync("http://localhost:63262/api/Countries");
-
-            var result = JsonSerializer.Deserialize<List<Country>>(stringTask);
-
-            client.Dispose();
-
-            return result;
-        }
-
+        /// <summary>
+        /// Метод, который получает из сервера модель паспорта по серии и номеру
+        /// </summary>
+        /// <param name="serial"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public async Task<Passport> GetPassportByData(string serial, string number)
         {
             HttpClient client = new HttpClient();
@@ -58,6 +36,11 @@ namespace Otel.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Метод, который отправлет запрос серверу для получения пользователя по номеру телефона
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public async Task<User> GetClientByPhone(string phone)
         {
             HttpClient client = new HttpClient();

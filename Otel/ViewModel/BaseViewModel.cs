@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// МетодЮ который реализует интерфейс INotifyPropertyChanged
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

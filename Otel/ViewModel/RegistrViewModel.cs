@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace Otel.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий логику RegistrWindow
+    /// </summary>
     public class RegistrViewModel : BaseViewModel
     {
         #region fields
@@ -159,6 +162,10 @@ namespace Otel.ViewModel
             LoadAllData();
         }
 
+        /// <summary>
+        /// Метод, который закрывает данное окно приложения
+        /// </summary>
+        /// <param name="obj"></param>
         private void CancelThisWindow(object obj)
         {
             MainWindow mainWindow = new MainWindow();
@@ -173,6 +180,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который управлет видимостью окна загрузки в интерфейсе
+        /// </summary>
         private void SetSplash(bool isEnabled)
         {
             if (isEnabled)
@@ -186,6 +196,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который производит функцию регистрации в приложении
+        /// </summary>
+        /// <param name="obj"></param>
         private async void Registration(object obj)
         { 
             var newUser = await controller.GetClientByPhone(Phone);
@@ -265,6 +279,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который загружает список стран в интерфейсе
+        /// </summary>
         private async void LoadAllData()
         {
             SetSplash(true);
