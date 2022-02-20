@@ -102,7 +102,18 @@ namespace Otel.ViewModel
                 { "{last_card_number}", "**** " + CardSingltone.Card.LastFourDigits.ToString() }
             };
 
-            helper.CreateCheck(items);
+            try
+            {
+                helper.CreateCheck(items);
+            }
+            catch (Exception e)
+            {
+                HandyControl.Controls.MessageBox.Info(
+                    "Произошла ошибка при создание чека. Проверьте наличие лицензионного Word на данном устройстве",
+                    "Предупреждение");
+                throw;
+            }
+            
         }
     }
 }

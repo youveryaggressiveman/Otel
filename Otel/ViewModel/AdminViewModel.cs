@@ -44,9 +44,21 @@ namespace Otel.ViewModel
         private string numberOfRoom;
         private string numberOfPrice;
 
+        private bool isEnabledButton = true;
+
         #endregion
 
         #region properties
+
+        public bool IsEnabledButton
+        {
+            get => isEnabledButton;
+            set
+            {
+                isEnabledButton = value;
+                OnPropertyChanged(nameof(IsEnabledButton));
+            }
+        }
 
         public ObservableCollection<Uri> ListUriImage
         {
@@ -364,9 +376,9 @@ namespace Otel.ViewModel
                 return;
             }
 
+            IsEnabledButton = false;
+
             List<ImageOfOtel> imageOfOtel = new List<ImageOfOtel>();
-
-
 
             foreach (var item in ListUriImage)
             {
@@ -426,8 +438,10 @@ namespace Otel.ViewModel
 
             if (result == MessageBoxResult.Cancel)
             {
-                return;
+
             }
+
+            IsEnabledButton = true;
         }
 
         /// <summary>

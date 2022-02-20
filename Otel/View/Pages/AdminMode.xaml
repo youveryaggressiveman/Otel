@@ -242,6 +242,7 @@
                         Grid.Column="0"
                         Margin="10"
                         FontSize="16"
+                        IsEnabled="{Binding IsEnabled}"
                         Height="40"
                         Grid.ColumnSpan="2"
                         Style="{StaticResource ButtonPrimary}"

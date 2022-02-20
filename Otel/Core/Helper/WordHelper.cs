@@ -62,8 +62,6 @@ namespace Otel.Core.Helper
                     Replace: replace);
             }
 
-            Object newFilePath = Path.Combine(fileInfo.DirectoryName, DateTime.Now.Date.ToString("yyyyMMdd HHmmss") + fileInfo.Name).Replace(".docx", ".pdf").Replace("check_template", informationPairs["{FIO}"]);
-
             try
             {
                 SaveFileDialog saveFile = new SaveFileDialog();
@@ -78,7 +76,7 @@ namespace Otel.Core.Helper
             }
             catch (Exception ex)
             {
-
+                throw new NotImplementedException();
             }
             finally
             {

@@ -386,8 +386,6 @@ namespace Otel.ViewModel
         public ICommand AddRoom { get; private set; }
         public ICommand FormalizationCommand { get; private set; }
         public ICommand DeleteRoom { get; private set; }
-        public ICommand NextImage { get; private set; }
-        public ICommand PreviousImage { get; private set; }
         public ICommand ShowProfile { get; private set; }
         #endregion
 
@@ -529,8 +527,9 @@ namespace Otel.ViewModel
             LoadClient();
         }
 
-       
-
+        /// <summary>
+        /// Метод, который загружет номера выбранного отеля в интерфейс
+        /// </summary>
         private async void LoadNumber()
         {
             RoomNumber = new ObservableCollection<Room>();
@@ -569,6 +568,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который загружает адрес отеля в интерфейс
+        /// </summary>
         private void LoadAddress()
         {
 
@@ -582,6 +584,9 @@ namespace Otel.ViewModel
             AddressOfOtel = SelectedHotel.AddressOfOtel.Name + ", " + SelectedHotel.AddressOfOtel.Number;
         }
 
+        /// <summary>
+        /// Метод, который загружает описание отеля в интерфейс
+        /// </summary>
         private void LoadDesc()
         {
             Description = String.Empty;
@@ -594,6 +599,10 @@ namespace Otel.ViewModel
             Description = SelectedHotel.Discription.Name;
         }
 
+        /// <summary>
+        /// Метод, который позволяет удалить команту из списка заказа
+        /// </summary>
+        /// <param name="obj"></param>
         private void DeleteRoomFromList(object obj)
         {
             if (RoomList.Count == 0)
@@ -619,6 +628,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который позволяет добавить команту в список заказа
+        /// </summary>
+        /// <param name="obj"></param>
         private void AddRoomToRoomList(object obj)
         {
             if (!RoomList.Contains(SelectedRoom) && SelectedRoom != null)
@@ -629,6 +642,9 @@ namespace Otel.ViewModel
 
         }
 
+        /// <summary>
+        /// Метод, который загружает информацию о пользователе 
+        /// </summary>
         private void LoadClient()
         {
             if (UserSingltone.User != null)
@@ -676,6 +692,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который управлет видимостью окна загрузки в интерфейсе
+        /// </summary>
+        /// <param name="isEnabled"></param>
         public void SetSplash(bool isEnabled)
         {
             if (isEnabled)
@@ -689,6 +709,10 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который позволяет создать новый заказ 
+        /// </summary>
+        /// <param name="obj"></param>
         private void Formaliztion(object obj)
         {
             if (UserSingltone.User == null)
@@ -826,6 +850,9 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
+        /// <summary>
+        /// Метод, который загружает список изображения отеля в интерфейс
+        /// </summary>
         private void LoadImageByOtel()
         {
 
@@ -857,6 +884,9 @@ namespace Otel.ViewModel
             ImageByOtel = bitmapImages[0];
         }
 
+        /// <summary>
+        /// Метод, который загружает в интерфейс список отелей в зависимости от страны 
+        /// </summary>
         private async void LoadOtelByCountry()
         {
             SetSplash(true);
@@ -883,6 +913,9 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
+        /// <summary>
+        /// Метод, который загружает список стран в интерфейс
+        /// </summary>
         private async void LoadOtel()
         {
             SetSplash(true);
@@ -907,6 +940,9 @@ namespace Otel.ViewModel
             SetSplash(false);
         }
 
+        /// <summary>
+        /// Сетод, котрый загружает список типов комнат в интерфейс
+        /// </summary>
         private async void LoadTypeRoom()
         {
             TypeRoomList = new ObservableCollection<TypeRoom>();
@@ -924,6 +960,9 @@ namespace Otel.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, который превращает массив битов в изображение
+        /// </summary>
         private void ConvertByteToImage()
         {
             if (UserSingltone.User.Avatar == null)
@@ -938,11 +977,17 @@ namespace Otel.ViewModel
             Avatar = bitmap;
         }
 
+        /// <summary>
+        /// Метод, который сохраняет картинки в файлы ресурсов
+        /// </summary>
         private async void SaveImages()
         {
             await imageService.Save(bitmapImages, SelectedHotel.Name);
         }
 
+        /// <summary>
+        /// Метод, который обновляет информацию о пользователе
+        /// </summary>
         private void UpdateInfo()
         {
             Avatar = null;

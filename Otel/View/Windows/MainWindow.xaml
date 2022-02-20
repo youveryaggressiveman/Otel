@@ -15,21 +15,6 @@
         Height="750"
         Width="1150"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Storyboard x:Key="Storyboard">
-            <DoubleAnimation RepeatBehavior="Forever"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
-                             Storyboard.TargetName="Ellipse"
-                             From="0"
-                             To="360"
-                             Duration="0:0:5" />
-        </Storyboard>
-    </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard}" />
-        </EventTrigger>
-    </Window.Triggers>
     <Window.DataContext>
         <ViewModel:TicketViewModel />
     </Window.DataContext>
@@ -209,29 +194,14 @@
                 <TextBlock VerticalAlignment="Center"
                            HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <Ellipse x:Name="Ellipse"
-                             Width="50"
-                             Height="50"
-                             StrokeThickness="5"
-                             StrokeDashArray="1,2"
-                             Stroke="#DBE4EB"
-                             StrokeDashCap="Round"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Center"
-                             RenderTransformOrigin="0.5,0.5">
-                        <Ellipse.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform />
-                                <SkewTransform />
-                                <RotateTransform />
-                                <TranslateTransform />
-                            </TransformGroup>
-                        </Ellipse.RenderTransform>
-                    </Ellipse>
+                    <hc:CircleProgressBar IsIndeterminate="True"
+                                          Width="60"
+                                          Height="60" />
                     <Label x:Name="label"
                            Content="Подождите..."
+                           FontSize="25"
                            VerticalAlignment="Center"
-                           Margin="5,0,0,0" />
+                           Margin="10,0,0,0" />
                 </StackPanel>
                 </TextBlock>
             </Border>
