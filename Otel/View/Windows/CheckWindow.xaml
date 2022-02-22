@@ -48,7 +48,7 @@
                        Text="Бронирование завершено"
                        Style="{StaticResource TextBlockTitle}"
                        Margin="20 0 0 0"
-                       FontSize="31"
+                       FontSize="29"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
             <TextBlock Grid.Row="1"

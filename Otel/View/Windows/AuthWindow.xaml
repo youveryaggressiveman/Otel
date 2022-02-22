@@ -156,12 +156,12 @@
                     <Run Text="Забыли пароль" />
                 </Hyperlink>
             </TextBlock>
-            <TextBlock Text="Хотите зарегистрироваться в системе"
+            <TextBlock Text="Зарегистрироваться в системе"
                        Grid.Row="4"
                        FontSize="20"
                        Margin="0 50 0 50"
                        Grid.Column="0"
-                       Style="{StaticResource TextBlockBaseStyle}"
+                Style="{StaticResource regTextBlock}"
                        x:Name="registrLabel"
                        MouseLeftButtonDown="registrLabel_MouseDoubleClick"
                        Grid.ColumnSpan="2"

@@ -119,7 +119,7 @@ namespace Otel.ViewModel
             Delete = new DelegateCommand(DeleteAvatar);
 
             LoadInfo();
-
+            UpdateCard();
         }
 
         /// <summary>

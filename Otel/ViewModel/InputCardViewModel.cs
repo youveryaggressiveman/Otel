@@ -6,6 +6,7 @@ using Otel.View.Windows;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Otel.ViewModel
@@ -176,7 +177,7 @@ namespace Otel.ViewModel
 
             try
             {
-                card = await controller.DeleteCardAsync(SelectedCard.ID);
+                card = await controller.DeleteCardAsync(((obj as Button).DataContext as Card).ID);
 
             }
             catch (Exception e)
@@ -218,15 +219,7 @@ namespace Otel.ViewModel
         /// <param name="obj"></param>
         private void SelectedByPayCard(object obj)
         {
-
-            if (SelectedCard == null)
-            {
-                HandyControl.Controls.MessageBox.Info("Выберите карту", "Предупреждение");
-
-                return;
-            }
-
-            CardSingltone.Card = SelectedCard;
+            CardSingltone.Card = (obj as Button).DataContext as Card;
 
             foreach (Window item in Application.Current.Windows)
             {

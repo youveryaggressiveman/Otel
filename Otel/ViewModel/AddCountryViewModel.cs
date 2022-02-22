@@ -65,7 +65,7 @@ namespace Otel.ViewModel
                 Name = Country
             };
 
-            var newCountry = await universalControllerCreateCountry.CreateAnother(country, "");
+            var newCountry = await universalControllerCreateCountry.CreateAnother(country, "Countries");
 
             if (newCountry.ID == 0)
             {

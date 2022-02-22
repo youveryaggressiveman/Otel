@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Otel.ViewModel;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,6 +74,16 @@ namespace Otel.View.Windows
             {
                 e.Handled = true;
             }
+        }
+
+        private void selectCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as InputCardViewModel).SelectCard.Execute(sender);
+        }
+
+        private void deleteCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as InputCardViewModel).DeleteCard.Execute(sender);
         }
     }
 }

@@ -112,13 +112,17 @@
                                     <Run Text="{Binding LastFourDigits}" />
                                     <Run Text=";" />
                                     </TextBlock>
-                                    <Button Command="{Binding ElementName=allCardListView, Path=DataContext.SelectCard}"
+                                    <Button
                                             Content="Выбрать "
+                                            x:Name="selectCardButton"
+                                            Click="selectCardButton_Click"
                                             Margin="5 0 5 0"
                                             Style="{StaticResource ButtonDashedPrimary.Small}">
                                     </Button>
-                                    <Button Command="{Binding ElementName=allCardListView, Path=DataContext.DeleteCard}"
+                                    <Button
                                             Content="Удалить "
+                                            x:Name="deleteCardButton"
+                                            Click="deleteCardButton_Click"
                                             Margin="5 0 5 0"
                                             Style="{StaticResource ButtonDashedDanger.Small}">
                                     </Button>

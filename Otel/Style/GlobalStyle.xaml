@@ -1,6 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!--Выделение TextBlock в AuthWindow -->
+    <Style
+        TargetType="TextBlock"
+        x:Key="regTextBlock">
+        <Style.Triggers>
+            <Trigger
+                Property="IsMouseOver"
+                Value="True">
+                <Setter
+                    Property="Cursor"
+                    Value="Hand" />
+                <Setter
+                    Property="TextDecorations"
+                    Value="Underline" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <!--Закругление элементов для ListBox-->
     <ControlTemplate x:Key="ArrowedItemsControl"
                      TargetType="{x:Type ItemsControl}">
