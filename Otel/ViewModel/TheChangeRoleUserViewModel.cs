@@ -2,6 +2,8 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.View.Pages;
+using Otel.Windows;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -157,6 +159,14 @@ namespace Otel.ViewModel
             UpdateRoleBySelectedUser = new DelegateCommand(UpdateRole);
             ViewSelectedUser = new DelegateCommand(SelectUser);
 
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).LoadClient();
+                }
+            }
+
             LoadUsers();
         }
 
@@ -182,6 +192,14 @@ namespace Otel.ViewModel
 
             var result = HandyControl.Controls.MessageBox.Ask("Вы уверены, что хотите изменить роль у выбранного пользователя?", "Предупреждение");
 
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).SetSplash(true);
+                }
+            }
+
             if (result == MessageBoxResult.OK)
             {
                 SelectedUser.RoleID = SelectedRole.ID;
@@ -194,14 +212,29 @@ namespace Otel.ViewModel
                     UserSingltone.User = null;
 
                     UserSingltone.User = newUser;
+
+                    foreach (Window item in Application.Current.Windows)
+                    {
+                        if (item is MainWindow)
+                        {
+                            FrameManager.MainFrame = (item as MainWindow).Main;
+
+                            (item.DataContext as TicketViewModel).LoadClient();
+
+                            FrameManager.SetSource(new NewTicket(new TicketViewModel()));
+                        }
+                    }
                 }
 
                 LoadAllData();
             }
 
-            if (result == MessageBoxResult.Cancel)
+            foreach (Window item in Application.Current.Windows)
             {
-                return;
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).SetSplash(false);
+                }
             }
         }
 

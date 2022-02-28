@@ -645,7 +645,7 @@ namespace Otel.ViewModel
         /// <summary>
         /// Метод, который загружает информацию о пользователе 
         /// </summary>
-        private void LoadClient()
+        public void LoadClient()
         {
             if (UserSingltone.User != null)
             {
@@ -663,6 +663,7 @@ namespace Otel.ViewModel
                 if (UserSingltone.User.RoleID == 2)
                 {
                     VisibilityAdminButton = Visibility.Visible;
+                    VisibilityTheChangeRole = Visibility.Collapsed;
                 }
 
                 if (UserSingltone.User.RoleID == 3 || UserSingltone.User.RoleID == 4)

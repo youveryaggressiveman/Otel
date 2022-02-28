@@ -2,9 +2,11 @@
 using Otel.Controllers;
 using Otel.Core;
 using Otel.Model;
+using Otel.Windows;
 using System;
 using System.Collections.ObjectModel;
 using System.Net.WebSockets;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Otel.ViewModel
@@ -29,8 +31,8 @@ namespace Otel.ViewModel
         private string address;
         private string statusOrder;
 
-        private System.DateTime arrivalDate;
-        private System.DateTime departureDate;
+        private System.DateTime arrivalDate = DateTime.Now;
+        private System.DateTime departureDate = DateTime.Now;
 
         #endregion
 
@@ -143,6 +145,14 @@ namespace Otel.ViewModel
             RoomList = new ObservableCollection<Room>();
 
             InfoAboutOrder = new DelegateCommand(ShowInfo);
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).LoadClient();
+                }
+            }
 
             LoadAllTicket();
         }

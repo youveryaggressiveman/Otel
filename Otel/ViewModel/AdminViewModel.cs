@@ -1,7 +1,9 @@
 ﻿using Otel.Command;
 using Otel.Controllers;
 using Otel.Model;
+using Otel.View.Pages;
 using Otel.View.Windows;
+using Otel.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -253,6 +255,14 @@ namespace Otel.ViewModel
             PutInNewRoom = new DelegateCommand(LoadnewRoomList);
             PutInNewOtel = new DelegateCommand(NewOtel);
 
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).LoadClient();
+                }
+            }
+
             LoadAllData();
         }
 
@@ -376,6 +386,14 @@ namespace Otel.ViewModel
                 return;
             }
 
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).SetSplash(true);
+                }
+            }
+
             IsEnabledButton = false;
 
             List<ImageOfOtel> imageOfOtel = new List<ImageOfOtel>();
@@ -439,6 +457,14 @@ namespace Otel.ViewModel
             if (result == MessageBoxResult.Cancel)
             {
 
+            }
+
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item is MainWindow)
+                {
+                    (item.DataContext as TicketViewModel).SetSplash(false);
+                }
             }
 
             IsEnabledButton = true;
