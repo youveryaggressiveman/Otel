@@ -18,7 +18,8 @@ namespace Otel.Core.Helper
             {
                 throw new ArgumentNullException("Template file not found");
             }
-            fileInfo = new FileInfo(filePath);
+            var temp = new FileInfo(filePath);
+            fileInfo = temp.CopyTo(filePath.Replace("Marking_template.docx", "Marking_template_copy.docx"), true);
         }
 
         public void CreateCheck(Dictionary<string, string> informationPairs)
